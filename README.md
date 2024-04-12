@@ -1,24 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+E.R.M. application built using ruby on rails.
+It's functionalities are to be: 
+- Registering inventories itens, incoming requests from various units and acquisitions.
+- Tracking changes and allowing for updates of such registries.
+- (Maybe?) Some form of authentication to allow for units to register their requests themselves. (Admin and user privileges?)
+- Intuitive graphical displays and search capacities of the registred data.
