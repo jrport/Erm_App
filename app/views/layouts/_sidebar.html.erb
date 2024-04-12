@@ -1,0 +1,11 @@
+<div class="sidebar flex flex-col px-4 py-3 align-center justify-between text-white bg-sky-900 w-1/12">
+  <!-- <h1 class="text-2xl font-bold text-center">São Roque</h1> -->
+  <span><%= image_tag "logo.png" %></span>
+  <ul class="text-xl flex flex-col pb-20">
+    <a href = <%= home_path %> class="hover:text-stone-200 hover:translate-x-5 duration-150">Home</a>
+    <a href = <%= pedidos_path %> class="hover:text-stone-200 hover:translate-x-5 duration-150">Pedidos</a>
+    <a href = <%= compras_path %> class="hover:text-stone-200 hover:translate-x-5 duration-150">Compras</a>
+    <a href = <%= items_path %> class="hover:text-stone-200 hover:translate-x-5 duration-150">Items</a>
+  </ul>
+  <small>V-1.0</small>
+</div>

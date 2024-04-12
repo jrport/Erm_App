@@ -1,0 +1,2 @@
+class LojasController < ApplicationController
+end
