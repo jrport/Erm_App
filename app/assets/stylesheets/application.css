@@ -18,5 +18,15 @@
 }
 
 body{
-	background-color: rgba(217, 217, 217, 1);
+	background-color: rgb( 48, 48, 48 );
 }
+
+tbody>a{
+	font-size: 10em;
+}
+
+/* .content{ */
+	/* flex-grow: 1; */
+	/* align-items: center; */
+	/* justify-content: center; */
+/* } */

@@ -12,9 +12,11 @@
   </head>
 
   <body>
-    <main class="w-screen h-screen flex flex-row">
+    <main class="w-screen h-screen flex">
       <%= render "layouts/sidebar" %>
-      <%= yield %>
+      <div class="flex flex-1">
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>

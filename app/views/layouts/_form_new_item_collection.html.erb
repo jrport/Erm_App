@@ -1,0 +1,4 @@
+<%= form_with url: "/items/new", class: "flex max-h-10 gap-3", method: :post do |form| %>
+  <%= form.text_field :nome %>
+  <%= form.number_field :quantidade %>
+<% end %>
