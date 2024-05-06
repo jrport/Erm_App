@@ -3,7 +3,15 @@
 one:
   nome: MyString
   quantidade: 1
+  descricao: MyText
+  pedido: one
+  compra: one
+  valor: 1.5
 
 two:
   nome: MyString
   quantidade: 1
+  descricao: MyText
+  pedido: two
+  compra: two
+  valor: 1.5

@@ -1,17 +1,13 @@
-<%= javascript_include_tag "carousel" %>
-<div class="h-screen">
-  <div class="text-2xl pb-10">pedidos aqui</div>
-  <tbody class="flex">
-    <% @pedidos.each do |pedido| %>
-        <div flex flex-row>
-          <td><%= pedido.estado %></td>
-          <td><%= pedido.loja_id %></td>
-        </div>
-        <tr>
-          <%= link_to "Show", pedido, class: "btn"%>
-          <%= link_to "Destroy", pedido, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-        </tr>
-    <% end %>
-  <%= link_to "Add", new_pedido_path %>
-  </tbody>
-</div>
+<%= content_for :title do %>
+  Pedidos
+<% end %>
+
+<%= turbo_frame_tag "panel" do %>
+  <div class="h-full grid grid-cols-3 grid-rows-6 gap-4">
+    <%= render "pedidos/table" %>
+    <div class="bg-white rounded-xl shadow-2xl row-span-2">Info card</div>
+    <div class="bg-white rounded-xl shadow-2xl row-span-1">Add</div>
+    <div class="bg-white rounded-xl shadow-2xl row-span-1">Delete</div>
+    <div class="bg-white rounded-xl shadow-2xl col-span-3 row-span-2">Bottom graph</div>
+  </div>
+<% end %>

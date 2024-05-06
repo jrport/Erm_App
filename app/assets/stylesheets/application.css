@@ -13,20 +13,3 @@
  *= require_tree .
  *= require_self
  */
-.sidebar{
-	background-color: rgba(0, 6, 61, 1);
-}
-
-body{
-	background-color: rgb( 48, 48, 48 );
-}
-
-tbody>a{
-	font-size: 10em;
-}
-
-/* .content{ */
-	/* flex-grow: 1; */
-	/* align-items: center; */
-	/* justify-content: center; */
-/* } */

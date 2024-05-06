@@ -1,3 +1,3 @@
 class Compra < ApplicationRecord
-  has_one :item
+  has_many :items
 end

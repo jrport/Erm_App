@@ -1,4 +1,0 @@
-<%= form_with url: "/pedidos/new", method: :post do |form| %>
-  <%= form.collection_select :loja_id, @lojas, :id, :nome %>
-  <%= form.date_field :pedido_created_at %>
-<% end %>

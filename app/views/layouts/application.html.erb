@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ErmSr</title>
+    <title>Almosheriff</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,12 +11,15 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="w-screen h-screen flex">
+  <body class="w-screen h-screen">
+    <main class="w-full h-full flex">
       <%= render "layouts/sidebar" %>
-      <div class="flex flex-1">
-        <%= yield %>
-      </div>
+      <content class="flex flex-col w-full">
+          <h1 style="background-color: #797f86;" class="text-stone-200 font-light p-4 text-4xl"><%= yield :title %></h1>
+          <div class="p-4 h-full bg-stone-100">
+            <%= yield %>
+          </div>
+      </content>
     </main>
   </body>
 </html>

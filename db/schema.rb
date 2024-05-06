@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_11_225503) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_05_061906) do
   create_table "compras", force: :cascade do |t|
-    t.float "valor"
+    t.float "valor_total", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -20,11 +20,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_225503) do
   create_table "items", force: :cascade do |t|
     t.string "nome"
     t.integer "quantidade"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text "descricao"
     t.integer "pedido_id"
     t.integer "compra_id"
+    t.float "valor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "loja_id"
     t.index ["compra_id"], name: "index_items_on_compra_id"
+    t.index ["loja_id"], name: "index_items_on_loja_id"
     t.index ["pedido_id"], name: "index_items_on_pedido_id"
   end
 
@@ -37,14 +41,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_225503) do
   end
 
   create_table "pedidos", force: :cascade do |t|
-    t.boolean "estado"
+    t.string "status", default: "Pendente"
+    t.integer "loja_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "loja_id", null: false
     t.index ["loja_id"], name: "index_pedidos_on_loja_id"
   end
 
   add_foreign_key "items", "compras"
+  add_foreign_key "items", "lojas"
   add_foreign_key "items", "pedidos"
   add_foreign_key "pedidos", "lojas"
 end

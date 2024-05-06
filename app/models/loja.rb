@@ -1,3 +1,3 @@
 class Loja < ApplicationRecord
-  has_many :pedidos
+  has_many :items
 end

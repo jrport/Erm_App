@@ -1,2 +1,0 @@
-class LojasController < ApplicationController
-end
