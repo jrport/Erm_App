@@ -1,2 +1,25 @@
-    
+<div class="bg-white rounded-2xl col-span-2 p-4 row-span-5 shadow-2xl">
+<%= turbo_frame_tag "table" do %>
+    <table class="h-full w-full table-auto">
+      <thead class="">
+        <th class="text-left">Data</th>
+        <th class="text-left">Origem</th>
+        <th class="text-left">Status</th>
+        <th class="text-left"></th>
+      </thead>
+      <tfoot>
+        <tr><td>nav_stuff</td></tr>
+      </tfoot>
+      <tbody>
+        <% 15.times do %>
+          <tr>
+            <td>Row</td>
+            <td>Row</td>
+            <td>Row</td>
+            <td>Botão</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>
 </div>

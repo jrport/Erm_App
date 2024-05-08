@@ -15,8 +15,11 @@
     <main class="w-full h-full flex">
       <%= render "layouts/sidebar" %>
       <content class="flex flex-col w-full">
-          <h1 style="background-color: #797f86;" class="text-stone-200 font-light p-4 text-4xl"><%= yield :title %></h1>
-          <div class="p-4 h-full bg-stone-100">
+        <div style="background-color:#354c98;" class="text-stone-200 b-2 b-white font-light p-4 text-4xl">
+          <image  href="https://icons8.com/icon/97654/sidebar">sidebar</image>
+          <%= yield :title %>
+        </div>
+          <div style="background-color:#354c98;" class="p-4 h-full bg-stone-100">
             <%= yield %>
           </div>
       </content>
