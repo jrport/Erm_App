@@ -2,10 +2,18 @@
 <div style="background-color:#212a4a;" class="flex justify-between text-white p-5 flex-col h-full w-1/5 max-2/12">
     <%= image_tag 'logo' %>
     <ul class="font-bold text-3xl h-1/2 flex flex-col justify-center max-h-full max-w-full">
-        <il><a href=<%= home_path %> class="hover:translate-x-5 block text-wrap duration-200">Início</a></il>
-        <il><a href=""  class="hover:translate-x-5 block text-wrap duration-200">Compras</a></il>
-        <il><a href=<%= pedidos_path %> class="hover:translate-x-5 block text-wrap duration-200">Pedidos</a></il>
-        <il><a href="" class="hover:translate-x-5 block text-wrap duration-200">Inventários</a></il>
+      <il><a href=<%= home_path %> class="flex hover:translate-x-5 text-wrap duration-200">
+        Início
+      </a></il>
+      <il><a href=""  class="hover:translate-x-5 block text-wrap duration-200">
+        Compras
+      </a></il>
+      <il><a href=<%= pedidos_path %> class="hover:translate-x-5 block text-wrap duration-200">
+        Pedidos
+      </a></il>
+      <il><a href="" class="hover:translate-x-5 block text-wrap duration-200">
+        Inventários
+      </a></il>
     </ul>
     <!--small>V-1.1</small-->
     <small><%= Time.now %></small>

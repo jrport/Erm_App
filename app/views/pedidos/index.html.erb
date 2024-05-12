@@ -4,7 +4,7 @@
 
 <%= turbo_frame_tag "panel" do %>
   <div class="h-full grid grid-rows-5 grid-cols-5 gap-4">
-    <%= render "pedidos/table" %>
+    <%= render "pedidos/table", locals: { pedidos: @pedidos }%>
     <div class="bg-white rounded-xl col-span-3 row-span-3 shadow-2xl">Graph</div>
     <div class="col-span-1 row-span-2 flex flex-col gap-4">
       <div class="flex-1 bg-white rounded-xl shadow-2xl">Add</div>

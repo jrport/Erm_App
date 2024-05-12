@@ -1,7 +1,6 @@
+<%= content_for :title do %>Início<% end %>
+<%= content_for :icon do %><%= image_tag "home", style:"width:2%;" %><% end %>
 <%= turbo_frame_tag "panel" do %>
-  <%= content_for :title do %>
-    Início
-  <% end %>
   <div>
     <h1 class="font-bold text-4xl">Home#index</h1>
     <p>Find me in app/views/home/index.html.erb</p>
