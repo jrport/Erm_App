@@ -1,20 +1,30 @@
-<!-- 0a125c-->
-<div style="background-color:#212a4a;" class="absolute h-screen w-2/12 flex justify-between text-white p-5 flex-col">
-    <%= image_tag 'logo' %>
-    <ul class="font-bold text-3xl h-1/2 flex flex-col justify-center max-h-full max-w-full">
-      <il><a href=<%= home_path %> class="flex hover:translate-x-5 text-wrap duration-200">
-        Início
-      </a></il>
-      <il><a href=""  class="hover:translate-x-5 block text-wrap duration-200">
-        Compras
-      </a></il>
-      <il><a href=<%= pedidos_path %> class="hover:translate-x-5 block text-wrap duration-200">
+<aside style="background-color:#212a4a; width: 12%;" class="justify-between p-3 flex-col flex h-full">
+  <%= image_tag 'logo', class: "mt-3" %>
+  <ul class="flex flex-1 justify-center flex-wrap gap-1 flex-col text-2xl mb-2">
+    <il class="rounded-lg flex gap-1">
+      <%= image_tag 'home' %>
+      <a class='rounded-xl text-gray-300 hover:text-gray-100 hover:translate-x-3 duration-300 font-normal inline-block w-full' href=<%=home_path%>>
+          Início
+      </a>
+    </il>
+    <il class="flex gap-1 rounded-xl">
+      <%= image_tag "pedidos.svg" %>
+      <a class='rounded-xl text-gray-300 hover:text-gray-100 duration-300 font-normal hover:translate-x-3 inline-block' href=<%=pedidos_path%>>
         Pedidos
-      </a></il>
-      <il><a href="" class="hover:translate-x-5 block text-wrap duration-200">
+      </a>
+    </il>
+      <il class="flex gap-1 rounded-xl">
+        <%= image_tag 'compras.svg' %>
+        <a class='rounded-xl text-gray-300 hover:text-gray-100 duration-300 font-normal hover:translate-x-3 inline-block' href=<%=compras_path%>>
+          Compras
+        </a>
+    </il>
+    <il class="flex gap-1 rounded-xl">
+      <%= image_tag 'inventory.svg' %>
+      <a class='rounded-xl text-gray-300 hover:text-gray-100 duration-300 font-normal hover:translate-x-3 inline-block' href=<%=items_path%>>
         Inventários
-      </a></il>
-    </ul>
-    <!--small>V-1.1</small-->
-    <small><%= Time.now %></small>
-</div>
+      </a>
+    </il>
+  </ul>
+  <small class="text-sm text-white">V-1.0</small>
+</aside>

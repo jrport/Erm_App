@@ -10,20 +10,9 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
-  <body class="w-screen h-screen">
-    <main class="w-full h-full flex">
-      <%= render "layouts/sidebar" %>
-      <!-- background-color:#354c98; -->
-      <content class="flex flex-col w-full">
-        <div style="background-color:#212a4a;" class="text-stone-200 flex items-center gap-2 font-light p-4 text-4xl">
-          <%= yield :icon %>
-          <%= yield :title %>
-        </div>
-          <div style="background-color:#354c98;" class="p-4 h-full bg-stone-100">
-            <%= yield %>
-          </div>
-      </content>
-    </main>
+  <!--style="background-color:#212a4a;"-->
+  <body class='flex overflow-hidden h-screen'>
+      <%= render 'layouts/sidebar' %>
+      <%= yield %>
   </body>
 </html>

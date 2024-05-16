@@ -1,16 +1,3 @@
-<%= content_for :title do %>
-  Pedidos
-<% end %>
-
-<%= turbo_frame_tag "panel" do %>
-  <div class="h-full grid grid-rows-5 grid-cols-5 gap-4">
-    <%= render "pedidos/table" %>
-    <div class="bg-white rounded-xl col-span-3 row-span-3 shadow-2xl">Graph</div>
-    <div class="col-span-1 row-span-2 flex flex-col gap-4">
-      <div class="flex-1 bg-white rounded-xl shadow-2xl">Add</div>
-      <div class="flex-1 bg-white rounded-xl shadow-2xl">Delete</div>
-    </div>
-    <div class="bg-white rounded-xl row-span-2 col-span-1 shadow-2xl">Info1 card</div>
-    <div class="bg-white rounded-xl row-span-2 col-span-1 shadow-2xl">Info2 card</div>
-  </div>
-<% end %>
+<div class='w-full'>
+  <%= render partial: 'layouts/header', locals: {path: [(link_to "/Início", home_path), (link_to "/Pedidos", pedidos_path)]} %>
+</div>
