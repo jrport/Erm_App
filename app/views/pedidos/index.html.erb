@@ -1,3 +1,19 @@
-<div class='w-full'>
-  <%= render partial: 'layouts/header', locals: {path: [(link_to "/Início", home_path), (link_to "/Pedidos", pedidos_path)]} %>
+<%= content_for :header do %> 
+  /<%= link_to "Início", home_path %>/<%= link_to "Pedidos", pedidos_path %>
+<% end %>
+
+<div class="w-full h-full flex">
+  <div class="flex-1 m-4 grid gap-4 grid-cols-10 text-lg grid-rows-10">
+    <div class='shadow-2xl rounded-xl col-span-5 row-span-10'>
+      <%= render partial: 'pedidos/table', locals: {pedidos: @pedidos} %>
+    </div>
+    <div class='shadow-2xl rounded-xl col-span-1 row-span-1'>Add</div>
+    <div class='shadow-2xl rounded-xl col-span-1 row-span-1'>Del</div>
+    <div class='shadow-2xl rounded-xl col-span-3 row-span-4 gap-4 grid grid-cols-2'>
+      <div>Card1</div>
+      <div>Card1</div>
+    </div>
+    <div class="shadow-2xl rounded-xl col-span-2 row-span-3">Card</div>
+    <div class='shadow-2xl rounded-xl col-span-5 row-span-6'>Graph</div>
+  </div>  
 </div>

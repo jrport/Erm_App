@@ -13,6 +13,9 @@
   <!--style="background-color:#212a4a;"-->
   <body class='flex overflow-hidden h-screen'>
       <%= render 'layouts/sidebar' %>
-      <%= yield %>
+      <div class="flex flex-col w-full">
+        <%= render 'layouts/header' %>
+        <%= yield %>
+      </div>
   </body>
 </html>
