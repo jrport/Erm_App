@@ -1,31 +1,33 @@
-<div class='flex p-4'>
-  <table class='flex-1 h-full table table-fixed'>
-    <thead class='bg-gray-100'>
-      <tr>
-        <td class='py-2 px-1'>Data da Criação</td>
-        <td>Origem do Pedido</td>
-        <td>Status do Pedido</td>
-        <td></td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @table_pedidos.each do |pedido| %>
-        <% if pedido %>
-          <tr>
-            <td class='py-1'>dwad</td>
-            <td>dwad</td>
-            <td>dwad</td>
-            <td>dwad</td>
-          </tr>
-        <% else %>
-          <tr>
-            <td class='py-1'>daad</td>
-            <td>adwd</td>
-            <td>adwdd</td>
-            <td>wdajdwi</td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
+<div class='text-sm'>
+  Buttons and filters
+</div>
+<table class='overflow-scroll overflow-y-scroll table table-fixed mb-4 mt-4 w-full rounded-xl border-2'>
+  <thead>
+    <tr class='w-full text-sm bg-[#f0f6fe]'>
+      <th class='p-2 text-center'>Data do Pedido</th>
+      <th class='p-2 text-center'>Loja de Origem</th>
+      <th class='p-2 text-center'>Status do Pedido</th>
+      <th class='p-2 text-center'></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @table_pedidos.each do |pedido| %>
+      <tr class='text-center font-medium'>
+        <td class='py-4'><%= pedido.created_at.strftime('%d/%m/%Y') %></td>
+        <td class='py-4'><%= pedido.loja.nome %></td>
+        <td class='py-4'><%= pedido.status %></td>
+        <td class='py-4'><%= link_to 'Detalhes', pedido_path(pedido), class:"bg-[#2b4ba2] px-3 py-1 text-white rounded" %></td> 
+      </tr> 
+    <% end %>
+  </tbody>
+</table>
+<div class='text-sm flex justify-between'>
+  <div>
+    Total de Pedidos: <%= @pedidos.count%>
+  </div>
+  <div class='flex gap-2 items-center'>
+    <%= @cur_table_page %> de <%= @total_table_pages %>
+      <%= image_tag 'left_arrow',style:"width: 2rem; filter: brightness(0);" %>
+      <%= image_tag 'right_arrow',style:"width: 2rem; filter: brightness(0);" %>
+  </div>
 </div>

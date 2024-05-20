@@ -4,7 +4,8 @@ class PedidosController < ApplicationController
   # GET /pedidos or /pedidos.json
   def index
     @pedidos = Pedido.all
-    @cur_table_page = 0
+    @cur_table_page = 1
+    @total_table_pages = (20/@pedidos.count).ceil()
     item_count = 19
     start = @cur_table_page*item_count
     @table_pedidos = @pedidos[start..start+item_count].in_groups_of(item_count)[0]
