@@ -1,33 +1,62 @@
-<div class='text-sm'>
-  Buttons and filters
-</div>
-<table class='overflow-scroll overflow-y-scroll table table-fixed mb-4 mt-4 w-full rounded-xl border-2'>
-  <thead>
-    <tr class='w-full text-sm bg-[#f0f6fe]'>
-      <th class='p-2 text-center'>Data do Pedido</th>
-      <th class='p-2 text-center'>Loja de Origem</th>
-      <th class='p-2 text-center'>Status do Pedido</th>
-      <th class='p-2 text-center'></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @table_pedidos.each do |pedido| %>
-      <tr class='text-center font-medium'>
-        <td class='py-4'><%= pedido.created_at.strftime('%d/%m/%Y') %></td>
-        <td class='py-4'><%= pedido.loja.nome %></td>
-        <td class='py-4'><%= pedido.status %></td>
-        <td class='py-4'><%= link_to 'Detalhes', pedido_path(pedido), class:"bg-[#2b4ba2] px-3 py-1 text-white rounded" %></td> 
-      </tr> 
+<%= turbo_frame_tag "table" do %>
+  <div class='h-full flex flex-col justify-evenly'>
+    <%= search_form_for @ransack_query, {html:{class:"flex w-full justify-evenly"}} do |f| %>
+
+      <%= f.label :created_at, "Data" %>
+      <%= f.date_field :created_at, class:"rounded-lg" %>
+
+      <%= f.label :loja_id, "Loja" %>
+      <%= f.collection_select :loja_id, Loja.all, :id, :nome, {include_blank: true}, class:"rounded-lg flex-1" %>
+
+      <%= f.submit class:"bg-gray-200 px-2 py-1 rounded-lg border hover:bg-gray-100 cursor-pointer" %>
     <% end %>
-  </tbody>
-</table>
-<div class='text-sm flex justify-between'>
-  <div>
-    Total de Pedidos: <%= @pedidos.count%>
+    <div class="flex-auto relative overflow-x-auto shadow-md">
+      <table class="table table-fixed w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              Data do Pedido
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Origem do Pedido
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Status do Pedido
+            </th>
+            <th scope="col" class="px-6 py-3">
+              <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @pedidos.each do |pedido| %>
+            <tr class="text-black-500 bg-white border-b hover:bg-gray-50">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                  <%= pedido.created_at.strftime("%d/%m/%Y") %>
+                </th>
+                <td class="px-6 py-4">
+                  <%= pedido.loja.nome %>
+                </td>
+                <td class="px-6 py-4">
+                  <% if pedido.status.upcase == "PENDENTE" %>
+                    <span class="bg-red-400 rounded-xl p-1 text-white">Pendente</span>
+                  <% elsif pedido.status.upcase == "EM PROGRESSO" %>
+                    <span class="bg-yellow-400 rounded-xl p-1 text-white">Em progresso</span>
+                  <% elsif pedido.status.upcase == "FINALIZADO" %>
+                    <span class="bg-green-400 rounded-xl p-1 text-white">Finalizado</span>
+                  <% end %>
+                </td>
+                <td class="px-6 py-4 text-right">
+                  <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class='flex w-full justify-between p-2'>
+      <%== pagy_info(@pagy, item_name: 'Pedido'.pluralize(@pagy.count)) %>
+      <%== pagy_nav(@pagy) %>
+    </div>
   </div>
-  <div class='flex gap-2 items-center'>
-    <%= @cur_table_page %> de <%= @total_table_pages %>
-      <%= image_tag 'left_arrow',style:"width: 2rem; filter: brightness(0);" %>
-      <%= image_tag 'right_arrow',style:"width: 2rem; filter: brightness(0);" %>
-  </div>
-</div>
+<% end %>

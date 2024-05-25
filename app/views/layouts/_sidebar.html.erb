@@ -2,19 +2,27 @@
   <%= image_tag 'logo' %>
   <ul class='flex flex-col gap-2'>
     <il class='flex flex-row gap-2 w-full'>
-      <%= image_tag 'home' %>
+      <span class="material-symbols-outlined">
+        home
+      </span>
       <%= link_to 'Início', home_path, class: "hover:translate-x-2 duration-200"%>
       </il>
     <il class='flex flex-row gap-2 w-full'>
-      <%= image_tag 'pedidos' %>
+      <span class="material-symbols-outlined">
+        checklist
+      </span>
       <%= link_to 'Pedidos', pedidos_path, class: "hover:translate-x-2 duration-200"%>
       </il>
     <il class='flex flex-row gap-2'>
-      <%= image_tag 'compras' %>
+      <span class="material-symbols-outlined">
+        local_shipping
+      </span>
       <%= link_to 'Compras', compras_path, class: "hover:translate-x-2 duration-200"%>
       </il>
     <il class='flex flex-row gap-2'>
-      <%= image_tag 'inventory' %>
+      <span class="material-symbols-outlined">
+        inventory_2
+      </span>
       <%= link_to 'Inventários', items_path, class: "hover:translate-x-2 duration-200"%>
       </il>
   </ul>

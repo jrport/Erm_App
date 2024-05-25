@@ -71,3 +71,7 @@ end
 
 gem "solargraph"
 gem "faker"
+
+gem "pagy", "~> 8.4"
+
+gem "ransack"

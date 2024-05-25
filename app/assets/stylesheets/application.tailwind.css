@@ -27,3 +27,20 @@ td:nth-child(4)>a:hover {
 /* .grid>div{ */
 /*     border: 2px solid black; */
 /* } */
+
+/* .pagy { */
+/*   @apply flex space-x-1 font-semibold text-sm text-gray-500; */
+/*   a:not(.gap) { */
+/*     @apply block rounded-lg px-3 py-1; */
+/*     &:hover { */
+/*       @apply bg-gray-300; */
+/*     } */
+/*     &:not([href]) { /* disabled links */ 
+/*       @apply text-black bg-blue-800 cursor-default; */
+/*     } */
+/*     &.current { */
+/*       @apply text-white bg-gray-400; */
+/*     } */
+/*   } */
+/*   } */
+/* } */

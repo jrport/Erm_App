@@ -3,12 +3,9 @@ class PedidosController < ApplicationController
 
   # GET /pedidos or /pedidos.json
   def index
-    @pedidos = Pedido.all
-    @cur_table_page = 1
-    @total_table_pages = (20/@pedidos.count).ceil()
-    item_count = 19
-    start = @cur_table_page*item_count
-    @table_pedidos = @pedidos[start..start+item_count].in_groups_of(item_count)[0]
+    @ransack_query = Pedido.ransack(params[:q])
+    @ransack_query.sorts = 'created_at desc' if @ransack_query.sorts.empty?
+    @pagy, @pedidos = pagy(@ransack_query.result, items: 10, size: 4)
   end
 
   # GET /pedidos/1 or /pedidos/1.json

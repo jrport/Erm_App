@@ -1,15 +1,16 @@
 <%= content_for :header do %> 
-  /<%= link_to "Início", home_path %>/<%= link_to "Pedidos", pedidos_path %>
+  <%= link_to "Início", home_path %>/<%= link_to "Pedidos", pedidos_path %>
 <% end %>
 
-<div class='m-4 grid grid-cols-12 gap-4 grid-rows-12'>
-  <div class='shadow-xl rounded-lg col-span-5 row-span-12 h-full p-4'>
-    <%= render partial: 'pedidos/table' %>
+<div class='m-3 grid grid-cols-6 grid-rows-5 gap-4 h-[90vh]'>
+  <div class="col-span-3 row-span-5 shadow-2xl">
+    <%= render "pedidos/table" %>
   </div>
-  <div class='shadow-xl col-span-7 row-span-4'>
-    Cards
+  <div class="col-span-3 row-span-2 shadow-2xl">
+    other grid
   </div>
-  <div class='shadow-xl col-span-7 row-span-8 '>
+  <div class="shadow-2xl col-span-3 row-span-3">
     Graph
   </div>
 </div>
+
