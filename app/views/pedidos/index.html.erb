@@ -2,15 +2,17 @@
   <%= link_to "Início", home_path %>/<%= link_to "Pedidos", pedidos_path %>
 <% end %>
 
-<div class='m-3 grid grid-cols-6 grid-rows-5 gap-4 h-[90vh]'>
-  <div class="col-span-3 row-span-5 shadow-2xl">
+<div class='m-3 grid grid-cols-2 grid-rows-2 gap-4 h-[90vh]'>
+  <div class="col-span-1 row-span-2 shadow-2xl rounded-xl">
     <%= render "pedidos/table" %>
   </div>
-  <div class="col-span-3 row-span-2 shadow-2xl">
-    other grid
+  <div class="col-span-1 row-span-1 grid grid-cols-3 shadow-2xl rounded-xl">
+    <div>add</div> 
+    <div>Pedidos atendidos</div> 
+    <div>Pedidos totais</div>
   </div>
-  <div class="shadow-2xl col-span-3 row-span-3">
-    Graph
+  <div class="shadow-xl flex overflow-x-auto items-center p-4 justify-center rounded-xl col-span-1 row-span-1">
+    <%= column_chart pedidos_chart_path, empty: "Sem dados", title: "Pedidos por Unidade", loading: "Carregando...", colors: ["#6eaaec", "#2e5bc7", "#2b4ba2"], xtitle: "Lojas", ytitle: "Pedidos" %>
   </div>
 </div>
 

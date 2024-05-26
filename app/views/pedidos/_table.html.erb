@@ -1,27 +1,27 @@
 <%= turbo_frame_tag "table" do %>
-  <div class='h-full flex flex-col justify-evenly'>
-    <%= search_form_for @ransack_query, {html:{class:"flex w-full justify-evenly"}} do |f| %>
+  <div class='h-full flex flex-col gap-3 justify-evenly'>
+    <%= search_form_for @ransack_query, {html:{class:"h-1/12 p-4 gap-1 items-center flex w-full justify-evenly"}} do |f| %>
 
-      <%= f.label :created_at, "Data" %>
-      <%= f.date_field :created_at, class:"rounded-lg" %>
+      <%= f.label :created_at_eq, "Data" %>
+      <%= f.date_field :created_at_eq, class:"rounded-lg" %>
 
-      <%= f.label :loja_id, "Loja" %>
-      <%= f.collection_select :loja_id, Loja.all, :id, :nome, {include_blank: true}, class:"rounded-lg flex-1" %>
+      <%= f.label :loja_id_eq, "Loja" %>
+      <%= f.collection_select :loja_id_eq, Loja.all, :id, :nome, {include_blank: true}, class:"rounded-lg" %>
 
       <%= f.submit class:"bg-gray-200 px-2 py-1 rounded-lg border hover:bg-gray-100 cursor-pointer" %>
     <% end %>
-    <div class="flex-auto relative overflow-x-auto shadow-md">
+    <div class="flex-auto relative overflow-y-auto overflow-x-auto border-b-2 border-t-2 border-stone-200">
       <table class="table table-fixed w-full text-sm text-left rtl:text-right text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
             <th scope="col" class="px-6 py-3">
-              Data do Pedido
+              <%= sort_link(@ransack_query, :created_at, "Data do Pedido") %>
             </th>
             <th scope="col" class="px-6 py-3">
-              Origem do Pedido
+              <%= sort_link(@ransack_query, :loja_id, "Origem do Pedido") %>
             </th>
             <th scope="col" class="px-6 py-3">
-              Status do Pedido
+              <%= sort_link(@ransack_query, :status, "Status do Pedido") %>
             </th>
             <th scope="col" class="px-6 py-3">
               <span class="sr-only">Edit</span>
@@ -39,11 +39,11 @@
                 </td>
                 <td class="px-6 py-4">
                   <% if pedido.status.upcase == "PENDENTE" %>
-                    <span class="bg-red-400 rounded-xl p-1 text-white">Pendente</span>
+                    <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">Pendente</span>
                   <% elsif pedido.status.upcase == "EM PROGRESSO" %>
-                    <span class="bg-yellow-400 rounded-xl p-1 text-white">Em progresso</span>
+                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">Em progresso</span>
                   <% elsif pedido.status.upcase == "FINALIZADO" %>
-                    <span class="bg-green-400 rounded-xl p-1 text-white">Finalizado</span>
+                    <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">Finalizado</span>
                   <% end %>
                 </td>
                 <td class="px-6 py-4 text-right">
@@ -54,8 +54,8 @@
         </tbody>
       </table>
     </div>
-    <div class='flex w-full justify-between p-2'>
-      <%== pagy_info(@pagy, item_name: 'Pedido'.pluralize(@pagy.count)) %>
+    <div class='flex w-full justify-between pt-2 pb-4 px-4'>
+      <%== pagy_info(@pagy, item_name: 'pedido'.pluralize(@pagy.count)) %>
       <%== pagy_nav(@pagy) %>
     </div>
   </div>

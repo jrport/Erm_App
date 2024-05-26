@@ -8,6 +8,11 @@ class PedidosController < ApplicationController
     @pagy, @pedidos = pagy(@ransack_query.result, items: 10, size: 4)
   end
 
+  # GET /pedidos_chart
+  def pedidos_chart
+    render json: Pedido.joins(:loja).group('lojas.nome').count
+  end
+
   # GET /pedidos/1 or /pedidos/1.json
   def show; end
 

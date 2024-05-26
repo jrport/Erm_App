@@ -75,3 +75,4 @@ gem "faker"
 gem "pagy", "~> 8.4"
 
 gem "ransack"
+gem "chartkick"
