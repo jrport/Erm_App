@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Almosheriff</title>
+    <title>ErmApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="w-screen flex overflow-x-hidden">
-    <%= render 'layouts/sidebar' %>
-    <content class="ml-[10dvw] flex-auto">
-      <%= render 'layouts/header' %>
+  <body class='bg-white 2xl:w-screen h-screen flex max-2xl:flex-col 2xl:flex-row'>
+    <%= render "layouts/sidebar" %>
+    <main class='bg-white w-full'>
       <%= yield %>
-    </content>
+    </main>
   </body>
 </html>

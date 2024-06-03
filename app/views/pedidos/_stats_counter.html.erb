@@ -1,0 +1,22 @@
+<div class='bg-gray-200 row-span-1 col-span-2 grid grid-cols-2 divide-x divide-gray-700 divide-dashed shadow-xl border-2 border-stone-400 rounded-md'>
+  <div class="flex justify-evenly gap-2 items-center">
+    <span class='material-icons font-bold bg-green-500 text-black py-2 px-1 rounded-lg'>arrow_upward</span>
+    <div class='flex items-center gap-1'>
+      <div id='stats_open_counter' class='text-[5rem] font-bold text-black'><%= open_count %></div>
+      <div>
+        <div class='text-gray-500'>Pedidos finalizados</div>
+        <div class='text-gray-500'>neste mês</div>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-evenly items-center">
+    <span class='material-icons font-bold bg-red-500 text-black py-2 px-1 rounded-lg'>arrow_downward</span>
+    <div class='flex items-center gap-1'>
+      <div id='stats_finished_counter' class='text-[5rem] font-bold text-black'><%= finished_count %></div>
+      <div>
+        <div class='text-gray-500'>Pedidos recebidos</div>
+        <div class='text-gray-500'>neste mês</div>
+      </div>
+    </div>
+  </div>
+</div>

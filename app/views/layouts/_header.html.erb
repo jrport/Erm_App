@@ -1,3 +1,5 @@
-<header class='p-4 h-[6dvh] flex font-medium w-full text-lg shadow-xl bg-stone-200 gap-[0.10rem]'>
-  <%= yield :header %>
+<header class='max-2xl:hidden h-[7dvh] flex gap-2 p-4 font-semibold text-xl text-black items-center  bg-stone-400 '>
+  <% links.each do |link| %>
+    <%= link_to link[:title], link[:uri] %> \
+  <% end %>
 </header>

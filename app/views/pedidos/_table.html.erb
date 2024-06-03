@@ -1,62 +1,51 @@
-<%= turbo_frame_tag "table" do %>
-  <div class='h-full flex flex-col gap-3 justify-evenly'>
-    <%= search_form_for @ransack_query, {html:{class:"h-1/12 p-4 gap-1 items-center flex w-full justify-evenly"}} do |f| %>
+<%= turbo_frame_tag 'table', class: 'shadow-xl border-2 border-stone-400 rounded-md flex flex-col bg-gray-200 text-black col-span-3 row-span-4' do %>
+    <%= search_form_for ransack, class:'m-5 flex gap-4 justify-between text-lg items-center' do |f| %>
 
-      <%= f.label :created_at_eq, "Data" %>
-      <%= f.date_field :created_at_eq, class:"rounded-lg" %>
+      <div class='flex items-center gap-1 flex-auto'>
+        <%= f.label :created_at_gteq, "De:" %>
+        <%= f.date_field :created_at_gteq, class: 'select select-bordered select-md bg-white' %>
+      </div>
 
-      <%= f.label :loja_id_eq, "Loja" %>
-      <%= f.collection_select :loja_id_eq, Loja.all, :id, :nome, {include_blank: true}, class:"rounded-lg" %>
+      <div class='flex items-center gap-1 flex-auto'>
+        <%= f.label :created_at_lteq, "Até:" %>
+        <%= f.date_field :created_at_lteq, class: 'select select-bordered select-md bg-white' %>
+      </div>
 
-      <%= f.submit class:"bg-gray-200 px-2 py-1 rounded-lg border hover:bg-gray-100 cursor-pointer" %>
+      <div class='flex items-center gap-1 flex-auto'>
+        <%= f.label :loja_id_eq, "Loja:" %>
+        <%= f.collection_select :loja_id_eq, Loja.all, :id, :nome, {include_blank: true},  { class: 'w-full select select-bordered select-md bg-white' } %>
+      </div>
+
+      <%= f.submit "search", class: 'btn btn-md btn-accent border-white bg-white material-icons' %>
+      <%= link_to 'delete', pedidos_path, class: 'rounded-lg bg-red-300 material-icons p-2 hover:bg-red-600' %>
     <% end %>
-    <div class="flex-auto relative overflow-y-auto overflow-x-auto border-b-2 border-t-2 border-stone-200">
-      <table class="table table-fixed w-full text-sm text-left rtl:text-right text-gray-500">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-          <tr>
-            <th scope="col" class="px-6 py-3">
-              <%= sort_link(@ransack_query, :created_at, "Data do Pedido") %>
-            </th>
-            <th scope="col" class="px-6 py-3">
-              <%= sort_link(@ransack_query, :loja_id, "Origem do Pedido") %>
-            </th>
-            <th scope="col" class="px-6 py-3">
-              <%= sort_link(@ransack_query, :status, "Status do Pedido") %>
-            </th>
-            <th scope="col" class="px-6 py-3">
-              <span class="sr-only">Edit</span>
-            </th>
+    <div class="overflow-x-auto overflow-y-auto text-black flex-1 border-stone-400 border-y-4">
+      <table class="table">
+        <thead>
+          <tr class='bg-gray-300 text-gray-800 text-bold'>
+            <th class='sr-only'>Selecionar</td>
+            <th><%= sort_link(ransack, :created_at, "Data do Pedido", default_order: :desc) %></th>
+            <th><%= sort_link(ransack, :loja_nome, "Loja Remetente") %></th>
+            <th><%= sort_link(ransack, :status, "Status") %></th>
+            <th class='sr-only'>Detalhes</td>
           </tr>
         </thead>
-        <tbody>
-          <% @pedidos.each do |pedido| %>
-            <tr class="text-black-500 bg-white border-b hover:bg-gray-50">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                  <%= pedido.created_at.strftime("%d/%m/%Y") %>
-                </th>
-                <td class="px-6 py-4">
-                  <%= pedido.loja.nome %>
-                </td>
-                <td class="px-6 py-4">
-                  <% if pedido.status.upcase == "PENDENTE" %>
-                    <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">Pendente</span>
-                  <% elsif pedido.status.upcase == "EM PROGRESSO" %>
-                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">Em progresso</span>
-                  <% elsif pedido.status.upcase == "FINALIZADO" %>
-                    <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">Finalizado</span>
-                  <% end %>
-                </td>
-                <td class="px-6 py-4 text-right">
-                  <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
-            </tr>
-          <% end %>
-        </tbody>
+          <tbody class=''>
+            <% pedidos.each do |pedido| %>
+              <tr>
+                <td><%= check_box_tag 'select', pedido.id, class: 'checkbox checkbox-bordered', data: { pedidos_target: "checkbox", action: "click->pedidos#toggle" } %></td>
+                <td><%= pedido.created_at.strftime('%d/%m/%Y') %></td>
+                <td><%= pedido.loja.nome %></td>
+                <td><%= status_badge(pedido.status) %></td>
+                <td><%= link_to 'Detalhes', pedido_path(pedido), class:'btn btn-sm btn-accent' %></td>
+              </tr>
+            <% end %>
+          </tbody>
       </table>
     </div>
-    <div class='flex w-full justify-between pt-2 pb-4 px-4'>
+    <nav class='flex justify-between p-4'>
       <%== pagy_info(@pagy, item_name: 'pedido'.pluralize(@pagy.count)) %>
       <%== pagy_nav(@pagy) %>
-    </div>
-  </div>
+    </nav>
 <% end %>
+

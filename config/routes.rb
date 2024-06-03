@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   get '/home', to: 'home#index'
-  get '/pedidos_chart', to: 'pedidos#pedidos_chart'
+  get '/pedidos_chart', to: 'pedidos#chart', as: 'pedidos_chart'
+  patch '/bulk_update', to: 'pedidos#bulk_update', as: 'bulk_update', defaults: { format: :turbo_stream }
   resources :pedidos
-  resources :items
   resources :compras
+  resources :items
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

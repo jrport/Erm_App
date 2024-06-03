@@ -1,32 +1,40 @@
-<aside style='background-color: #284281;' class='text-stone-50 p-4 top-0 left-0 flex flex-col w-[10dvw] justify-between h-screen fixed'>
-  <%= image_tag 'logo' %>
-  <ul class='flex flex-col gap-2'>
-    <il class='flex flex-row gap-2 w-full'>
-      <span class="material-symbols-outlined">
-        home
-      </span>
-      <%= link_to 'Início', home_path, class: "hover:translate-x-2 duration-200"%>
-      </il>
-    <il class='flex flex-row gap-2 w-full'>
-      <span class="material-symbols-outlined">
-        checklist
-      </span>
-      <%= link_to 'Pedidos', pedidos_path, class: "hover:translate-x-2 duration-200"%>
-      </il>
-    <il class='flex flex-row gap-2'>
-      <span class="material-symbols-outlined">
-        local_shipping
-      </span>
-      <%= link_to 'Compras', compras_path, class: "hover:translate-x-2 duration-200"%>
-      </il>
-    <il class='flex flex-row gap-2'>
-      <span class="material-symbols-outlined">
-        inventory_2
-      </span>
-      <%= link_to 'Inventários', items_path, class: "hover:translate-x-2 duration-200"%>
-      </il>
+<nav class='text-white max-2xl:h-[15dvh] max-2xl:items-center bg-blue-800 flex 2xl:flex-col justify-between 2xl:py-4 2xl:w-[12dvw] 2xl:h-screen'>
+  <div class='p-4'>
+    <%= image_tag 'logo', class: 'w-[10dvw] h-auto' %>
+  </div>
+  <ul class='menu-horizontal menu 2xl:menu-vertical  text-lg'>
+    <li class='text-lg'>
+      <%= link_to home_path do %>
+        <span class="material-icons">
+          home
+        </span>
+        Início
+      <% end %>
+    </li>
+    <li class='text-lg'>
+      <%= link_to pedidos_path do %>
+        <span class="material-icons">
+          checklist
+        </span>
+        Pedidos
+      <% end %>
+    </li>
+    <li class='text-lg'>
+      <%= link_to compras_path do %>
+        <span class="material-icons">
+          shopping_cart
+        </span>
+        Compras
+      <% end %>
+    </li>
+    <li class="text-lg">
+      <%= link_to items_path do %>
+        <span class="material-icons">
+          inventory
+        </span>
+        Inventários
+      <% end %>
+    </li>
   </ul>
-  <small class=' text-xs'>
-    V-1.0
-  </small>
-</aside>
+  <footer class="max-2xl:hidden text-white"><small class='max-2xl:hidden mb-4 ml-4'><%= Time.now.strftime('%s') %></small></footer>
+</nav>

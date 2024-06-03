@@ -1,0 +1,6 @@
+<%= turbo_stream.update 'stats_open_counter' do %>
+      <div id='stats_open_counter' class='text-[5rem] font-bold text-black'><%= Pedido.pending.count %></div>
+<% end %>
+<%= turbo_stream.update 'stats_finished_counter' do %>
+      <div id='stats_open_counter' class='text-[5rem] font-bold text-black'><%= Pedido.loja.count %></div>
+<% end %>

@@ -29,22 +29,3 @@
 
 en:
   hello: "Hello world"
-  pagy:
-    aria_label:
-      nav:
-        one: "Página"
-        other: "Páginas"
-      prev: "Anterior"
-      next: "Próximo"
-    prev: "&lt;"
-    next: "&gt;"
-    gap: "&hellip;"
-    item_name:
-      one: "item"
-      other: "items"
-    info:
-      no_items: "Nenhum(a) %{item_name} encontrado"
-      single_page: "Exibindo %{count} %{item_name}"
-      multiple_pages: "Exibindo %{item_name} nº %{from}-%{to} de %{count} encontrados"
-    combo_nav_js: "Página %{page_input} de %{pages}"
-    items_selector_js: "Mostrar %{items_input} %{item_name} por página"
