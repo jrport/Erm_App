@@ -1,24 +1,39 @@
-<%= render partial: 'layouts/header', locals: {links: [{title: 'Ínicio', uri: '/home'}, {title: 'Pedidos', uri: '/pedidos'}]} %>
-
-<div data-controller='pedidos' class='max-2xl:flex max-2xl:flex-col 2xl:grid 2xl:grid-cols-5 2xl:grid-rows-4 m-4 h-[89dvh] gap-4'>
-  <%= render partial: 'pedidos/table', locals: {pedidos: @pedidos, pagy: @pagy, ransack: @ransack_query} %>
-    <%= form_tag '/bulk_update', method: :patch, class: 'col-span-1 row-span-1 bg-gray-200 flex flex-col p-4 gap-1 h-full justify-center' do %>
-      <span class='text-gray-400 font-semibold text-center'>Selecione um pedido para mudar o status.</span>
-      <%= hidden_field_tag 'ids', '', data: { pedidos_target: 'idsField' } %>
-      <%= select_tag 'new_status', options_for_select([['Pendente', 'pending'], ['Em progresso', 'in_progress'], ['Finalizado', 'finished']]), class: 'select select-bordered' %>
-      <%= submit_tag 'Confirmar', class: 'btn btn-xs', disabled: true, data: { pedidos_target: 'submitBtn' } %>
+<%= turbo_frame_tag 'content', data: { turbo_action: "advance" } do %>
+  <%= render partial: 'layouts/header',
+    locals: {
+      links: [
+        {title: 'Ínicio', uri: home_path},
+        {title: 'Pedidos', uri: pedidos_path}
+      ]} %>
+  <div data-controller='pedidos' class='max-2xl:flex max-2xl:flex-col 2xl:grid 2xl:grid-cols-5 2xl:grid-rows-4 overflow-x-auto m-4 2xl:h-[89dvh] gap-4'>
+    <%= render partial: 'pedidos/table', locals: {pedidos: @pedidos, pagy: @pagy, ransack: @ransack_query} %>
+    <%= form_with scope: :pedido, url: '/bulk_update', method: :patch, class: 'shadow-xl items-center border-2 3xl:gap-3 overflow-x-auto border-stone-400 bg-gray-200 rounded-md col-span-1 row-span-1 bg-gray-200 flex flex-col p-2 gap-1 h-full justify-center', data: { action: 'submit -> pedidos#reset_checkboxes' } do |form| %>
+      <span class='text-gray-400 text-xl font-semibold text-center 3xl:text-xl'>Selecione um pedido para mudar o status.</span>
+      <%= form.hidden_field :id, data: { pedidos_target: 'idsField' } %>
+      <% options = [ 'Pendente', 'Em progresso', 'Finalizado' ] %>
+      <%= form.select :status, options.zip(Pedido.statuses.keys), {}, class: 'text-lg font-semibold select select-bordered 3xl:w-full' %>
+      <%= form.submit 'Confirmar', class: 'btn btn-sm 3xl:btn-sm 3xl:w-full', disabled: true, data: { pedidos_target: 'submitBtn' } %>
     <% end %>
-  <%= render partial: 'pedidos/total_counter', locals: {total_count: @month_pedidos_count} %>
-  <%= render partial: 'pedidos/stats_counter', locals: {finished_count: @finished_count, open_count: @open_count} %>
-  <div class='shadow-xl border-2 border-stone-400 bg-gray-200 rounded-md col-span-2 row-span-2 w-full flex items-center justify-center px-2'>
-    <%= column_chart pedidos_chart_path, 
-      loading: "Carregando...", 
-      empty: "Sem pedidos registrados",
-      download: true,
-      xtitle: 'Lojas',
-      ytitle: 'Qtd. de Pedidos',
-      title: 'Pedidos por Loja',
-      width: '100%'
-    %>
+    <%= render partial: 'pedidos/stats', locals: {total_count: @month_pedidos_count, finished_count: @finished_count, open_count: @open_count} %>
+    <div class='shadow-xl border-2 border-stone-400 bg-gray-200 rounded-md max-2xl:flex-auto col-span-2 row-span-2 w-full 2xl:flex-1 flex items-center justify-center px-2'>
+      <%= column_chart pedidos_chart_path, 
+        loading: "Carregando...", 
+        empty: "Sem pedidos registrados",
+        download: true,
+        xtitle: 'Lojas',
+        ytitle: 'Qtd. de Pedidos',
+        title: 'Pedidos mensais por Loja',
+        width: '100%',
+        height: '90%',
+        library: {
+          chart: {
+            backgroundColor: '#E5E7EB',
+            style: {
+              fontSize: 28
+            }
+          }
+        }
+      %>
+    </div>
   </div>
-</div>
+<% end %>

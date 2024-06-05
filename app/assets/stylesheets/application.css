@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require material_icons
+ *= require material_icons.helpers
  */
 
 
@@ -35,6 +37,7 @@
   background-color: #e5e7eb;
   padding: 0.25rem 0.75rem;
   color: inherit;
+  border: 1px solid black;
 }
 .pagy a:not(.gap):hover {
   background-color: #d1d5db;

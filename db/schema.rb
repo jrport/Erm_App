@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_02_045931) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_04_190014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
-  create_enum "pedido_status", ["pending", "in_progress", "finished"]
+  create_enum "estado", ["muito_ruim", "ruim", "ok"]
+  create_enum "status", ["pending", "in_progress", "finished"]
 
   create_table "compras", force: :cascade do |t|
     t.float "valor_total", default: 0.0
@@ -24,17 +25,29 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_02_045931) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "items", force: :cascade do |t|
+  create_table "items_de_compras", force: :cascade do |t|
+    t.string "nome", null: false
+    t.string "observacoes"
+    t.integer "quantidade", default: 1, null: false
+    t.enum "estado", default: "ok", null: false, enum_type: "estado"
+    t.float "preco"
+    t.bigint "loja_id", null: false
+    t.bigint "compra_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["compra_id"], name: "index_items_de_compras_on_compra_id"
+    t.index ["loja_id"], name: "index_items_de_compras_on_loja_id"
+  end
+
+  create_table "items_de_pedidos", force: :cascade do |t|
     t.string "nome", null: false
     t.string "porcao", default: "unitario", null: false
     t.integer "quantidade", default: 1, null: false
-    t.text "observacoes"
-    t.bigint "compra_id"
-    t.bigint "pedido_id"
-    t.bigint "loja_id"
-    t.index ["compra_id"], name: "index_items_on_compra_id"
-    t.index ["loja_id"], name: "index_items_on_loja_id"
-    t.index ["pedido_id"], name: "index_items_on_pedido_id"
+    t.string "observacoes"
+    t.bigint "pedido_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pedido_id"], name: "index_items_de_pedidos_on_pedido_id"
   end
 
   create_table "lojas", force: :cascade do |t|
@@ -48,14 +61,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_02_045931) do
 
   create_table "pedidos", force: :cascade do |t|
     t.bigint "loja_id", null: false
-    t.enum "status", default: "pending", null: false, enum_type: "pedido_status"
+    t.enum "status", default: "pending", null: false, enum_type: "status"
+    t.text "observacoes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "observacoes"
     t.index ["loja_id"], name: "index_pedidos_on_loja_id"
   end
 
-  add_foreign_key "items", "compras"
-  add_foreign_key "items", "pedidos"
+  add_foreign_key "items_de_compras", "compras"
+  add_foreign_key "items_de_compras", "lojas"
+  add_foreign_key "items_de_pedidos", "pedidos"
   add_foreign_key "pedidos", "lojas"
 end

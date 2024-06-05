@@ -1,28 +1,31 @@
 <%= turbo_frame_tag 'table', class: 'shadow-xl border-2 border-stone-400 rounded-md flex flex-col bg-gray-200 text-black col-span-3 row-span-4' do %>
-    <%= search_form_for ransack, class:'m-5 flex gap-4 justify-between text-lg items-center' do |f| %>
+    <%= search_form_for ransack, class:'m-5 flex gap-4 justify-evenly text-lg items-center' do |f| %>
 
-      <div class='flex items-center gap-1 flex-auto'>
+      <div class='flex items-center gap-1 '>
         <%= f.label :created_at_gteq, "De:" %>
-        <%= f.date_field :created_at_gteq, class: 'select select-bordered select-md bg-white' %>
+        <%= f.date_field :created_at_gteq, class: 'select select-bordered text-lg select-md bg-white' %>
       </div>
 
-      <div class='flex items-center gap-1 flex-auto'>
+      <div class='flex items-center gap-1 '>
         <%= f.label :created_at_lteq, "Até:" %>
-        <%= f.date_field :created_at_lteq, class: 'select select-bordered select-md bg-white' %>
+        <%= f.date_field :created_at_lteq, class: 'select select-bordered text-lg select-md bg-white' %>
       </div>
 
-      <div class='flex items-center gap-1 flex-auto'>
+      <div class='flex items-center gap-1 '>
         <%= f.label :loja_id_eq, "Loja:" %>
         <%= f.collection_select :loja_id_eq, Loja.all, :id, :nome, {include_blank: true},  { class: 'w-full select select-bordered select-md bg-white' } %>
       </div>
 
-      <%= f.submit "search", class: 'btn btn-md btn-accent border-white bg-white material-icons' %>
-      <%= link_to 'delete', pedidos_path, class: 'rounded-lg bg-red-300 material-icons p-2 hover:bg-red-600' %>
+      <div class='flex items-center gap-3'>
+        <%= f.submit "search", class: 'btn btn-md btn-accent border-white bg-white material-icons' %>
+        <%= link_to 'delete', pedidos_path, class: 'rounded-lg bg-red-300 material-icons p-2 hover:bg-red-600' %>
+        <%= link_to 'add', new_pedido_path, class: 'rounded-lg bg-green-300 material-icons p-2 hover:bg-green-600' %>
+      </div>
     <% end %>
     <div class="overflow-x-auto overflow-y-auto text-black flex-1 border-stone-400 border-y-4">
       <table class="table">
         <thead>
-          <tr class='bg-gray-300 text-gray-800 text-bold'>
+          <tr class='bg-gray-300 text-gray-800 text-xl text-bold'>
             <th class='sr-only'>Selecionar</td>
             <th><%= sort_link(ransack, :created_at, "Data do Pedido", default_order: :desc) %></th>
             <th><%= sort_link(ransack, :loja_nome, "Loja Remetente") %></th>
@@ -30,17 +33,17 @@
             <th class='sr-only'>Detalhes</td>
           </tr>
         </thead>
-          <tbody class=''>
-            <% pedidos.each do |pedido| %>
-              <tr>
-                <td><%= check_box_tag 'select', pedido.id, class: 'checkbox checkbox-bordered', data: { pedidos_target: "checkbox", action: "click->pedidos#toggle" } %></td>
-                <td><%= pedido.created_at.strftime('%d/%m/%Y') %></td>
-                <td><%= pedido.loja.nome %></td>
-                <td><%= status_badge(pedido.status) %></td>
-                <td><%= link_to 'Detalhes', pedido_path(pedido), class:'btn btn-sm btn-accent' %></td>
-              </tr>
-            <% end %>
-          </tbody>
+        <tbody class=''>
+          <% pedidos.each do |pedido| %>
+            <tr>
+              <td><%= check_box_tag 'select', pedido.id, class: 'checkbox checkbox-bordered', data: { pedidos_target: "checkbox", action: "change->pedidos#toggle" } %></td>
+              <td class='text-xl font-light'><%= pedido.created_at.strftime('%d/%m/%Y') %></td>
+              <td class='text-xl font-light'><%= pedido.loja.nome %></td>
+              <td class='text-xl font-light' id=<%= dom_id(pedido, :badge) %>><%= status_badge(pedido.status) %></td>
+              <td><%= link_to 'Detalhes', pedido_path(pedido), class:'btn btn-sm btn-accent text-xl font-light' %></td>
+            </tr>
+          <% end %>
+        </tbody>
       </table>
     </div>
     <nav class='flex justify-between p-4'>

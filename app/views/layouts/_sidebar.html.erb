@@ -1,35 +1,35 @@
-<nav class='text-white max-2xl:h-[15dvh] max-2xl:items-center bg-blue-800 flex 2xl:flex-col justify-between 2xl:py-4 2xl:w-[12dvw] 2xl:h-screen'>
+<nav class='text-white max-2xl:h-[15dvh] max-2xl:items-center bg-[#2373B7] flex 2xl:flex-col justify-between 2xl:py-4 2xl:w-[12dvw] 2xl:h-screen'>
   <div class='p-4'>
     <%= image_tag 'logo', class: 'w-[10dvw] h-auto' %>
   </div>
-  <ul class='menu-horizontal menu 2xl:menu-vertical  text-lg'>
-    <li class='text-lg'>
+  <ul class='menu-horizontal menu 2xl:menu-vertical text-lg'>
+    <li class='max-2xl:text-lg 2xl:text-2xl'>
       <%= link_to home_path do %>
-        <span class="material-icons">
+        <span class="material-icons max-xl:md-18 md-36">
           home
         </span>
         Início
       <% end %>
     </li>
-    <li class='text-lg'>
+    <li class='max-2xl:text-lg 2xl:text-2xl'>
       <%= link_to pedidos_path do %>
-        <span class="material-icons">
+        <span class="material-icons max-xl:md-18 md-36">
           checklist
         </span>
         Pedidos
       <% end %>
     </li>
-    <li class='text-lg'>
+    <li class='max-2xl:text-lg 2xl:text-2xl'>
       <%= link_to compras_path do %>
-        <span class="material-icons">
+        <span class="material-icons max-xl:md-18 md-36">
           shopping_cart
         </span>
         Compras
       <% end %>
     </li>
-    <li class="text-lg">
+    <li class='text-md xl:text-lg 2xl:text-2xl'>
       <%= link_to items_path do %>
-        <span class="material-icons">
+        <span class="material-icons max-xl:md-18 md-36">
           inventory
         </span>
         Inventários

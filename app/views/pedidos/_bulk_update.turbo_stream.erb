@@ -1,0 +1,13 @@
+<%= turbo_stream.update 'stats_open_counter' do %>
+  <%= finished_count %>
+<% end %>
+  
+<%= turbo_stream.update 'stats_finished_counter' do %>
+  <%= open_count %>
+<% end %>
+
+<% badge_ids.each do |id| %>
+  <%= turbo_stream.update format('badge_pedido_%d', id) do %>
+    <%= status_badge(new_status) %>
+  <% end %>
+<% end %>

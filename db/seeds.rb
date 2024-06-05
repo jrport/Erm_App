@@ -35,20 +35,21 @@ end
 end
 
 40.times do
-  Item.create(
+  ItemsDeCompra.create(
     loja_id: Faker::Number.between(from: 1, to: 50),
     nome: Faker::Appliance.equipment,
     quantidade: Faker::Number.between(from: 1, to: 100),
-    porcao: %w[unidade duzia dezena]
+    compra_id: Faker::Number.between(from: 1, to: 60),
+    created_at: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
   )
 end
 
 60.times do
-  Item.create(
+  ItemsDePedido.create(
     pedido_id: Faker::Number.between(from: 1, to: 50),
     nome: Faker::Appliance.equipment,
     quantidade: Faker::Number.between(from: 1, to: 100),
     porcao: %w[unidade duzia dezena].sample,
-    loja_id: Faker::Number.between(from: 1, to: 15)
+    created_at: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
   )
 end
