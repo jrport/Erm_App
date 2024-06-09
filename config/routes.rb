@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   get '/pedidos_table', to: 'pedidos#table'
   patch '/bulk_update', to: 'pedidos#bulk_update', defaults: { format: :turbo_stream }
   # resources :items_de_pedidos, path: 'items',
-  resources :pedidos
-  resources :compras
+  resources :pedidos do
+    resources :items_de_pedidos, only: [:index, :show, :update]
+  end
+  resources :items_de_pedidos, only: [:create, :new]
   resources :items_de_compras, path: 'items', as: 'items'
+  resources :compras
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

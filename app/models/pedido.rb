@@ -10,7 +10,7 @@ class Pedido < ApplicationRecord
                                            }
 
   enum :status, { pending: 'pending', in_progress: 'in_progress', finished: 'finished' }
-  validates :created_at, presence: {message: 'O campo Data é obrigatória'}
+  validates :data_do_pedido, presence: {message: 'O campo Data é obrigatória'}
   validates :loja_id, presence: {message:"O campo Loja é obrigatória"}, inclusion: { in: Loja.pluck(:id).uniq, message: 'Loja é obrigatória'}
   validates :observacoes, length: {maximum: 200, message: 'Máximo de 200 caractéres' }
 
@@ -19,7 +19,7 @@ class Pedido < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[created_at loja_id status updated_at]
+    %w[data_do_pedido loja_id status updated_at]
   end
 
   def self.ransackable_associations(_auth_object = nil)

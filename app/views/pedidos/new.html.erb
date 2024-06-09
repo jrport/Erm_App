@@ -2,9 +2,9 @@
   <%= render partial: 'layouts/header',
     locals: {
       links: [
-        {title: 'Ínicio', uri: home_path},
+        {title: 'Início', uri: home_path},
         {title: 'Pedidos', uri: pedidos_path},
-        {title: 'Novo Pedido', uri: new_pedido_path}
+        {title: 'Novo Pedido', uri: nil}
       ]} %>
     <div class='h-[89dvh] flex justify-center items-center'>
       <div class='relative h-[70%] py-12 border-2 rounded-xl shadow-xl border-gray-300'>
@@ -14,9 +14,9 @@
         <h1 class='text-6xl mx-auto font-medium w-[60%] text-center'>Informações Gerais do Pedido</h1>
         <%= form_with model: @pedido, class: "p-3 grid gap-y-7 grid-cols-2 grid-rows-auto my-5" do |f| %>
           <div class="mx-10 flex flex-col">
-            <%= f.label :created_at, 'Data do Pedido', class: 'font-semibold text-lg' %>
-            <%= f.date_field :created_at, class:"rounded-xl" %>
-            <% @pedido.errors.messages_for(:created_at).each do |message| %>
+            <%= f.label :data_do_pedido, 'Data do Pedido', class: 'font-semibold text-lg' %>
+            <%= f.date_field :data_do_pedido, class:"rounded-xl" %>
+            <% @pedido.errors.messages_for(:data_do_pedido).each do |message| %>
               <small class='text-xs text-red-300'>
                 <%= message %>
               </small>

@@ -2,8 +2,8 @@
   <%= render partial: 'layouts/header',
     locals: {
       links: [
-        {title: 'Ínicio', uri: home_path},
-        {title: 'Pedidos', uri: pedidos_path}
+        {title: 'Início', uri: home_path},
+        {title: 'Pedidos', uri: nil}
       ]} %>
   <div data-controller='pedidos' class='max-2xl:flex max-2xl:flex-col 2xl:grid 2xl:grid-cols-5 2xl:grid-rows-4 overflow-x-auto m-4 2xl:h-[89dvh] gap-4'>
     <%= render partial: 'pedidos/table', locals: {pedidos: @pedidos, pagy: @pagy, ransack: @ransack_query} %>

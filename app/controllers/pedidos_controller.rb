@@ -2,8 +2,11 @@ class PedidosController < ApplicationController
   include Pagy::Backend
   before_action :pagination, only: [:index, :table]
   before_action :monthly_metrics, only: [:index, :bulk_update]
+  before_action :pedido_params, only: [:create]
+  before_action :update_params, only: [:bulk_update]
 
   def index
+    @month_pedidos_count, @open_count, @finished_count = monthly_metrics
   end
 
   def table
@@ -37,14 +40,20 @@ class PedidosController < ApplicationController
   # POST /pedidos/new
   def create
     @pedido = Pedido.new(pedido_params)
-
-    respond_to do |format|
-      if @pedido.save
-        format.html { redirect_to @pedido, notice: 'Pedido criado' }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    redirect_to 
+    if @pedido.valid?
+      redirect_to new_items_de_pedido_path(@pedido) 
+    else
+      render :new, status: :unprocessable_entity 
     end
+
+    # respond_to do |format|
+      # if @pedido.save
+        # format.html { redirect_to @pedido, notice: 'Pedido criado' }
+      # else
+        # format.html { render :new, status: :unprocessable_entity }
+      # end
+    # end
   end
 
   private
@@ -52,10 +61,10 @@ class PedidosController < ApplicationController
   def monthly_metrics
     today = Date.today
 
-    month_pedidos = Pedido.where(created_at: today.beginning_of_month..today.end_of_month)
-    month_pedidos_count = month_pedidos.count
-    open_count = month_pedidos.pending.count
-    finished_count = month_pedidos.finished.count
+    month_pedidos = Pedido.where(data_do_pedido: today.beginning_of_month..today.end_of_month)
+    month_pedidos_count = month_pedidos.count.nil? ? 0 : month_pedidos.count
+    open_count = month_pedidos.pending.count.nil? ? 0 : month_pedidos.pending.count
+    finished_count = month_pedidos.finished.count.nil? ? 0 : month_pedidos.finished.count
 
     [month_pedidos_count, open_count, finished_count]
   end
@@ -70,14 +79,13 @@ class PedidosController < ApplicationController
 
   def pedido_params
     params.require(:pedido).permit(
-      :id, :created_at, :loja_id, :observacoes,
-      items_attributes: %i[nome quantidade porcao observacoes]
+      :data_do_pedido, :loja_id, :observacoes
     )
   end
 
   def pagination
     @ransack_query = Pedido.ransack(params[:query])
-    @ransack_query.sorts = 'created_at desc' if @ransack_query.sorts.empty?
+    @ransack_query.sorts = 'data_do_pedido desc' if @ransack_query.sorts.empty?
 
     @ransack_results = @ransack_query.result.includes(:loja)
     @pagy, @pedidos = pagy(@ransack_results)

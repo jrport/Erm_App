@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_04_190014) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_09_211800) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_190014) do
     t.float "valor_total", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "data_do_compra", default: -> { "CURRENT_TIMESTAMP" }
   end
 
   create_table "items_de_compras", force: :cascade do |t|
@@ -65,6 +66,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_190014) do
     t.text "observacoes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "data_do_pedido", default: -> { "CURRENT_TIMESTAMP" }
     t.index ["loja_id"], name: "index_pedidos_on_loja_id"
   end
 

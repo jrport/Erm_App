@@ -24,13 +24,13 @@ end
   Pedido.create(
     loja: Loja.find((1..15).to_a.sample),
     status: ['pending', 'in_progress', 'finished'].sample,
-    created_at: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
+    data_do_pedido: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
   )
 end
 
 60.times do
   Compra.create(
-    created_at: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
+    data_do_compra: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
   )
 end
 

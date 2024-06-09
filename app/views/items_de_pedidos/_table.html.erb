@@ -1,0 +1,16 @@
+<div class='overflow-x-auto overflow-y-auto'>
+  <table class='table'>
+    <thead>
+      <tr>Nome</tr>
+      <tr>Quantidade</tr>
+      <tr>Porção</tr>
+      <tr>Detalhes</tr>
+      <tr class='sr-only'>Deletar</tr>
+    </thead>
+    <tbody>
+      <% pedidos.each do |pedido| %>
+        <%= render partial: 'items_de_pedidos/item', locals: :pedido %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

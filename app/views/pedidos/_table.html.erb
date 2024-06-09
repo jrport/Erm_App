@@ -2,13 +2,13 @@
     <%= search_form_for ransack, class:'m-5 flex gap-4 justify-evenly text-lg items-center' do |f| %>
 
       <div class='flex items-center gap-1 '>
-        <%= f.label :created_at_gteq, "De:" %>
-        <%= f.date_field :created_at_gteq, class: 'select select-bordered text-lg select-md bg-white' %>
+        <%= f.label :data_do_pedido_gteq, "De:" %>
+        <%= f.date_field :data_do_pedido_gteq, class: 'select select-bordered text-lg select-md bg-white' %>
       </div>
 
       <div class='flex items-center gap-1 '>
-        <%= f.label :created_at_lteq, "Até:" %>
-        <%= f.date_field :created_at_lteq, class: 'select select-bordered text-lg select-md bg-white' %>
+        <%= f.label :data_do_pedido_gteq, "Até:" %>
+        <%= f.date_field :data_do_pedido_gteq, class: 'select select-bordered text-lg select-md bg-white' %>
       </div>
 
       <div class='flex items-center gap-1 '>
@@ -29,7 +29,7 @@
         <thead>
           <tr class='bg-gray-300 text-gray-800 text-xl font-extrabold'>
             <th class='sr-only'>Selecionar</td>
-            <th><%= sort_link(ransack, :created_at, "Data do Pedido", default_order: :desc) %></th>
+            <th><%= sort_link(ransack, :data_do_pedido, "Data do Pedido", default_order: :desc) %></th>
             <th><%= sort_link(ransack, :loja_nome, "Loja Remetente") %></th>
             <th><%= sort_link(ransack, :status, "Status") %></th>
             <th class='sr-only'>Detalhes</td>
@@ -39,7 +39,7 @@
           <% pedidos.each do |pedido| %>
             <tr>
               <td><%= check_box_tag 'select', pedido.id, class: 'checkbox checkbox-bordered', data: { pedidos_target: "checkbox", action: "change->pedidos#toggle" } %></td>
-              <td class='text-xl font-normal'><%= pedido.created_at.strftime('%d/%m/%Y') %></td>
+              <td class='text-xl font-normal'><%= pedido.data_do_pedido.strftime('%d/%m/%Y') %></td>
               <td class='text-xl font-normal'><%= pedido.loja.nome %></td>
               <td class='text-xl font-normal' id=<%= dom_id(pedido, :badge) %>><%= status_badge(pedido.status) %></td>
               <td><%= link_to 'Detalhes', pedido_path(pedido), class:'btn btn-sm btn-accent text-xl font-normal' %></td>
