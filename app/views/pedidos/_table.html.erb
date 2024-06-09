@@ -13,19 +13,21 @@
 
       <div class='flex items-center gap-1 '>
         <%= f.label :loja_id_eq, "Loja:" %>
-        <%= f.collection_select :loja_id_eq, Loja.all, :id, :nome, {include_blank: true},  { class: 'w-full select select-bordered select-md bg-white' } %>
+        <%= f.select :loja_id_eq, options_for_select(pedidos.sample.loja_options), { include_blank: true }, { class: 'w-full select select-bordered select-md bg-white' } %>
       </div>
 
       <div class='flex items-center gap-3'>
         <%= f.submit "search", class: 'btn btn-md btn-accent border-white bg-white material-icons' %>
         <%= link_to 'delete', pedidos_path, class: 'rounded-lg bg-red-300 material-icons p-2 hover:bg-red-600' %>
-        <%= link_to 'add', new_pedido_path, class: 'rounded-lg bg-green-300 material-icons p-2 hover:bg-green-600' %>
+        <turbo-frame id="link_to_add" target="_top">
+          <%= link_to 'add', new_pedido_path, class: 'rounded-lg bg-green-300 material-icons p-2 hover:bg-green-600', data: { turbo_target: '_top', turbo_action: 'advance' } %>
+        </turbo-frame>
       </div>
     <% end %>
     <div class="overflow-x-auto overflow-y-auto text-black flex-1 border-stone-400 border-y-4">
       <table class="table">
         <thead>
-          <tr class='bg-gray-300 text-gray-800 text-xl text-bold'>
+          <tr class='bg-gray-300 text-gray-800 text-xl font-extrabold'>
             <th class='sr-only'>Selecionar</td>
             <th><%= sort_link(ransack, :created_at, "Data do Pedido", default_order: :desc) %></th>
             <th><%= sort_link(ransack, :loja_nome, "Loja Remetente") %></th>
@@ -37,10 +39,10 @@
           <% pedidos.each do |pedido| %>
             <tr>
               <td><%= check_box_tag 'select', pedido.id, class: 'checkbox checkbox-bordered', data: { pedidos_target: "checkbox", action: "change->pedidos#toggle" } %></td>
-              <td class='text-xl font-light'><%= pedido.created_at.strftime('%d/%m/%Y') %></td>
-              <td class='text-xl font-light'><%= pedido.loja.nome %></td>
-              <td class='text-xl font-light' id=<%= dom_id(pedido, :badge) %>><%= status_badge(pedido.status) %></td>
-              <td><%= link_to 'Detalhes', pedido_path(pedido), class:'btn btn-sm btn-accent text-xl font-light' %></td>
+              <td class='text-xl font-normal'><%= pedido.created_at.strftime('%d/%m/%Y') %></td>
+              <td class='text-xl font-normal'><%= pedido.loja.nome %></td>
+              <td class='text-xl font-normal' id=<%= dom_id(pedido, :badge) %>><%= status_badge(pedido.status) %></td>
+              <td><%= link_to 'Detalhes', pedido_path(pedido), class:'btn btn-sm btn-accent text-xl font-normal' %></td>
             </tr>
           <% end %>
         </tbody>

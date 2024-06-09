@@ -1,14 +1,15 @@
 class PedidosController < ApplicationController
   include Pagy::Backend
+  before_action :pagination, only: [:index, :table]
+  before_action :monthly_metrics, only: [:index, :bulk_update]
 
   def index
-    @ransack_query = Pedido.ransack(params[:query])
-    @ransack_query.sorts = 'created_at desc' if @ransack_query.sorts.empty?
+  end
 
-    @ransack_results = @ransack_query.result.includes(:loja)
-    @pagy, @pedidos = pagy(@ransack_results)
-
-    @month_pedidos_count, @open_count, @finished_count = monthly_metrics
+  def table
+    render partial: 'pedidos/table', locals: { 
+      ransack: @ransack_query, pagy: @pagy, pedidos: @pedidos
+    }
   end
 
   def chart
@@ -17,13 +18,12 @@ class PedidosController < ApplicationController
 
   def bulk_update
     Pedido.update(update_params[:id], status: update_params[:status])
-    _, open_count, finished_count = monthly_metrics
 
     respond_to do |format|
       format.turbo_stream do
         render partial: 'pedidos/bulk_update',
                locals: { new_status: params[:pedido][:status], badge_ids:,
-                         open_count:, finished_count: }
+                         open_count: @open_count, finished_count: @finished_count }
       end
       format.html
     end
@@ -38,18 +38,13 @@ class PedidosController < ApplicationController
   def create
     @pedido = Pedido.new(pedido_params)
 
-    raise params
-
-    # respond_to do |format|
-    #   if @items.valid? || @pedido.valid?
-    #     @items.save
-    #     @pedido.save
-    #     format.html { redirect_to @pedido, notice: 'Pedido criado' }
-    #     format.html { redirect_to pedidos_path }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @pedido.save
+        format.html { redirect_to @pedido, notice: 'Pedido criado' }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
@@ -78,5 +73,13 @@ class PedidosController < ApplicationController
       :id, :created_at, :loja_id, :observacoes,
       items_attributes: %i[nome quantidade porcao observacoes]
     )
+  end
+
+  def pagination
+    @ransack_query = Pedido.ransack(params[:query])
+    @ransack_query.sorts = 'created_at desc' if @ransack_query.sorts.empty?
+
+    @ransack_results = @ransack_query.result.includes(:loja)
+    @pagy, @pedidos = pagy(@ransack_results)
   end
 end

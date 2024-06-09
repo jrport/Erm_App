@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
-  get 'items_de_pedidos/index'
-  get 'items_de_pedidos/new'
-  get 'items_de_pedidos/show'
   get '/home', to: 'home#index'
-  get '/pedidos_chart', to: 'pedidos#chart', as: 'pedidos_chart'
-  patch '/bulk_update', to: 'pedidos#bulk_update', as: 'bulk_update', defaults: { format: :turbo_stream }
-  resources :pedidos do
-    resources :items_de_pedidos, path: 'items', shallow: true
-  end
+  get '/pedidos_chart', to: 'pedidos#chart'
+  get '/pedidos_table', to: 'pedidos#table'
+  patch '/bulk_update', to: 'pedidos#bulk_update', defaults: { format: :turbo_stream }
+  # resources :items_de_pedidos, path: 'items',
+  resources :pedidos
   resources :compras
   resources :items_de_compras, path: 'items', as: 'items'
 

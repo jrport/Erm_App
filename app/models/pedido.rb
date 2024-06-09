@@ -10,16 +10,13 @@ class Pedido < ApplicationRecord
                                            }
 
   enum :status, { pending: 'pending', in_progress: 'in_progress', finished: 'finished' }
+  validates :created_at, presence: {message: 'O campo Data é obrigatória'}
+  validates :loja_id, presence: {message:"O campo Loja é obrigatória"}, inclusion: { in: Loja.pluck(:id).uniq, message: 'Loja é obrigatória'}
+  validates :observacoes, length: {maximum: 200, message: 'Máximo de 200 caractéres' }
 
   def loja_options
     Loja.pluck(:nome, :id).to_h.map { |nome, id| [nome, id] }
   end
-
-  # def items_de_pedidos_attributes=(items_de_pedidos_attributes)
-  #   items_de_pedidos_attributes.each do |i, items_de_pedidos_attributes|
-  #     self.items.build(items_de_pedidos_attributes)
-  #   end
-  # end
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[created_at loja_id status updated_at]
