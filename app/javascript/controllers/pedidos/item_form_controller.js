@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="pedidos--item-form"
 export default class extends Controller {
     static targets = ['template', 'itemsList'] 
-    add_row() {
+    addRow() {
         const template = this.templateTarget;
         const itemsList = this.itemsListTarget;
 
@@ -22,7 +22,7 @@ export default class extends Controller {
         itemsList.append(newForm)
     }
 
-    delete_row(event) {
+    deleteRow(event) {
         const button = event.currentTarget
         const curRow = button.parentNode
         curRow.remove()

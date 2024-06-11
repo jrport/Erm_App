@@ -55,13 +55,13 @@ class PedidosController < ApplicationController
   # de items de pedido
   def create
     @pedido = Pedido.new(pedido_params)
-    raise
-    raise
-    # if @pedido.valid?
-      # item = @pedidos.items_de_pedido.build
-    # else
-      # render :new, status: :unprocessable_entity 
-    # end
+    respond_to do |format|
+      if @pedido.save
+        format.html { redirect_to @pedido, notice: 'Pedido criado' }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

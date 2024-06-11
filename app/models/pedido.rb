@@ -1,19 +1,14 @@
 class Pedido < ApplicationRecord
   belongs_to :loja
-  has_many :items_de_pedidos
+  has_many :items_de_pedidos, dependent: :destroy, validate: true
 
   accepts_nested_attributes_for :items_de_pedidos, reject_if: :all_blank, allow_destroy: true
-  # accepts_nested_attributes_for :items_de_pedidos,
-                                # reject_if: lambda { |attributes|
-                                             # attributes['nome'].blank? ||
-                                               # attributes['quantidade'].blank? ||
-                                               # attributes['porcao'].blank?
-                                           # }
 
   enum :status, { pending: 'pending', in_progress: 'in_progress', finished: 'finished' }
-  validates :data_do_pedido, presence: {message: 'O campo Data é obrigatória'}
-  validates :loja_id, presence: {message:"O campo Loja é obrigatória"}, inclusion: { in: Loja.pluck(:id).uniq, message: 'Loja é obrigatória'}
-  validates :observacoes, length: {maximum: 200, message: 'Máximo de 200 caractéres' }
+
+  validates_presence_of :loja_id, :data_do_pedido, message: 'Campo obrigatório'
+  validates_inclusion_of :loja_id, in: Loja.pluck(:id).uniq
+
   validate :must_have_at_least_one_item
 
   def loja_options

@@ -11,6 +11,15 @@
 }
 
 */
+
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
 .field_with_errors{
     display: flex;
     flex-direction: column;

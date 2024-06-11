@@ -18,10 +18,8 @@
 
       <div class='flex items-center gap-3'>
         <%= f.submit "search", class: 'btn btn-md btn-accent border-white bg-white material-icons' %>
-        <%= link_to 'delete', pedidos_path, class: 'rounded-lg bg-red-300 material-icons p-2 hover:bg-red-600' %>
-        <turbo-frame id="link_to_add" target="_top">
-          <%= link_to 'add', new_pedido_path, class: 'rounded-lg bg-green-300 material-icons p-2 hover:bg-green-600', data: { turbo_target: '_top', turbo_action: 'advance' } %>
-        </turbo-frame>
+        <%= link_to 'delete', pedidos_path, class: 'rounded-lg transition-colors bg-red-400 material-icons p-2 hover:bg-red-500' %>
+        <%= link_to 'add', new_pedido_path, class: 'rounded-lg transition-colors bg-green-400 material-icons p-2 hover:bg-green-300', data: { turbo_target: '_top', turbo_action: 'advance' } %>
       </div>
     <% end %>
     <div class="overflow-x-auto overflow-y-auto text-black flex-1 border-stone-400 border-y-4">
