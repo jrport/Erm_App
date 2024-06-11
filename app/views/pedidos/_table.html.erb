@@ -38,11 +38,21 @@
         <tbody class=''>
           <% pedidos.each do |pedido| %>
             <tr>
-              <td><%= check_box_tag 'select', pedido.id, class: 'checkbox checkbox-bordered', data: { pedidos_target: "checkbox", action: "change->pedidos#toggle" } %></td>
-              <td class='text-xl font-normal'><%= pedido.data_do_pedido.strftime('%d/%m/%Y') %></td>
-              <td class='text-xl font-normal'><%= pedido.loja.nome %></td>
-              <td class='text-xl font-normal' id=<%= dom_id(pedido, :badge) %>><%= status_badge(pedido.status) %></td>
-              <td><%= link_to 'Detalhes', pedido_path(pedido), class:'btn btn-sm btn-accent text-xl font-normal' %></td>
+              <td>
+                <%= check_box_tag 'select', pedido.id, class: 'checkbox checkbox-bordered', data: { pedidos__table_target: "checkbox", action: "change->pedidos--table#toggle" } %>
+              </td>
+              <td class='text-xl font-normal'>
+                <%= pedido.data_do_pedido.strftime('%d/%m/%Y') %>
+              </td>
+              <td class='text-xl font-normal'>
+                <%= pedido.loja.nome %>
+              </td>
+              <td class='text-xl font-normal' id='<%= dom_id(pedido, :badge) %>'>
+                <%= status_badge(pedido.status) %>
+              </td>
+              <td>
+                <%= link_to 'Detalhes', pedido_path(pedido), class:'btn btn-sm btn-accent text-xl font-normal' %>
+              </td>
             </tr>
           <% end %>
         </tbody>
@@ -52,5 +62,5 @@
       <%== pagy_info(@pagy, item_name: 'pedido'.pluralize(@pagy.count)) %>
       <%== pagy_nav(@pagy) %>
     </nav>
-<% end %>
+  <% end %>
 

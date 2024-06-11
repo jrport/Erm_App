@@ -2,17 +2,19 @@ class Pedido < ApplicationRecord
   belongs_to :loja
   has_many :items_de_pedidos
 
-  accepts_nested_attributes_for :items_de_pedidos,
-                                reject_if: lambda { |attributes|
-                                             attributes['nome'].blank? ||
-                                               attributes['quantidade'].blank? ||
-                                               attributes['porcao'].blank?
-                                           }
+  accepts_nested_attributes_for :items_de_pedidos, reject_if: :all_blank, allow_destroy: true
+  # accepts_nested_attributes_for :items_de_pedidos,
+                                # reject_if: lambda { |attributes|
+                                             # attributes['nome'].blank? ||
+                                               # attributes['quantidade'].blank? ||
+                                               # attributes['porcao'].blank?
+                                           # }
 
   enum :status, { pending: 'pending', in_progress: 'in_progress', finished: 'finished' }
   validates :data_do_pedido, presence: {message: 'O campo Data é obrigatória'}
   validates :loja_id, presence: {message:"O campo Loja é obrigatória"}, inclusion: { in: Loja.pluck(:id).uniq, message: 'Loja é obrigatória'}
   validates :observacoes, length: {maximum: 200, message: 'Máximo de 200 caractéres' }
+  validate :must_have_at_least_one_item
 
   def loja_options
     Loja.pluck(:nome, :id).to_h.map { |nome, id| [nome, id] }
@@ -24,6 +26,14 @@ class Pedido < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[loja]
+  end
+
+  private
+
+  def must_have_at_least_one_item
+    if items_de_pedidos.empty?
+      errors.add(:base, "Um pedido deve possuir ao menos um item listado")
+    end
   end
 
   # after_update_commit lambda {

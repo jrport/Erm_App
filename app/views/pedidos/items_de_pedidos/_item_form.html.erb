@@ -1,0 +1,23 @@
+<div id='item_form' class='list_row grid divide-x-2 grid-cols-5 h-[4dvh] border-b-2 border-b-gray-200'>
+  <div id='list_item'>
+    <%= f.text_field :nome, class: 'input ', placeholder: 'Ex: Papel A4' %>
+  </div>
+  <div id='list_item'>
+    <%= f.number_field :quantidade, class: 'input ', placeholder: 'Ex: 12' %>
+  </div>
+  <div id='list_item'>
+    <%= f.text_field :porcao, class: 'input ', placeholder: 'Ex: Pacote de cem' %>
+  </div>
+  <div id='list_item'>
+    <%= f.text_field :observacoes, class: 'input ', placeholder: 'Ex: Marca Chamex' %>
+  </div>
+  <button id='list_item' type="button" class='hover:bg-red-200 items-center justify-center flex' data-action='click -> pedidos--item-form#delete_row'>
+    <span class="mi">
+      delete
+    </span>
+    <span>
+      Apagar
+    </span>
+  </button>
+</div>
+

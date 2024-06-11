@@ -2,8 +2,9 @@ class PedidosController < ApplicationController
   include Pagy::Backend
   before_action :pagination, only: [:index, :table]
   before_action :monthly_metrics, only: [:index, :bulk_update]
-  before_action :pedido_params, only: [:create]
+  # before_action :pedido_params, only: [:create]
   before_action :update_params, only: [:bulk_update]
+  before_action :set_pedido, only: [:show]
 
   def index
     @month_pedidos_count, @open_count, @finished_count = monthly_metrics
@@ -19,8 +20,11 @@ class PedidosController < ApplicationController
     render json: Pedido.joins(:loja).group('lojas.nome').count
   end
 
+  def def show; end
+
   def bulk_update
     Pedido.update(update_params[:id], status: update_params[:status])
+    _, @open_count, @finished_count = monthly_metrics
 
     respond_to do |format|
       format.turbo_stream do
@@ -35,24 +39,28 @@ class PedidosController < ApplicationController
   # GET /pedidos/new
   def new
     @pedido = Pedido.new
+    @pedido.items_de_pedidos.build
   end
 
+  def update
+    if pedido.update(pedido_params)
+      redirect_to pedidos_path
+    else
+      render :edit
+    end
+  end
   # POST /pedidos/new
+  # Isso vai validar os parametros do pedido 
+  # e começar a instanciar e chamar o instanciador
+  # de items de pedido
   def create
     @pedido = Pedido.new(pedido_params)
-    redirect_to 
-    if @pedido.valid?
-      redirect_to new_items_de_pedido_path(@pedido) 
-    else
-      render :new, status: :unprocessable_entity 
-    end
-
-    # respond_to do |format|
-      # if @pedido.save
-        # format.html { redirect_to @pedido, notice: 'Pedido criado' }
-      # else
-        # format.html { render :new, status: :unprocessable_entity }
-      # end
+    raise
+    raise
+    # if @pedido.valid?
+      # item = @pedidos.items_de_pedido.build
+    # else
+      # render :new, status: :unprocessable_entity 
     # end
   end
 
@@ -79,7 +87,16 @@ class PedidosController < ApplicationController
 
   def pedido_params
     params.require(:pedido).permit(
-      :data_do_pedido, :loja_id, :observacoes
+      :data_do_pedido, :loja_id, :observacoes,
+      items_de_pedidos_attributes: [
+        :id,
+        :_delete,
+        :nome,
+        :quantidade,
+        :porcao,
+        :observacoes,
+        :data_do_pedido
+      ]
     )
   end
 
@@ -89,5 +106,9 @@ class PedidosController < ApplicationController
 
     @ransack_results = @ransack_query.result.includes(:loja)
     @pagy, @pedidos = pagy(@ransack_results)
+  end
+
+  def set_pedido
+    @pedido = Pedido.find(params[:id])
   end
 end

@@ -1,0 +1,6 @@
+<%= turbo_frame_tag 'table' do %>
+  Loja:<%= @pedido.loja.nome %><br>
+  <% @pedido.items_de_pedidos.each do |item| %>
+    item:<%= render partial: 'pedidos/items_de_pedidos/item', locals: {item:} %>
+  <% end %>
+<% end %>

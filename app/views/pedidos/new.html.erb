@@ -7,44 +7,84 @@
         {title: 'Novo Pedido', uri: nil}
       ]} %>
     <div class='h-[89dvh] flex justify-center items-center'>
-      <div class='relative h-[70%] py-12 border-2 rounded-xl shadow-xl border-gray-300'>
+      <div class='relative w-[80%] h-[80%] py-12 border-2 rounded-xl shadow-md border-gray-300'>
         <%= link_to pedidos_path, class: "mi md-36 absolute top-5 left-5", data: { turbo_action: 'advance' } do %>
           <span class="rounded-2xl p-2 hover:bg-gray-400 duration-300">arrow_back</span>
         <% end %>
         <h1 class='text-6xl mx-auto font-medium w-[60%] text-center'>Informações Gerais do Pedido</h1>
-        <%= form_with model: @pedido, class: "p-3 grid gap-y-7 grid-cols-2 grid-rows-auto my-5" do |f| %>
-          <div class="mx-10 flex flex-col">
-            <%= f.label :data_do_pedido, 'Data do Pedido', class: 'font-semibold text-lg' %>
-            <%= f.date_field :data_do_pedido, class:"rounded-xl" %>
-            <% @pedido.errors.messages_for(:data_do_pedido).each do |message| %>
-              <small class='text-xs text-red-300'>
-                <%= message %>
-              </small>
-            <% end %>
-          </div>
-          <div class="mx-10 flex flex-col">
-            <%= f.label :loja_id, 'Loja Remetente', class: 'font-semibold text-lg' %>
-            <%= f.select :loja_id, options_for_select(@pedido.loja_options), {include_blank:true}, {class: 'rounded-xl'} %>
-            <small class='text-xs text-red-300'>
-              <%= @pedido.errors.messages_for(:loja_id)[0] %>
-            </small>
-          </div>
-          <div class="mx-10 col-span-2 flex flex-col">
-            <%= f.label :observacoes, "Observações", class: 'font-semibold text-lg' %>
-            <%= f.text_area :observacoes, {class: 'rounded-xl grow',  rows: 6, placeholder: "Detalhes adicionais (Opcional)..."} %>
-            <% @pedido.errors.messages_for(:observacoes).each do |message| %>
-              <small class='text-xs text-red-300'>
-                <%= message %>
-              </small>
-            <% end %>
-          </div>
-          <div class='col-start-2 text-right mx-10'>
-            <%= f.button class: ' text-right w-fit btn bg-green-300 hover:bg-green-500' do %>
-              <span class="">Confirmar informações</span>
-              <span class="mi">navigate_next</span>
-            <% end %>
-          </div>
-        <% end %>
+        <div class='h-full'>
+          <%= form_with model: @pedido, data: { controller: 'pedidos--item-form' }, class: "p-3 grid gap-y-7 gap-x-5 grid-cols-3 grid-rows-auto my-5" do |f| %>
+
+            <template id='formTemplate' data-pedidos--item-form-target="template">
+              <%= f.fields_for :items_de_pedidos, ItemsDePedido.new, child_index: 'NEW_RECORD', class: 'grid border-b-gray-100 h-[4dvh] border-b-2 divide-x-2 grid-cols-5' do |item_fields| %>
+                <%= render "pedidos/items_de_pedidos/item_form", f: item_fields %>
+              <% end %>
+            </template>
+
+
+
+            <div class='ml-10 h-full col-span-1'>
+              <div class="flex flex-col">
+                <%= f.label :data_do_pedido, 'Data do Pedido', class: 'font-semibold text-lg' %>
+                <%= f.date_field :data_do_pedido, class:"rounded-xl" %>
+                <% @pedido.errors.messages_for(:data_do_pedido).each do |message| %>
+                  <small class='text-xs text-red-300'>
+                    <%= message %>
+                  </small>
+                <% end %>
+              </div>
+              <div class="flex flex-col">
+                <%= f.label :loja_id, 'Loja Remetente', class: 'font-semibold text-lg' %>
+                <%= f.select :loja_id, options_for_select(@pedido.loja_options), {include_blank:true}, {class: 'rounded-xl'} %>
+                <small class='text-xs text-red-300'>
+                  <%= @pedido.errors.messages_for(:loja_id)[0] %>
+                </small>
+              </div>
+              <div class="col-span-2 flex flex-col">
+                <%= f.label :observacoes, "Observações", class: 'font-semibold text-lg' %>
+                <%= f.text_area :observacoes, {class: 'rounded-xl grow',  rows: 6, placeholder: "Detalhes adicionais (Opcional)..."} %>
+                <% @pedido.errors.messages_for(:observacoes).each do |message| %>
+                  <small class='text-xs text-red-300'>
+                    <%= message %>
+                  </small>
+                <% end %>
+              </div>
+              <div class='grid grid-cols-2'>
+                <%= f.button class: 'mt-10 text-right w-fit btn bg-green-300 hover:bg-green-500' do %>
+                  <span class="">Confirmar</span>
+                  <span class="mi">navigate_next</span>
+                <% end %>
+                <div class='text-right '>
+                  <button class='mt-10 btn w-fit btn-1 bg-green-300 hover:bg-green-600 text-black duration-500' type="button" data-action="click->pedidos--item-form#add_row">Adicionar Item</button>
+                </div>
+              </div>
+            </div>
+            <div class='mr-10 shadow-2xl rounded-lg grid-rows-auto col-span-2 overflow-y-auto overflow-x-auto h-full'>
+              <div class='grid divide-x-2 grid-cols-5'>
+                <div>
+                  <span class='bg-gray-100 flex items-center justify-center h-[5dvh]'>Item</span>
+                </div>
+                <div>
+                  <span class='bg-gray-100 flex items-center justify-center h-[5dvh]'>Quantidade</span>
+                </div>
+                <div>
+                  <span class='bg-gray-100 flex items-center justify-center h-[5dvh]'>Porção</span>
+                </div>
+                <div>
+                  <span class='bg-gray-100 flex items-center justify-center h-[5dvh]'>Detalhes</span>
+                </div>
+                <div>
+                  <span class="bg-gray-100 flex items-center justify-center h-[5dvh]"></span>
+                </div>
+              </div>
+              <%= f.fields_for :items_de_pedidos do |item_fields| %>
+                <div data-pedidos--item-form-target="itemsList" id='items_list' class='grid divide-y-2 divide-x-2 grid-rows-auto border-b-2'>
+                  <%= render "pedidos/items_de_pedidos/item_form", f: item_fields %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>

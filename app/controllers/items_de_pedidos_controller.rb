@@ -1,18 +1,18 @@
-# class ItemsDePedidosController < ApplicationController
-  # before_action :set_pedido, only: [:new]
-  # def index; end
+class ItemsDePedidosController < ApplicationController
+  before_action :set_pedido, only: [:new]
+  def index; end
 
-  # def show
-    # @itemDePedido = itemDePedido.find(params[:id])
-  # end
+  def show
+    @itemDePedido = itemDePedido.find(params[:id])
+  end
 
-  # def new
-    # @item = ItemsDePedido.new
-  # end
+  def new
+    @item = ItemsDePedido.new
+  end
 
-  # private
+  private
 
-  # def set_pedido
-    # @pedido = Pedido.find(params[:pedido_id])
-  # end
-# end
+  def set_pedido
+    @pedido = Pedido.find(params[:pedido_id])
+  end
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_09_211800) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_10_051417) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_09_211800) do
 
   create_table "items_de_pedidos", force: :cascade do |t|
     t.string "nome", null: false
-    t.string "porcao", default: "unitario", null: false
+    t.string "porcao", default: "Unitário", null: false
     t.integer "quantidade", default: 1, null: false
     t.string "observacoes"
     t.bigint "pedido_id", null: false
