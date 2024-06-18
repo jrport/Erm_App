@@ -1,0 +1,23 @@
+  <div class='flex items-center border-b-2 border-b-gray-200'>
+    <%= search_form_for ransack, url: inventarios_path, class: "gap-4 p-8 flex items-center" do |f| %>
+      <div>
+        <%= f.label :loja_id, "Loja:", class: 'font-semibold text-xl mr-2' %>
+        <%= f.select :loja_id_eq, options_for_select(Loja.pluck(:nome, :id)), {prompt: "Selecione uma loja"}, class: "select select-bordered text-ellipsis"%>
+      </div>
+      <div>
+        <%= f.label :id, "Id:", class: 'font-semibold text-xl mr-2' %>
+        <%= f.text_field :id_eq, {class: 'input text-lg input-bordered', placeholder: "#12345"} %>
+      </div>
+      <div>
+        <%= f.label :nome, "Item:", class: 'font-semibold text-xl mr-2' %>
+        <%= f.text_field :nome_cont, {class: 'input input-bordered text-lg', placeholder: 'Caneta Azul'}  %>
+      </div>
+      <%= button_tag class:"btn text-lg border-2 border-gray-200" do %>
+        Buscar<div class='mi'>search</div>
+      <% end %>
+      <%= link_to inventarios_path, class: 'flex text-lg justify-center items-center btn  btn-error' do %>
+        Limpar<div class='mi'>delete</div> 
+      <% end %>
+    <% end %>
+  </div>
+

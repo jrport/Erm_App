@@ -3,7 +3,7 @@
     links: [
       {uri: '/', title: 'Início'},
       {uri: '/pedidos', title: 'Pedidos'},
-      {uri: nil, title: 'Criar Pedido'}
+      {uri: nil, title: 'Editar Pedido'}
     ] 
   } %>
 <div class='xl:h-[89dvh] flex justify-center items-center'>
@@ -14,7 +14,7 @@
         arrow_back
       </a>
       <h1 class='text-4xl grow-0 xl:text-6xl text-center'>
-        Insira os dados do Pedido
+        Atualize os dados do Pedido
       </h1>
     </div>
     <%= render partial: 'pedidos/form', locals: {pedido: @pedido} %>

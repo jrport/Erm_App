@@ -1,6 +1,6 @@
-<header class='max-2xl:hidden 2xl:text-2xl shadow-2xl border-b-gray-400 border-b-2 h-[7dvh] flex gap-2 p-4 font-semibold text-xl text-black items-center  bg-[#E8E8E8]'>
+<header class='max-2xl:hidden 2xl:text-2xl  border-b-gray-400 border-b-2 h-[7dvh] flex gap-2 p-4 font-semibold text-xl text-black items-center  bg-[#E8E8E8]'>
   <% links.each do |link| %>
-    <%= link_to_unless(link[:uri].nil?, format('%s',link[:title]), link[:uri], class: 'hover:underline') do %>
+    <%= link_to_unless(link[:uri].nil?, format('%s',link[:title]), link[:uri], class: 'hover:underline', data: {turbo_frame: '_top'}) do %>
       <%= link[:title] %>
     <% end %>\
   <% end %>

@@ -20,6 +20,16 @@ Loja.create(nome: 'Central', endereco: 'Rua Mantinopo, 1, Snto Antônio dos Praz
   )
 end
 
+60.times do
+  ItemsDePedido.new(
+    pedido_id: Faker::Number.between(from: 1, to: 50),
+    nome: Faker::Appliance.equipment,
+    quantidade: Faker::Number.between(from: 1, to: 100),
+    porcao: %w[unidade duzia dezena].sample,
+    created_at: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
+  )
+end
+
 50.times do
   Pedido.create(
     loja: Loja.find((1..15).to_a.sample),
@@ -30,7 +40,7 @@ end
 
 60.times do
   Compra.create(
-    data_do_compra: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
+    data_da_compra: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
   )
 end
 
@@ -40,16 +50,7 @@ end
     nome: Faker::Appliance.equipment,
     quantidade: Faker::Number.between(from: 1, to: 100),
     compra_id: Faker::Number.between(from: 1, to: 60),
-    created_at: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
+    data_da_compra: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
   )
 end
 
-60.times do
-  ItemsDePedido.create(
-    pedido_id: Faker::Number.between(from: 1, to: 50),
-    nome: Faker::Appliance.equipment,
-    quantidade: Faker::Number.between(from: 1, to: 100),
-    porcao: %w[unidade duzia dezena].sample,
-    created_at: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
-  )
-end

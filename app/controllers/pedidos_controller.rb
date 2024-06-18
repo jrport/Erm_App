@@ -2,11 +2,9 @@ class PedidosController < ApplicationController
   include Pagy::Backend
   before_action :pagination, only: [:index, :table]
   before_action :monthly_metrics, only: [:index, :bulk_update]
-  # before_action :pedido_params, only: [:create]
   before_action :update_params, only: [:bulk_update]
-  before_action :set_pedido, only: [:show]
-
-  def index
+  before_action :set_pedido, only: [:show, :edit, :update]
+def index
     @month_pedidos_count, @open_count, @finished_count = monthly_metrics
   end
 
@@ -42,9 +40,11 @@ class PedidosController < ApplicationController
     @pedido.items_de_pedidos.build
   end
 
+  def edit;end
+
   def update
-    if pedido.update(pedido_params)
-      redirect_to pedidos_path
+    if @pedido.update(pedido_params)
+      redirect_to @pedido
     else
       render :edit
     end
@@ -100,7 +100,7 @@ class PedidosController < ApplicationController
     )
   end
 
-  def pagination
+  def pagination()
     @ransack_query = Pedido.ransack(params[:query])
     @ransack_query.sorts = 'data_do_pedido desc' if @ransack_query.sorts.empty?
 

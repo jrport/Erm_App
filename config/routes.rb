@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   patch '/bulk_update', to: 'pedidos#bulk_update', defaults: { format: :turbo_stream }
 
   resources :pedidos
+  resources :items_de_compras, path: 'inventarios', as: 'inventarios'
 
   resources :items_de_pedidos, only: [:index, :create, :new]
-  resources :items_de_compras, path: 'items', as: 'items'
   resources :compras
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

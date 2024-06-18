@@ -18,15 +18,17 @@ Pagy::DEFAULT[:page_param]  = :page                 # default
 # See https://ddnexus.github.io/pagy/docs/extras/pagy
 require 'pagy/extras/pagy'
 
+Rails.application.config.assets.paths << Pagy.root.join('javascripts') # uncomment.
+
 # Multi size var used by the *_nav_js helpers
 # See https://ddnexus.github.io/pagy/docs/extras/pagy#steps
 # Pagy::DEFAULT[:steps] = { 0 => [2,3,3,2], 540 => [3,5,5,3], 720 => [5,7,7,5] }   # example
 
 # Items extra: Allow the client to request a custom number of items per page with an optional selector UI
 # See https://ddnexus.github.io/pagy/docs/extras/items
-# require 'pagy/extras/items'
+require 'pagy/extras/items'
 # set to false only if you want to make :items_extra an opt-in variable
-# Pagy::DEFAULT[:items_extra] = false    # default true
+# Pagy::DEFAULT[:items_extra] = true    # default true
 # Pagy::DEFAULT[:items_param] = :items   # default
 # Pagy::DEFAULT[:max_items]   = 100      # default
 

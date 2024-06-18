@@ -1,6 +1,60 @@
-<%= turbo_frame_tag 'table' do %>
-  Loja:<%= @pedido.loja.nome %><br>
-  <% @pedido.items_de_pedidos.each do |item| %>
-    item:<%= render partial: 'pedidos/items_de_pedidos/item', locals: {item:} %>
-  <% end %>
-<% end %>
+<%= render partial: 'layouts/header' , locals: { links: [{uri: '/' , title: 'Início' }, {uri: '/pedidos' , title: 'Pedidos' }, {uri: nil, title: "Detalhes do Pedido" }] } %>
+<div class='h-[89dvh] flex justify-center items-center'>
+  <div class='shadow-2xl rounded-xl bg-white p-8'>
+    <div class='flex items-center justify-between'>
+      <%= link_to 'arrow_back', pedidos_path, class: "mi md-36 rounded-xl p-2 hover:bg-gray-300 duration-300 transition-colors" %>
+      <h1 class='text-5xl'>Detalhes do Pedido</h1>
+    </div>
+    <div class='grid grid-cols-3 gap-24 mt-5 h-[50dvh] py-12'>
+      <div class='col-span-1 gap-2 my-auto flex flex-col'>
+        <div>
+          <div class='text-xl pr-1 font-semibold'>Data do pedido</div>
+          <div class='text-lg'>
+            <%= @pedido.created_at.strftime("%d/%M/%Y") %>
+          </div>
+        </div>
+        <div>
+          <div class='text-xl pr-1 font-semibold'>Loja</div>
+          <div classs='text-lg'>
+            <%= @pedido.loja.nome %>
+          </div>
+        </div>
+        <div>
+          <div class='text-xl pr-1 font-semibold'>Observações</div>
+          <% if @pedido.observacoes.nil? || @pedido.observacoes.empty? %>
+            <div>Sem detalhes</div> 
+          <% else %>
+            <div class='text-lg'>
+              <%= @pedido.observacoes %> 
+            </div>
+          <% end %>
+        </div>
+        <a href="<%= edit_pedido_path(@pedido) %>" class="flex justify-self-end mt-10 text-lg gap-2 items-center w-fit p-3 text-white rounded-lg bg-cyan-500 hover:bg-cyan-200 duration-300 transition-colors">
+          <div class="mi md-36">edit</div> Editar Pedido
+        </a>
+      </div>
+      <div class='overflow-y-auto border-2 border-gray-300 col-span-2'>
+        <table class='table table-auto divide-y-2 divide-x-2'>
+          <thead class='bg-gray-200'>
+            <tr>
+              <th class='text-lg font-semibold'>Item</th>
+              <th class='text-lg font-semibold'>Quantidade</th>
+              <th class='text-lg font-semibold'>Porção</th>
+              <th class='text-lg font-semibold'>Detalhes</th>
+            </tr>
+          </thead>
+          <tbody class='divide-y-2 divide-x-2'>
+            <% @pedido.items_de_pedidos.each do |item| %>
+              <tr class='divide-y-2 divide-x-2'>
+                <th><%= item.nome %></th>
+                <th><%= item.quantidade %></th>
+                <th><%= item.porcao %></th>
+                <th><%= item.observacoes %></th>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

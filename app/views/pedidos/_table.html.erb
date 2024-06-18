@@ -1,32 +1,31 @@
-<%= turbo_frame_tag 'table', class: 'shadow-xl border-2 border-stone-400 rounded-md flex flex-col bg-gray-200 text-black col-span-3 row-span-4' do %>
+<%= turbo_frame_tag 'table', class: 'shadow-2xl rounded-md flex flex-col bg-white text-black col-span-3 row-span-4' do %>
     <%= search_form_for ransack, class:'m-5 flex gap-4 justify-evenly text-lg items-center' do |f| %>
 
       <div class='flex items-center gap-1 '>
-        <%= f.label :data_do_pedido_gteq, "De:" %>
+        <%= f.label :data_do_pedido_gteq, "De:", class: "text-xl" %>
         <%= f.date_field :data_do_pedido_gteq, class: 'select select-bordered text-lg select-md bg-white' %>
       </div>
 
       <div class='flex items-center gap-1 '>
-        <%= f.label :data_do_pedido_gteq, "Até:" %>
+        <%= f.label :data_do_pedido_gteq, "Até:", class: "text-xl" %>
         <%= f.date_field :data_do_pedido_gteq, class: 'select select-bordered text-lg select-md bg-white' %>
       </div>
-
       <div class='flex items-center gap-1 '>
-        <%= f.label :loja_id_eq, "Loja:" %>
-        <%= f.select :loja_id_eq, options_for_select(pedidos.sample.loja_options), { include_blank: true }, { class: 'w-full select select-bordered select-md bg-white' } %>
+        <%= f.label :loja_id_eq, "Loja:", class: "text-xl" %>
+        <%= f.select :loja_id_eq, options_for_select(Loja.pluck(:nome, :id)), { include_blank: true, prompt: "Autora do pedido" }, { class: 'w-full select select-bordered select-md text-lg bg-white' } %>
       </div>
 
       <div class='flex items-center gap-3'>
         <%= f.submit "search", class: 'btn btn-md btn-accent border-white bg-white material-icons' %>
         <%= link_to 'delete', pedidos_path, class: 'rounded-lg transition-colors bg-red-400 material-icons p-2 hover:bg-red-500' %>
-        <%= link_to 'add', new_pedido_path, class: 'rounded-lg transition-colors bg-green-400 material-icons p-2 hover:bg-green-300', data: { turbo_target: '_top', turbo_action: 'advance' } %>
+        <%= link_to 'add', new_pedido_path, class: 'rounded-lg transition-colors bg-green-400 material-icons p-2 hover:bg-green-300', data: { turbo_frame: '_top', turbo_action: 'advance' } %>
       </div>
     <% end %>
-    <div class="overflow-x-auto overflow-y-auto text-black flex-1 border-stone-400 border-y-4">
+    <div class="overflow-x-auto overflow-y-auto text-black flex-1 border-y-4">
       <table class="table">
         <thead>
-          <tr class='bg-gray-300 text-gray-800 text-xl font-extrabold'>
-            <th class='sr-only'>Selecionar</td>
+          <tr class='bg-white text-gray-800 text-xl font-extrabold'>
+            <th class='sr-only'>Selecionar</th>
             <th><%= sort_link(ransack, :data_do_pedido, "Data do Pedido", default_order: :desc) %></th>
             <th><%= sort_link(ransack, :loja_nome, "Loja Remetente") %></th>
             <th><%= sort_link(ransack, :status, "Status") %></th>
@@ -49,7 +48,7 @@
                 <%= status_badge(pedido.status) %>
               </td>
               <td>
-                <%= link_to 'Detalhes', pedido_path(pedido), class:'btn btn-sm btn-accent text-xl font-normal' %>
+                <%= link_to 'Detalhes', pedido_path(pedido), data: {turbo_frame: '_top'}, class:'btn btn-sm transition-colors btn-accent text-xl font-normal' %>
               </td>
             </tr>
           <% end %>

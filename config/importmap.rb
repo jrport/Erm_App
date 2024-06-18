@@ -12,3 +12,6 @@ pin "@rails/actioncable", to: "actioncable.esm.js"
 pin_all_from "app/javascript/channels", under: "channels"
 pin "highcharts" # @11.4.3
 pin "@stimulus-components/rails-nested-form", to: "@stimulus-components--rails-nested-form.js" # @5.0.0
+
+pin "pagy", to: "pagy.js", preload: true
+
