@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
-  get '/home', to: 'home#index'
-  get '/pedidos_chart', to: 'pedidos#chart'
-  get '/pedidos_table', to: 'pedidos#table'
-  patch '/bulk_update', to: 'pedidos#bulk_update', defaults: { format: :turbo_stream }
+  get 'home/index'
 
-  resources :pedidos
-  resources :items_de_compras, path: 'inventarios', as: 'inventarios'
+  resources :pedidos, path_names: { new: 'novo', create: 'criar' } do
+    collection do
+      get 'chart'
+      patch 'bulk_update'
+    end
+    resources :items_de_pedidos, only: %i[new create destroy], path_names: { new: 'novo', create: 'criar' }
+  end
 
-  resources :items_de_pedidos, only: [:index, :create, :new]
-  resources :compras
+  resources :items_de_compras, as: 'inventarios', path: :inventarios, only: %i[index show destroy]
+  resources :compras, path_names: { new: 'novo', create: 'criar' } 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -17,5 +19,5 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   # Defines the root path route ("/")
-  root 'home#index'
+  root 'home#index', as: :home
 end

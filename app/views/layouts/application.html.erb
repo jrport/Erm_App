@@ -6,17 +6,13 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class='bg-gray-200 2xl:w-screen h-screen flex max-2xl:flex-col 2xl:flex-row'>
-    <%= render "layouts/sidebar" %>
-    <main class='bg-gray-200 flex-1 w-full'>
-      <%= yield %>
-    </main>
+  <body class='h-screen bg-base grid grid-rows-[10%_90%]'>
+    <%= render partial: "layouts/navbar" %>
+    <%= yield %>
   </body>
 </html>

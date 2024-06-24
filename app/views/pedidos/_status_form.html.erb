@@ -1,0 +1,10 @@
+<span data-pedidos--status-target='formMessage' class='stat-title text-xl text-wrap text-center'>Selecione algum pedido.</span>
+<%= form_with scope: :pedido, url: bulk_update_pedidos_path, method: :patch, class: 'flex gap-2 flex-col items-center justify-center' do |form| %>
+  <% options = ['Pendente', 'Em progresso', 'Finalizado'] %>
+  <%= form.select :status, options.zip(Pedido.statuses.keys), {},{class:"select select-bordered", disabled: true, data: {pedidos__status_target: 'selectOptions'}} %>
+  <%= form.hidden_field :ids_list, data: {pedidos__status_target: 'hiddenField'} %>
+  <%= button_tag(type: 'submit', id:'postBtn', class: 'btn btn-bordered btn-neutral', data: {pedidos__status_target: 'postBtn'}, disabled: true) do %>
+    <div class="mi">check</div>
+    <div>Mudar status</div>
+  <% end %>
+<% end %>

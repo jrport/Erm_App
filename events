@@ -1,4 +1,0 @@
-GRANT ALL ON SCHEMA public TO my_user;
-GRANT ALL ON SCHEMA public TO sheriff;
-\d
-\s events

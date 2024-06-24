@@ -1,8 +1,5 @@
 class Loja < ApplicationRecord
-  has_many :pedidos
-  has_many :items
-
-  def self.ransackable_attributes(_auth_object = nil)
-    %w[nome]
+  def self.ransackable_attributes(auth_object = nil)
+    [ "id", "id_value", "nome" ]
   end
 end

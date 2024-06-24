@@ -1,0 +1,27 @@
+<nav class='object-contain h-[12dvh] flex justify-between navbar bg-base-300 shadow-lg'>
+  <%= image_tag 'logo.png', {role:'button', class:'btn btn-ghost h-full'} %>
+  <ul class='menu menu-horizontal'>
+    <li>
+      <%= link_to home_path, class: 'btn flex items-center btn-ghost text-2xl' do %>
+        <div class="mi">home</div>Início
+      <% end %>
+    </li>
+    <li>
+      <%= link_to home_path, class: 'btn btn-ghost text-2xl' do %>
+        <div class="mi">shopping_cart</div>Compras
+      <% end %>
+    </li>
+    <li>
+      <%= link_to pedidos_path, class: 'btn btn-ghost text-2xl' do %>
+        <div class="mi">checklist</div>Pedidos
+      <% end %>
+    </li>
+    <li>
+      <%= link_to inventarios_path, class: 'btn btn-ghost text-2xl' do %>
+        <div class="mi">storage</div>Inventários
+      <% end %>
+    </li>
+  </ul>
+  <small><%= Time.now %></small>
+</nav>
+

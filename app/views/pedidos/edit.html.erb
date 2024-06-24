@@ -1,22 +1,8 @@
-<%= render partial: 'layouts/header' , 
-  locals: {
-    links: [
-      {uri: '/', title: 'Início'},
-      {uri: '/pedidos', title: 'Pedidos'},
-      {uri: nil, title: 'Editar Pedido'}
-    ] 
-  } %>
-<div class='xl:h-[89dvh] flex justify-center items-center'>
-  <div data-controller='pedidos--item-form' class='w-[70%] p-4 bg-white rounded-xl shadow-2xl'>
-    <div class="flex justify-between items-center p-4">
-      <a href='<%= pedidos_path %>' data-turbo-action='advance'
-        class='w-fit transition-colors ease-in-out hover:bg-gray-300 grow-0 ml-4 mt-4 rounded-2xl p-2 duration-500 mi max-xl:md-24 md-48'>
-        arrow_back
-      </a>
-      <h1 class='text-4xl grow-0 xl:text-6xl text-center'>
-        Atualize os dados do Pedido
-      </h1>
-    </div>
-    <%= render partial: 'pedidos/form', locals: {pedido: @pedido} %>
+<div class="my-auto mx-20" data-controller='pedidos--update-form' >
+  <div class='grid justify-center bg-base-300 p-20 relative shadow-xl rounded-box'>
+    <a href='/pedidos' class="mi md-36 absolute top-3 hover:bg-base-100 transition-colors p-4  rounded-full left-3">
+      close
+    </a>
+  <%= render 'pedidos/form', pedido: @pedido, titulo: "Editar Pedido", is_update: true %>
   </div>
 </div>

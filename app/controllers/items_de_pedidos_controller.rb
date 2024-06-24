@@ -1,18 +1,14 @@
 class ItemsDePedidosController < ApplicationController
-  before_action :set_pedido, only: [:new]
-  def index; end
+  def new; end
 
-  def show
-    @itemDePedido = itemDePedido.find(params[:id])
-  end
+  def update; end
 
-  def new
-    @item = ItemsDePedido.new
-  end
+  def create; end
 
-  private
-
-  def set_pedido
-    @pedido = Pedido.find(params[:pedido_id])
+  def destroy
+    @item_de_pedido = ItemsDePedido.find(params[:id])
+    raise
+    @item_de_pedido.destroy!
+    render turbo_stream: turbo_stream.remove("item_#{params[:id]}")
   end
 end

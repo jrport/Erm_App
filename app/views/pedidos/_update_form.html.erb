@@ -1,0 +1,51 @@
+<%= stylesheet_link_tag "pedidos", "data-turbo-track": "reload" %>
+<%= form_with model: pedido, html:{class: 'grid grid-cols-2 gap-10' } do |form| %>
+  <template data-pedidos--update-form-target='template'>
+    <%= form.fields_for :items_de_pedidos, ItemsDePedido.new, child_index: 'NEW_RECORD' do |item| %>
+      <%= render partial: 'pedidos/item_form' , locals: {item_form: item, is_update: false} %>
+    <% end %>
+  </template>
+
+  <div class='flex justify-center  items-start gap-2 flex-col'>
+    <div class="font-bold text-5xl mb-7">
+      <%= titulo %>
+    </div>
+    <div class='flex flex-col gap-1'>
+      <%= form.label :date_do_pedido, "Data do Pedido" , class: 'text-semibold text-lg' %>
+        <%= form.date_field :data_do_pedido, class: "bg-base-100 rounded-md border-base-200 border-2" %>
+    </div>
+    <div class='flex flex-col gap-1'>
+      <%= form.label :loja_id, "Loja" , class: 'text-semibold text-lg' %>
+        <%= form.select :loja_id, options_for_select(Loja.all.pluck(:nome, :id)), {}, {class: 'select' } %>
+    </div>
+    <!-- text field for observations -->
+    <div class='flex flex-col gap-1'>
+      <%= form.label :observacoes, "Observações" , class: 'text-semibold text-lg' %>
+        <%= form.text_area :observacoes, class: "bg-base-100 rounded-md border-base-200 border-2" %>
+    </div>
+    <div class='flex gap-3 mt-4'>
+      <button type='subtmit' class='btn btn-success'>
+        <div class="mi">check</div>
+        <div>Confirmar</div>
+      </button>
+      <button type="button" data-action='pedidos--update-form#addItem' class='btn btn-info'>
+        <div class='mi'>add</div>
+        <div>Adicionar item</div>
+      </button>
+    </div>
+  </div>
+  <div class='h-[50dvh] rounded bg-base-100 border-gray-600 border-2 overflow-x-hidden overflow-y-auto'>
+    <div data-pedidos--update-form-target='itemsList' class='grid grid-cols-[minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_5rem] grid-rows-auto'>
+      <div class="grid bg-gray-800 h-fit grid-cols-subgrid col-span-5 divide-x-2">
+        <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Nome</div>
+        <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Quantidade</div>
+        <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Porção</div>
+        <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Detalhes</div>
+        <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Detalhes</div>
+      </div>
+      <%= form.fields_for :items_de_pedidos do |item_form| %>
+        <%= render partial: 'pedidos/item_form', locals: {item_form: item_form, is_update: is_update} %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>

@@ -1,33 +1,63 @@
-<%= turbo_frame_tag 'content', data: { turbo_action: "advance" } do %>
-  <%= render partial: 'layouts/header', locals: { links: [{uri: '/', title: 'Início'}, {uri: nil, title: 'Pedidos'}] } %>
-  <div data-controller='pedidos--table' class='max-2xl:flex max-2xl:flex-col 2xl:grid 2xl:grid-cols-5 2xl:grid-rows-4 overflow-x-auto m-4 2xl:h-[89dvh] gap-4'>
-    <%= render partial: 'pedidos/table', locals: {pedidos: @pedidos, pagy: @pagy, ransack: @ransack_query} %>
-    <%= form_with scope: :pedido, url: '/bulk_update', method: :patch, class: 'shadow-2xl items-center 3xl:gap-3 overflow-x-auto bg-white rounded-md col-span-1 row-span-1 flex flex-col p-2 gap-1 h-full justify-center', data: { action: 'submit -> pedidos--table#reset_checkboxes' } do |form| %>
-      <span class='text-gray-400 text-xl font-semibold text-center 3xl:text-xl'>Selecione um pedido para mudar o status.</span>
-      <%= form.hidden_field :id, data: { pedidos__table_target: 'idsField' } %>
-      <% options = [ 'Pendente', 'Em progresso', 'Finalizado' ] %>
-      <%= form.select :status, options.zip(Pedido.statuses.keys), {}, class: 'text-lg font-semibold select select-bordered 3xl:w-full' %>
-      <%= form.submit 'Confirmar', class: 'btn btn-sm 3xl:btn-sm 3xl:w-full', disabled: true, data: { pedidos__table_target: 'submitBtn' } %>
+<content class='h-full py-5 px-14 pt-10 gap-10 grid grid-cols-5 grid-rows-3'>
+  <div class='bg-base-300 border-2 rounded-box border-base-300 shadow-2xl col-span-3 row-span-3'>
+    <%= turbo_frame_tag 'table' , data: {turbo_action: 'advance'}, class: 'flex flex-col h-full' do %>
+      <%= render partial: 'pedidos/table_control' , locals: {ransack_query: @ransack_query} %>
+      <div class='overflow-y-auto grow'>
+        <%= render partial: 'pedidos/table' , locals: {pedidos: @pedidos} %>
+      </div>
+      <div class='flex grow-0 border-t-2 border-base-100 items-center px-3 py-5 justify-between'>
+        <%== pagy_info(@pagy, item_name: 'Pedido' .pluralize(@pagy.count)) %>
+        <%== pagy_nav(@pagy) %>
+      </div>
     <% end %>
-    <%= render partial: 'pedidos/stats', locals: {total_count: @month_pedidos_count, finished_count: @finished_count, open_count: @open_count} %>
-    <div class='shadow-2xl bg-white rounded-md  max-2xl:flex-auto col-span-2 row-span-2 w-full 2xl:flex-1 flex items-center justify-center px-2'>
-      <%= column_chart pedidos_chart_path, 
-        loading: "Carregando...", 
-        empty: "Sem pedidos registrados",
-        download: true,
-        xtitle: 'Lojas',
-        ytitle: 'Qtd. de Pedidos',
-        title: 'Pedidos mensais por Loja',
-        width: '100%',
-        height: '90%',
-        library: {
-          chart: {
-            style: {
-              fontSize: 28
-            }
-          }
-        }
-      %>
+  </div>
+  <div class='col-span-2 row-span-1 grid grid-rows-2 gap-5 grid-cols-3'>
+    <div data-controller='pedidos--status'
+      class='flex gap-5 status-select flex-col justify-center bg-base-300 rounded-box shadow-2xl col-span-1 row-span-2'>
+      <%= render partial: 'pedidos/status_form' %>
+    </div>
+    <div class='w-full flex justify-center items-center gap-4 col-span-2 bg-base-300 rounded-box shadow-2xl row-span-1'>
+      <div id='total_count' class='stat-value text-7xl text-end'>
+        <%= @metrics[:total] %>
+      </div>
+      <div class='my-auto'>
+        <div class='stat-title text-2xl'>Pedidos recebidos</div>
+        <div class='stat-desc text-2xl'>neste mês.</div>
+      </div>
+    </div>
+    <div class='col-span-2 grid divide-x-2 divide-dashed grid-cols-2 bg-base-300 rounded-box shadow-2xl row-span-1'>
+      <div class='w-full flex justify-center border-gray-600 items-center gap-4'>
+        <div class="md-dark mi md-36 bg-yellow-500 rounded-xl px-1 py-3 h-fit ">warning</div>
+        <div>
+          <div class='flex items-end font-normal gap-1 text-2xl '>
+            <div id='pending_count' class="stat-value join-item">
+              <%= @metrics[:pending] %>
+            </div>
+            <%= 'Pedido' .pluralize(@metrics[:pending]) %>
+          </div>
+          <div class='stat-title'>
+            em aberto
+          </div>
+        </div>
+      </div>
+      <div class='w-full flex justify-center border-gray-600 items-center gap-4'>
+        <div class="md-dark mi md-36 bg-green-500 rounded-xl px-1 py-3 h-fit ">done</div>
+        <div>
+          <div class='flex items-end font-normal gap-1 text-2xl '>
+            <div id='finished_count' class="stat-value join-item">
+              <%= @metrics[:finished] %>
+            </div>
+            <%= 'Pedido' .pluralize(@metrics[:finished]) %>
+          </div>
+          <div class='stat-title'>
+            finalizado
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-<% end %>
+  <div class='col-span-2 flex bg-base-300 shadow-xl rounded-box p-8 justify-center items-center row-span-2'>
+    <%= column_chart chart_pedidos_path, xtitle:'Lojas', ytitle:'Qtd. Pedidos', title: 'Pedidos p/unidade' , colors:
+      ["#ca3336", "#1b4770" ], library: { plugins: { legend: { labels: { font: { size: 80 } }  }, color: '#166ab2' }, animation: { easing: 'easeOutQuart' } } %>
+  </div>
+</content>

@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '3.3.1'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.1.3', '>= 7.1.3.3'
+gem 'rails', '~> 7.1.3', '>= 7.1.3.4'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -23,14 +23,11 @@ gem 'turbo-rails'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'stimulus-rails'
 
-# Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem 'tailwindcss-rails'
-
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '>= 4.0.1'
+# gem "redis", ">= 4.0.1"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -50,7 +47,6 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
-  gem 'solargraph'
 end
 
 group :development do
@@ -70,13 +66,14 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-gem 'faker', '~> 3.4'
+gem 'tailwindcss-rails', '~> 2.6'
 
-gem 'pagy', '~> 8.4'
-gem 'ransack', '~> 4.1'
+gem 'material_icons'
 
-gem 'material_icons', '~> 4.0'
+gem 'faker'
 
-gem 'chartkick'
+gem 'ransack'
 
-gem "solargraph-rails", "~> 1.1"
+gem 'pagy'
+
+gem 'chartkick', '~> 5.0', '>= 5.0.7'

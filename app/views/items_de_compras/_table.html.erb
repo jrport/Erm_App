@@ -1,0 +1,27 @@
+<div class='overflow-y-auto border-2 border-base-100 overflow-x-auto h-full'>
+  <table class='table table-pin-rows'>
+    <thead class='text-lg'>
+      <tr>
+        <th>Id</th>
+        <th>Data da Compra</th>
+        <th>Item</th>
+        <th>Loja</th>
+        <th>Estado</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id='table'>
+      <% items.each do |item| %>
+        <tr class='hover'>
+          <td><%= item.id %></td>
+          <td><%= item.data_da_compra.strftime("%d/%m/%Y") %></td>
+          <td><%= item.nome %></td>
+          <td><%= item.loja.nome %></td>
+          <td><%= estado_badge(item.estado) %></td>
+          <td><%= link_to 'Detalhes', inventarios_path(id: item), class: 'btn btn-sm btn-info', data: {turbo_frame: "_top"} %></td>
+          <td><input type="checkbox" name="<%= item.id %>" data-action='click->items--select#setCheck' data-items--select-target='checkbox' class='checkbox'></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
