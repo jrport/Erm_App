@@ -1,50 +1,37 @@
 <%= search_form_for ransack, url: inventarios_path, class: 'p-4 flex items-end overflow-x-auto justify-between w-full gap-2  px-6' do |f| %>
-  <div class='flex gap-2'>
-    <div class=''>
-      <div class='font-semibold text-lg'>Loja:</div>
-      <%= f.select :loja_id_eq, options_for_select(Loja.all.pluck(:nome, :id)), {include_blank: 'Escolha um Remetente'}, {class: 'select'} %>
-    </div>
+  <div class=''>
+    <div class='font-semibold text-lg'>Loja:</div>
+    <%= f.select :loja_id_eq, options_for_select(Loja.all.pluck(:nome, :id)), {include_blank: 'Escolha um Remetente'}, {onchange:'this.form.requestSubmit()', class: 'select'} %>
+  </div>
+
+  <div class='flex gap-2 justify-start'>
 
       <div class='flex flex-col font-semibold text-lg'>
-Desde:
+      <div> Desde: </div>
       <%= f.date_field :data_da_compra_gteq, class: 'input' %>
     </div>
 
-    <div class='flex flex-col font-semibold text-lg'>
-      Até:
+    <div class='font-semibold text-lg'>
+      <div>Até: </div>
       <%= f.date_field :data_da_compra_lteq, class: 'input' %>
     </div>
-
-    <div class='flex-col flex font-semibold text-lg'>
-      Identificador:
-      <%= f.text_field :id_eq, class: 'w-1/2 input', placeholder: "12345", id: 'idInput', data: { action: 'inventarios#search' } %>
+    <div class='w-fit font-semibold grow-0 text-lg'>
+      <div>Id:</div>
+      <%= f.text_field :id_cont, class: 'w-full input', placeholder: "1234", id: 'nomeInput', data: { action: 'inventarios#search' } %>
     </div>
+
+    <div class='w-fit font-semibold grow-0 text-lg'>
+      <div>Objeto:</div>
+      <%= f.text_field :nome_cont, class: 'w-full input', placeholder: "Caneta Azul", id: 'nomeInput', data: { action: 'inventarios#search' } %>
+    </div>
+
   </div>
 
-  <div class='flex gap-3 mb-1'>
-    <div class='h-fit'>
-      <%= button_tag(type: 'submit' ,
-        class: 'flex py-2 px-2 rounded-md items-center hover:bg-[#105fa0] bg-[#166ab2] transition-colors' ) do %>
-        <div class="mi">search</div>
-        <div>buscar</div>
-        <% end %>
-    </div>
-
-    <div>
-      <%= link_to inventarios_path,
-        class: 'flex py-2 bg-red-300 hover:bg-red-500 px-2 rounded-md items-center text-black transition-colors' do %>
-        <div class="mi">delete</div>
-        <div>Limpar busca</div>
-        <% end %>
-    </div>
-
-    <div>
-      <%= link_to new_compra_path,
-        class: 'flex py-2 bg-green-300 hover:bg-green-500 px-2 rounded-md items-center text-black transition-colors' ,
-        data: {turbo_frame: "_top" } do %>
-        <div class="mi">add</div>
-        <div>Nova Compra</div>
-        <% end %>
-    </div>
+  <div>
+    <%= link_to inventarios_path,
+      class: 'flex py-2 bg-red-300 hover:bg-red-500 px-2 rounded-md items-center text-black transition-colors' do %>
+      <div class="mi">delete</div>
+      <div>Limpar Parâmetros</div>
+    <% end %>
   </div>
   <% end %>

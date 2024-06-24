@@ -8,10 +8,7 @@
       <div class='h-[50dvh] rounded bg-base-100 border-gray-600 border-2 overflow-x-hidden overflow-y-auto'>
         <div class='grid grid-cols-4 grid-rows-auto'>
           <div class="grid bg-gray-800 h-fit grid-cols-subgrid col-span-4 divide-x-2">
-            <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Nome</div>
-            <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Quantidade</div>
-            <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Porção</div>
-            <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Detalhes</div>
+            <%= table_headers(include_blank: false) %>
           </div>
           <% @pedido.items_de_pedidos.each do |item| %>
             <%= render 'pedidos/item_de_pedido' , item: item %>

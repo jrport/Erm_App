@@ -37,11 +37,7 @@
   <div class='h-[50dvh] rounded bg-base-100 border-gray-600 border-2 overflow-x-hidden overflow-y-auto'>
     <div data-pedidos--create-form-target='itemsList' class='grid grid-cols-[minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_5rem] grid-rows-auto'>
       <div class="grid bg-gray-800 h-fit grid-cols-subgrid col-span-5 divide-x-2">
-        <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Nome</div>
-        <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Quantidade</div>
-        <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Porção</div>
-        <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Detalhes</div>
-        <div class="border-b-2 text-semibold text-center border-gray-400 p-2">Detalhes</div>
+        <%= table_headers %>
       </div>
       <%= form.fields_for :items_de_pedidos do |item_form| %>
         <%= render partial: 'pedidos/item_form', locals: {item_form: item_form, is_update: is_update} %>

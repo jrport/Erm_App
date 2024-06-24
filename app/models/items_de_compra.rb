@@ -8,4 +8,8 @@ class ItemsDeCompra < ApplicationRecord
     %w[compra_id created_at data_da_compra estado id id_value loja_id nome observacoes preco
        quantidade updated_at]
   end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[compra loja]
+  end
 end

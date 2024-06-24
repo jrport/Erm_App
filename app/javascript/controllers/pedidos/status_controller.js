@@ -18,4 +18,8 @@ export default class extends Controller {
         this.selectOptionsTarget.disabled = false
         this.formMessageTarget.textContent = 'Selecione um novo status' 
     }
+
+    resetOnSubmit(){
+        this.resetAllBoxes()
+    }
 }

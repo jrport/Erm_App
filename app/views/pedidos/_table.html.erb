@@ -16,8 +16,15 @@
           <td><%= pedido.data_do_pedido.strftime("%d/%m/%Y") %></td>
           <td><%= pedido.loja.nome %></td>
           <th id='badge_<%=pedido.id%>'><%= status_badge(pedido.status) %></th>
-          <td><%= link_to 'Detalhes', pedido_path(pedido), class: 'btn btn-sm btn-info', data: {turbo_frame: "_top"} %></td>
-          <td><input type="checkbox" name="<%= pedido.id %>" data-action='click->pedidos--select#setCheck' data-pedidos--select-target='checkbox' class='checkbox'></td>
+          <td>
+            <%= link_to pedido_path(pedido), class: 'btn btn-sm btn-info inline-flex gap-1', data: {turbo_frame: "_top"} do %>
+              <span class="mi">notes</span>
+              Detalhes
+            <% end %>
+          </td>
+          <td>
+            <input type="checkbox" name="<%= pedido.id %>" data-action='click->pedidos--select#setCheck' data-pedidos--select-target='checkbox' class='checkbox'>
+          </td>
         </tr>
       <% end %>
     </tbody>

@@ -16,45 +16,7 @@
       class='flex gap-5 status-select flex-col justify-center bg-base-300 rounded-box shadow-2xl col-span-1 row-span-2'>
       <%= render partial: 'pedidos/status_form' %>
     </div>
-    <div class='w-full flex justify-center items-center gap-4 col-span-2 bg-base-300 rounded-box shadow-2xl row-span-1'>
-      <div id='total_count' class='stat-value text-7xl text-end'>
-        <%= @metrics[:total] %>
-      </div>
-      <div class='my-auto'>
-        <div class='stat-title text-2xl'>Pedidos recebidos</div>
-        <div class='stat-desc text-2xl'>neste mês.</div>
-      </div>
-    </div>
-    <div class='col-span-2 grid divide-x-2 divide-dashed grid-cols-2 bg-base-300 rounded-box shadow-2xl row-span-1'>
-      <div class='w-full flex justify-center border-gray-600 items-center gap-4'>
-        <div class="md-dark mi md-36 bg-yellow-500 rounded-xl px-1 py-3 h-fit ">warning</div>
-        <div>
-          <div class='flex items-end font-normal gap-1 text-2xl '>
-            <div id='pending_count' class="stat-value join-item">
-              <%= @metrics[:pending] %>
-            </div>
-            <%= 'Pedido' .pluralize(@metrics[:pending]) %>
-          </div>
-          <div class='stat-title'>
-            em aberto
-          </div>
-        </div>
-      </div>
-      <div class='w-full flex justify-center border-gray-600 items-center gap-4'>
-        <div class="md-dark mi md-36 bg-green-500 rounded-xl px-1 py-3 h-fit ">done</div>
-        <div>
-          <div class='flex items-end font-normal gap-1 text-2xl '>
-            <div id='finished_count' class="stat-value join-item">
-              <%= @metrics[:finished] %>
-            </div>
-            <%= 'Pedido' .pluralize(@metrics[:finished]) %>
-          </div>
-          <div class='stat-title'>
-            finalizado
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render 'pedidos/stats', total: @metrics[:total], pending: @metrics[:pending], finished: @metrics[:finished] %>
   </div>
   <div class='col-span-2 flex bg-base-300 shadow-xl rounded-box p-8 justify-center items-center row-span-2'>
     <%= column_chart chart_pedidos_path, xtitle:'Lojas', ytitle:'Qtd. Pedidos', title: 'Pedidos p/unidade' , colors:

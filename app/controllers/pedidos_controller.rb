@@ -27,8 +27,7 @@ class PedidosController < ApplicationController
     @pedido = Pedido.new(create_params)
     respond_to do |format|
       if @pedido.save
-        # format.html { redirect_to @pedido, notice: 'ModelClassName created' }
-        format.html { redirect_to pedidos_path, notice: 'Pedido criado com sucesso' }
+        format.html { redirect_to @pedido }
       else
         format.html { render :new, status: :unprocessable_entity }
       end

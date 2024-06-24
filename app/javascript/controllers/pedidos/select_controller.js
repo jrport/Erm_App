@@ -18,4 +18,12 @@ export default class extends Controller {
             this.pedidosStatusOutlet.disable()
         }
     }
+
+    resetAllBoxes(){
+        console.log('ded')
+        this.checkboxTargets.forEach(box => {
+            box.checked = false
+        })
+        this.pedidosStatusOutlet.disable()
+    }
 }

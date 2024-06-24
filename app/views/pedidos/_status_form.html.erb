@@ -3,7 +3,7 @@
   <% options = ['Pendente', 'Em progresso', 'Finalizado'] %>
   <%= form.select :status, options.zip(Pedido.statuses.keys), {},{class:"select select-bordered", disabled: true, data: {pedidos__status_target: 'selectOptions'}} %>
   <%= form.hidden_field :ids_list, data: {pedidos__status_target: 'hiddenField'} %>
-  <%= button_tag(type: 'submit', id:'postBtn', class: 'btn btn-bordered btn-neutral', data: {pedidos__status_target: 'postBtn'}, disabled: true) do %>
+  <%= button_tag(type: 'submit', id:'postBtn', class: 'btn btn-bordered btn-neutral', data: {pedidos__status_target: 'postBtn', action: "pedidos--select#resetAllBoxes"}, disabled: true) do %>
     <div class="mi">check</div>
     <div>Mudar status</div>
   <% end %>
