@@ -25,7 +25,7 @@
               Detalhes
             <% end %>
           </td>
-          <td><input type="checkbox" name="<%= item.id %>" data-action='click->items--select#setCheck' data-items--select-target='checkbox' class='checkbox'></td>
+          <td><input type="checkbox" id="<%= item.id %>" data-action='inventarios#setCheck' data-inventarios-target='checkbox' class='checkbox'></td>
         <% end %>
     </tbody>
   </table>

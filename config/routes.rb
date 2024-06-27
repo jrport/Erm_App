@@ -9,8 +9,12 @@ Rails.application.routes.draw do
     resources :items_de_pedidos, only: %i[new create destroy], path_names: { new: 'novo', create: 'criar' }
   end
 
-  resources :items_de_compras, as: 'inventarios', path: :inventarios, only: %i[index show destroy]
-  resources :compras, path_names: { new: 'novo', create: 'criar' } 
+  resources :inventarios, only: %i[index show destroy] do
+    collection do
+      patch :bulk_update
+    end
+  end
+  resources :compras, path_names: { new: 'novo', create: 'criar' }
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

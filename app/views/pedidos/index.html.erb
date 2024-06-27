@@ -1,15 +1,6 @@
 <content class='h-full py-5 px-14 pt-10 gap-10 grid grid-cols-5 grid-rows-3'>
   <div class='bg-base-300 border-2 rounded-box border-base-300 shadow-2xl col-span-3 row-span-3'>
-    <%= turbo_frame_tag 'table' , data: {turbo_action: 'advance'}, class: 'flex flex-col h-full' do %>
-      <%= render partial: 'pedidos/table_control' , locals: {ransack_query: @ransack_query} %>
-      <div class='overflow-y-auto grow'>
-        <%= render partial: 'pedidos/table' , locals: {pedidos: @pedidos} %>
-      </div>
-      <div class='flex grow-0 border-t-2 border-base-100 items-center px-3 py-5 justify-between'>
-        <%== pagy_info(@pagy, item_name: 'Pedido' .pluralize(@pagy.count)) %>
-        <%== pagy_nav(@pagy) %>
-      </div>
-    <% end %>
+    <%= render 'inventarios/_data_grid', locals: {pagy: @pagy, pedidos: @pedidos, ransack_query: @ransack_query} %>
   </div>
   <div class='col-span-2 row-span-1 grid grid-rows-2 gap-5 grid-cols-3'>
     <div data-controller='pedidos--status'

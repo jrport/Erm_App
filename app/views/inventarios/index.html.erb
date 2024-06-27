@@ -1,4 +1,14 @@
-<div>
-  <h1 class="font-bold text-4xl">Inventarios#index</h1>
-  <p>Find me in app/views/inventarios/index.html.erb</p>
+<turbo-frame class='absolute' id='modal'>
+</turbo-frame>
+<div class='h-full my-18 p-10 mx-10'>
+  <turbo-frame data-controller='inventarios' id='table' class='relative rounded-box h-full grid grid-rows-[1fr_20fr_1fr] bg-base-300'>
+    <turbo-frame id="form_control" target='table-content'>
+      <%= render 'inventarios/table_control', items: @items, ransack: @ransack_query %>
+    </turbo-frame>
+    <%= render 'inventarios/table', items: @items, ransack: @ransack_query %>
+    <div class='flex border-t-2 border-base-100 items-center px-3 py-5 justify-between'>
+      <%== pagy_info(@pagy, item_name: 'Items' .pluralize(@pagy.count)) %>
+      <%== pagy_nav(@pagy) %>
+    </div>
+  </turbo-frame>
 </div>
