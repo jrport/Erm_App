@@ -1,0 +1,39 @@
+<div class="text-5xl mb-10 font-bold">Informações Gerais do Item</div>
+<div class='text-lg inline-flex gap-1'>
+  <p class='font-semibold'>Nome: </p>
+  <p class="font-normal"> <%= item.nome %> </p>
+</div>
+<div class='text-lg font-semibold'>
+  Na Loja: <%= link_to item.loja.nome.capitalize, inventarios_path("q[loja_id_eq]": item.loja.id), class:'link link-info' %>
+</div>
+<div class='text-lg font-semibold'>
+  Data da Compra: <%= link_to item.data_da_compra.strftime("%d/%m/%Y"), compra_path(item.compra), class:'link link-info' %>
+</div>
+<div class='text-lg inline-flex gap-1'>
+  <p class='font-semibold'>Estado: </p>
+  <p class="font-normal"> <%= item.pretty_estado %> </p>
+</div>
+<div class='text-lg font-normal inline-flex gap-1'>
+  <p class='font-semibold'>Observações: </p>
+<% if item.observacoes.nil? %>
+  Nenhuma 
+<% else %>
+  <%= item.observacoes %> 
+<% end %>
+</div>
+<div class='text-lg font-semibold gap-4'>Código de Barra: </div>
+<img data-controller="barcode" data-barcode=<%=item.codigo_de_barra%>>
+<div class='space-x-4 mt-4'>
+  <button type='button' class='btn btn-success w-fit' data-action="inventarios#openStateModal">
+    <div class='mi'>health_and_safety</div>
+    Atualizar Estado
+  </button>
+  <button type='button' class='btn btn-info w-fit' data-action="inventarios#openObservationsModal">
+    <div class='mi'>info</div>
+    Modificar observações
+  </button>
+  <button type='button' class='btn btn-accent w-fit' data-action="inventarios#openTransferModal">
+    <div class='mi'>local_shipping</div>
+    Transferir de unidade
+  </button>
+</div>

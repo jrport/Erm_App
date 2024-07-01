@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :items_de_pedidos, only: %i[new create destroy], path_names: { new: 'novo', create: 'criar' }
   end
 
-  resources :inventarios, only: %i[index show destroy] do
+  resources :inventarios, except: %w[edit new] do
     collection do
       patch :bulk_update
     end

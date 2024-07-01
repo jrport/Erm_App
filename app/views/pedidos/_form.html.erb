@@ -16,7 +16,7 @@
     </div>
     <div class='flex flex-col gap-1'>
       <%= form.label :loja_id, "Loja" , class: 'text-semibold text-lg' %>
-        <%= form.select :loja_id, options_for_select(Loja.all.pluck(:nome, :id)), {}, {class: 'select' } %>
+        <%= form.select :loja_id, options_for_select(Loja.all.pluck(:nome, :id)), {}, {class: 'min-w-[7dvw] select' } %>
     </div>
     <!-- text field for observations -->
     <div class='flex flex-col gap-1'>

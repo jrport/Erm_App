@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="inventarios"
 export default class extends Controller {
-    static targets = ['modal', 'button', 'hiddenField']
+    static targets = ['clearBtn', 'observationsModal', 'stateModal', 'transferModal', 'modal', 'editModal', 'button', 'hiddenField']
     connect() {
         console.log("oii")
     }
@@ -28,14 +28,38 @@ export default class extends Controller {
         }
     }
 
-    openModal(event) {
-        console.log(this.modalTarget)
+    openModal() {
         this.modalTarget.classList.remove('hidden')
     }
 
-    closeModal(event) {
-        console.log(this.modalTarget)
+    closeModal() {
         this.modalTarget.classList.add('hidden')
+    }
+
+    openTransferModal() {
+        this.transferModalTarget.classList.remove('hidden')
+    }
+    
+    closeTransferModal() {
+        this.transferModalTarget.classList.add('hidden')
+    }
+
+    openStateModal() {
+        this.stateModalTarget.classList.remove('hidden')
+    }
+    
+    closeStateModal() {
+        this.stateModalTarget.classList.add('hidden')
+    }
+    openObservationsModal() {
+        this.observationsModalTarget.classList.remove('hidden')
+    }
+    
+    closeObservationsModal() {
+        this.observationsModalTarget.classList.add('hidden')
+    }
+    clearSearch(){
+        this.clearBtnTarget.click()
     }
 
     //search(event) {

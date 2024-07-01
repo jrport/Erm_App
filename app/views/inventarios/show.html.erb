@@ -1,4 +1,21 @@
-<div>
-  <h1 class="font-bold text-4xl">ItemsDeCompras#show</h1>
-  <p>Find me in app/views/items_de_compras/show.html.erb</p>
-</div>
+<turbo-frame data-controller='inventarios' id='content' class='my-18 p-10 mx-10'>
+  <%= render 'inventarios/edit_modal', item: @item, field: 'observations' %>
+  <%= render 'inventarios/edit_modal', item: @item, field: 'state' %>
+  <%= render 'inventarios/edit_modal', item: @item, field: 'transfer' %>
+  <div class='grid grid-rows-[2fr_29fr] gap-10 bg-base-200 rounded-box h-full'>
+    <div class='col-span-2 p-8'>
+      <a href='<%= inventarios_path %>' class='rounded-btn md-24 p-2 transition-colors hover:bg-stone-500 mi'>
+        arrow_back
+      </a>
+    </div>
+    <div class='grid grid-cols-2 h-fit gap-4 px-24'>
+      <div id='main_info' class='flex flex-col gap-2'>
+        <%= render 'inventarios/item', item: @item %>
+      </div>
+      <div id='history'>
+        <div class="text-3xl mb-10 font-semibold">Histórico de Localizações</div>
+        <%= render 'inventarios/item_history', item: @item %>
+      </div>
+    </div>
+  </div>
+</turbo-frame>

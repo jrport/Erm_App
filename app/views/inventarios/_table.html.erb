@@ -20,7 +20,7 @@
           <td><%= item.loja.nome %></td>
           <td><%= estado_badge(item.estado) %></td>
           <td>
-            <%= link_to inventarios_path(id: item), class: 'inline-flex gap-1 text-lg btn btn-sm btn-info' do %>
+            <%= link_to inventario_path(id: item), class: 'inline-flex gap-1 text-lg btn btn-sm btn-info', data: {turbo_frame: "content", turbo_action: "advance"} do %>
               <span class="mi">notes</span>
               Detalhes
             <% end %>

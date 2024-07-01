@@ -19,7 +19,7 @@
     <%= render 'pedidos/stats', total: @metrics[:total], pending: @metrics[:pending], finished: @metrics[:finished] %>
   </div>
   <div class='col-span-2 flex bg-base-300 shadow-xl rounded-box p-8 justify-center items-center row-span-2'>
-    <%= column_chart chart_pedidos_path, xtitle:'Lojas', ytitle:'Qtd. Pedidos', title: 'Pedidos p/unidade' , colors:
+    <%= column_chart chart_pedidos_path, empty: "Sem registros para visualização.", loading: "Carregando...", xtitle:'Lojas', ytitle:'Qtd. Pedidos', title: 'Pedidos p/unidade' , colors:
       ["#ca3336", "#1b4770" ], library: { plugins: { legend: { labels: { font: { size: 80 } }  }, color: '#166ab2' }, animation: { easing: 'easeOutQuart' } } %>
   </div>
 </content>

@@ -11,7 +11,7 @@
     <% end %>
 </div>
 
-<%= search_form_for ransack, url: inventarios_path, class: 'grid gap-3 grid-rows-2 overflow-x-auto w-full py-4 px-6' do |f| %>
+<%= search_form_for ransack, url: inventarios_path,  data: {turbo_frame: "data_body"}, class: 'grid gap-3 grid-rows-2 overflow-x-auto w-full py-4 px-6'  do |f| %>
   <div class="row-span-1 flex justify-between">
     <div class='inline-flex font-bold text-2xl items-center gap-3'>
       Loja:
@@ -28,7 +28,7 @@
 
       <div class='flex items-center gap-2 w-fit font-semibold grow-0 text-lg'>
         <div>Id:</div>
-        <%= f.text_field :id_cont, class: 'w-full input', placeholder: "1234", id: 'nomeInput', data: {inventarios_target: "field"} %>
+        <%= f.text_field :id_eq, class: 'w-full input', placeholder: "1234", id: 'nomeInput', data: {inventarios_target: "field"} %>
       </div>
 
       <div class='flex items-center gap-2 w-fit font-semibold grow-0 text-lg'>
@@ -38,13 +38,15 @@
     </div>
 
     <div class='flex gap-2 items-center'>
-      <button type='submit' class='btn btn-info'>
+      <button type='submit' turbo-target='data-content' class='btn btn-info'>
         <div class="mi">search</div>
         <div>Buscar</div>
       </button>
-      <button type="button" class='btn btn-error' data-turbo-frame='table' onclick="location.href='<%= inventarios_path %>'">
+      <button type="button" class='btn btn-error' data-action='inventarios#clearSearch'>
+        <a id='clearForm' class='flex items-center gap-1' data-inventarios-target='clearBtn' data-turbo-frame='table' href="<%= inventarios_path %>">
           <div class="mi">close</div>
           <div>Limpar</div>
+        </a>
       </button>
     </div>
   </div>

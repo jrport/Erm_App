@@ -1,0 +1,22 @@
+<ul class="h-fit timeline timeline-vertical bg-color">
+  <% item.transferencias.each do |t| %>
+    <% unless item.transferencias.last == t %>
+      <li>
+        <div class="timeline-start"><%= t.created_at.strftime("%d/%m/%Y") %></div>
+        <div class="timeline-middle">
+          <div class="mi">circle</div>
+        </div>
+        <div class="timeline-end timeline-box"><%= t.destino.nome.capitalize %></div>
+        <hr class='bg-white' />
+      </li>
+    <% else %>
+      <li>
+        <div class="timeline-start"><%= t.created_at.strftime("%d/%m/%Y") %></div>
+        <div class="timeline-middle">
+          <div class="mi">check_circle</div>
+        </div>
+        <div class="timeline-end timeline-box"><%= t.destino.nome.capitalize %></div>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

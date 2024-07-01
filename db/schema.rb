@@ -10,14 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_14_005750) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_30_233700) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "estado", ["muito_ruim", "ruim", "ok"]
   create_enum "status", ["pending", "in_progress", "finished"]
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
 
   create_table "compras", force: :cascade do |t|
     t.float "valor_total", default: 0.0
@@ -37,6 +66,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_005750) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "data_da_compra", null: false
+    t.uuid "codigo_de_barra", default: -> { "uuid_generate_v4()" }
     t.index ["compra_id"], name: "index_items_de_compras_on_compra_id"
     t.index ["loja_id"], name: "index_items_de_compras_on_loja_id"
   end
@@ -71,8 +101,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_005750) do
     t.index ["loja_id"], name: "index_pedidos_on_loja_id"
   end
 
+  create_table "transferencias", force: :cascade do |t|
+    t.bigint "origem_id", null: false
+    t.bigint "destino_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destino_id"], name: "index_transferencias_on_destino_id"
+    t.index ["item_id"], name: "index_transferencias_on_item_id"
+    t.index ["origem_id"], name: "index_transferencias_on_origem_id"
+  end
+
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "items_de_compras", "compras"
   add_foreign_key "items_de_compras", "lojas"
   add_foreign_key "items_de_pedidos", "pedidos"
   add_foreign_key "pedidos", "lojas"
+  add_foreign_key "transferencias", "items_de_compras", column: "item_id"
+  add_foreign_key "transferencias", "lojas", column: "destino_id"
+  add_foreign_key "transferencias", "lojas", column: "origem_id"
 end
