@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
   # get 'home/index'
-
 
   resources :pedidos, path_names: { new: 'novo', create: 'criar' } do
     collection do
