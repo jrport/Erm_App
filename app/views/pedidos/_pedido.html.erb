@@ -9,11 +9,11 @@
     </div>
     <div class='flex gap-1 items-center'>
       <div class='font-bold text-xl'>Loja remetente: </div>
-      <%= link_to pedido.loja.nome, inventario_path(pedido.loja), class: "text-lg text-semibold underline", style: "color: #28ebff;" %>
+      <%= link_to pedido.loja.nome, inventarios_path("q[loja_id_eq]"), class: "text-lg text-semibold underline", style: "color: #28ebff;" %>
     </div>
     <div class='flex gap-1 text-lg text-semibold'>
       <div class='font-bold text-xl'>Observações: </div>
-      <% if pedido.observacoes.nil? %>
+      <% if pedido.observacoes.empty? or pedido.observacoes.nil? %>
         Sem observações. 
       <% else %>
         <%= pedido.observacoes.capitalize %>

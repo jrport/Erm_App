@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_30_233700) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_04_214708) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
@@ -53,6 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_30_233700) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "data_da_compra", default: -> { "CURRENT_TIMESTAMP" }
+    t.text "observacoes"
   end
 
   create_table "items_de_compras", force: :cascade do |t|
@@ -65,7 +66,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_30_233700) do
     t.bigint "compra_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "data_da_compra", null: false
     t.uuid "codigo_de_barra", default: -> { "uuid_generate_v4()" }
     t.index ["compra_id"], name: "index_items_de_compras_on_compra_id"
     t.index ["loja_id"], name: "index_items_de_compras_on_loja_id"

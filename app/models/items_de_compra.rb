@@ -1,10 +1,12 @@
 class ItemsDeCompra < ApplicationRecord
   belongs_to :compra
   belongs_to :loja
-  has_many :transferencias, class_name: 'Transferencia', foreign_key: 'item_id'
+  has_many :transferencias, class_name: 'Transferencia', foreign_key: 'item_id', dependent: :destroy
 
   after_update :create_transferencia, if: :saved_change_to_loja_id?
   after_create :create_transferencia
+
+  validates :nome, presence: true, length: { minimun: 1, maximum: 255 }
 
   def create_transferencia
     origem_id = loja_id_was || nil
@@ -26,4 +28,5 @@ class ItemsDeCompra < ApplicationRecord
     estados = { muito_ruim: 'Crítico', ruim: 'Desgastado', ok: 'Conservado' }
     estados[estado.to_sym]
   end
+
 end

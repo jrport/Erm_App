@@ -9,10 +9,6 @@ class Pedido < ApplicationRecord
 
   enum :status, { pending: 'pending', in_progress: 'in_progress', finished: 'finished' }
 
-  def self.this_month
-    Pedido.where(data_do_pedido: Time.now.beginning_of_month...Time.now.end_of_month)
-  end
-
   def self.ransackable_attributes(_auth_object = nil)
     %w[created_at data_do_pedido id id_value loja_id observacoes status updated_at]
   end

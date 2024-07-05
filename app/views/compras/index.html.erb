@@ -1,0 +1,126 @@
+<div id='compra_details' class='h-full py-5 px-14 pt-10'>
+  <div class='h-full flex flex-col xl:grid grid-cols-4 grid-rows-8 gap-3'>
+    <div class='col-span-1 row-span-1 flex bg-base-300 rounded-box'>
+      <%= link_to new_compra_path, data: {turbo_action: "advance"}, class: 'flex-1 h-full text-2xl btn btn-primary' do %> 
+        <div class="mi md-36">add</div><p class='font-bold'>Nova Compra</p>
+      <% end %>
+    </div>
+    <div class='col-span-3 row-span-5 p-5 bg-base-300 rounded-box flex items-center justify-center'>
+      <%= line_chart chart_cost_compras_path, height: '100%',xtitle: 'Mês' , ytitle: "Gastos por mês" , loading: "Carregando" ,
+        empty: "Sem dados suficientes para visualização" , title: "Gastos por mês" , round: 2, adapter: "highcharts" ,
+        library: { 
+          title: {
+            style: {
+              color: '#ffffff',
+              fontWeight: 'bolder',
+              fontSize: 30
+            }
+          },
+          chart: {
+            backgroundColor: '#20252e',
+          },
+          xAxis: {
+            title: {
+              style: {
+                color: '#ffffff',
+                fontSize: 20
+              },
+            },
+            labels: {
+              style: {
+                color: '#ffffff'
+              }
+            },
+          },
+          yAxis: {
+            title: {
+              style: {
+                color: '#ffffff',
+                fontSize: 20
+              },
+            },
+            labels: {
+              style: {
+                color: '#ffffff'
+              }
+            },
+          },
+        }
+      %>
+    </div>
+    <div class='col-span-1 max-xl:max-h-[70dvh] row-span-7 bg-base-300 rounded-box'>
+      <%= render 'compras/table', pagy: @pagy, compras: @results, ransack: @ransack_query %>
+    </div>
+    <div class='col-span-2 row-span-3 bg-base-300 rounded-box'>
+      <%= column_chart chart_qtd_compras_path, height: '100%',xtitle: 'Mês' , ytitle: "Compras" , loading: "Carregando" ,
+        empty: "Sem dados suficientes para visualização" , title: "Compras por mês" , adapter: "highcharts" ,
+        library: { 
+          title: {
+            style: {
+              color: '#ffffff',
+              fontWeight: 'bolder',
+              fontSize: 30
+            }
+          },
+          chart: {
+            backgroundColor: '#20252e',
+          },
+          xAxis: {
+            title: {
+              style: {
+                color: '#ffffff',
+                fontSize: 20
+              },
+            },
+            labels: {
+              style: {
+                color: '#ffffff'
+              }
+            },
+          },
+          yAxis: {
+            title: {
+              style: {
+                color: '#ffffff',
+                fontSize: 20
+              },
+            },
+            labels: {
+              style: {
+                color: '#ffffff'
+              }
+            },
+          },
+        }
+      %>
+    </div>
+    <div class='col-span-1 row-span-3 bg-base-300 divide-y-2 rounded-box'>
+      <div class='stat'>
+        <div class='stat-title text-2xl text-info'>
+          Foi gasto um total de 
+        </div>
+        <div class='stat-value text-success'>
+          <% unless Compra.nil? %>
+            R$ <%= Compra.this_month.reduce(0) { |acc, val| acc + val.valor_total }.round(2) %>
+          <% else %>            
+            R$ 0,00
+          <% end %>
+        </div>
+        <div class='stat-desc text-xl text-info'>neste mês.</div>
+      </div>
+      <div class='stat'>
+        <div class='stat-title text-2xl text-info'>
+          Foram feitas
+        </div>
+        <div class='stat-value text-accent'>
+          <% unless Compra.nil? %>
+            <%= Compra.this_month.count %> compras
+          <% else %>            
+            0 
+          <% end %>
+        </div>
+        <div class='stat-desc text-xl text-info'>este mês.</div>
+      </div>
+    </div>
+  </div>
+</div>

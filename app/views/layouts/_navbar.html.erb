@@ -1,13 +1,13 @@
 <nav class='object-contain h-[12dvh] flex justify-between navbar bg-base-300 shadow-lg'>
   <%= image_tag 'logo.png', {role:'button', class:'btn btn-ghost h-full'} %>
   <ul class='menu menu-horizontal'>
-    <li>
+    <li class='hidden'>
       <%= link_to home_path, class: 'btn flex items-center btn-ghost text-2xl' do %>
         <div class="mi">home</div>Início
       <% end %>
     </li>
     <li>
-      <%= link_to home_path, class: 'btn btn-ghost text-2xl' do %>
+      <%= link_to compras_path, class: 'btn btn-ghost text-2xl' do %>
         <div class="mi">shopping_cart</div>Compras
       <% end %>
     </li>
@@ -22,6 +22,6 @@
       <% end %>
     </li>
   </ul>
-  <small><%= Time.now %></small>
+  <small>V-0.9</small>
 </nav>
 

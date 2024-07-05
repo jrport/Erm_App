@@ -56,7 +56,8 @@ class PedidosController < ApplicationController
   end
 
   def chart
-    render json: Pedido.this_month.joins(:loja).group('lojas.nome').count
+    this_month = Date.today.beginning_of_month..Date.today.end_of_month
+    render json: Pedido.where(data_do_pedido: this_month).joins(:loja).group('lojas.nome').count
   end
 
   def bulk_update
@@ -102,7 +103,10 @@ class PedidosController < ApplicationController
   end
 
   def metrics
-    monthly_total = Pedido.this_month
-    { total: monthly_total.count, finished: monthly_total.finished.count, pending: monthly_total.pending.count }
+    {
+      total: Pedido.group_by_month(:data_do_pedido, last: 1).count.values.first,
+      finished: Pedido.group_by_month(:data_do_pedido, last: 1).finished.count.values.first,
+      pending: Pedido.group_by_month(:data_do_pedido, last: 1).pending.count.values.first
+    }
   end
 end

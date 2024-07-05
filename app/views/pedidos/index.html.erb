@@ -1,6 +1,6 @@
 <content class='h-full py-5 px-14 pt-10 gap-10 grid grid-cols-5 grid-rows-3'>
   <div class='bg-base-300 border-2 rounded-box border-base-300 shadow-2xl col-span-3 row-span-3'>
-    <%= turbo_frame_tag 'table' , data: {turbo_action: 'advance'}, class: 'flex flex-col h-full' do %>
+    <%= turbo_frame_tag 'table' , data: {turbo_action: 'advance' }, class: 'flex flex-col h-full' do %>
       <%= render partial: 'pedidos/table_control' , locals: {ransack_query: @ransack_query} %>
       <div class='overflow-y-auto grow'>
         <%= render partial: 'pedidos/table' , locals: {pedidos: @pedidos} %>
@@ -16,10 +16,13 @@
       class='flex gap-5 status-select flex-col justify-center bg-base-300 rounded-box shadow-2xl col-span-1 row-span-2'>
       <%= render partial: 'pedidos/status_form' %>
     </div>
-    <%= render 'pedidos/stats', total: @metrics[:total], pending: @metrics[:pending], finished: @metrics[:finished] %>
+    <%= render 'pedidos/stats' , total: @metrics[:total], pending: @metrics[:pending], finished: @metrics[:finished] %>
   </div>
   <div class='col-span-2 flex bg-base-300 shadow-xl rounded-box p-8 justify-center items-center row-span-2'>
-    <%= column_chart chart_pedidos_path, empty: "Sem registros para visualização.", loading: "Carregando...", xtitle:'Lojas', ytitle:'Qtd. Pedidos', title: 'Pedidos p/unidade' , colors:
-      ["#ca3336", "#1b4770" ], library: { plugins: { legend: { labels: { font: { size: 80 } }  }, color: '#166ab2' }, animation: { easing: 'easeOutQuart' } } %>
+    <%= column_chart chart_pedidos_path, id: "chart", empty: "Sem registros para visualização." , loading: "Carregando..." ,
+      xtitle:'Lojas', ytitle:'Qtd. Pedidos', title: 'Pedidos Por Unidade neste Mês' , adapter: 'highcharts' , library: { title: {
+      style: { color: '#ffffff' , fontWeight: 'bolder' , fontSize: 30 } }, chart: { backgroundColor: '#20252e' , },
+      xAxis: { title: { style: { color: '#ffffff' , fontSize: 20 }, }, labels: { style: { color: '#ffffff' } }, },
+      yAxis: { title: { style: { color: '#ffffff' , fontSize: 20 }, }, labels: { style: { color: '#ffffff' } }, }, } %>
   </div>
 </content>

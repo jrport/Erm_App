@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  # get 'home/index'
+
 
   resources :pedidos, path_names: { new: 'novo', create: 'criar' } do
     collection do
@@ -14,7 +15,13 @@ Rails.application.routes.draw do
       patch :bulk_update
     end
   end
-  resources :compras, path_names: { new: 'novo', create: 'criar' }
+
+  resources :compras, path_names: { edit: 'editar', new: 'novo', create: 'criar' } do
+    collection do
+      get :chart_qtd
+      get :chart_cost
+    end
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -23,5 +30,6 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   # Defines the root path route ("/")
-  root 'home#index', as: :home
+  # root 'home#index', as: :home
+  root 'pedidos#index', as: :home
 end

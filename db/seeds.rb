@@ -9,7 +9,7 @@
 #   end
 
 Loja.create(nome: 'Central', endereco: 'Rua Mantinopo, 1, Snto Antônio dos Prazeres', telefone: '(00) 0000-0000',
-email: 'email@email.com')
+            email: 'email@email.com')
 
 15.times do
   Loja.create(
@@ -40,11 +40,22 @@ end
 
 60.times do
   Compra.create(
-    data_da_compra: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
+    data_da_compra: Faker::Date.between(from: '2024/01/01', to: '2024/12/30'),
+    valor_total: Faker::Number.decimal(l_digits: 4, r_digits: 2)
   )
 end
 
 # 200.times do
+# ItemsDeCompra.create(
+# loja_id: Faker::Number.between(from: 1, to: 15),
+# nome: Faker::Appliance.equipment,
+# quantidade: Faker::Number.between(from: 1, to: 100),
+# compra_id: Faker::Number.between(from: 1, to: 60),
+# data_da_compra: Faker::Date.between(from: '2024/01/01', to: '2024/12/30'),
+# estado: %w[muito_ruim ruim ok].sample
+# )
+# end
+# 400.times do
   # ItemsDeCompra.create(
     # loja_id: Faker::Number.between(from: 1, to: 15),
     # nome: Faker::Appliance.equipment,
@@ -54,16 +65,6 @@ end
     # estado: %w[muito_ruim ruim ok].sample
   # )
 # end
-400.times do
-  ItemsDeCompra.create(
-    loja_id: Faker::Number.between(from: 1, to: 15),
-    nome: Faker::Appliance.equipment,
-    quantidade: Faker::Number.between(from: 1, to: 100),
-    compra_id: Faker::Number.between(from: 1, to: 60),
-    data_da_compra: Faker::Date.between(from: '2024/01/01', to: '2024/12/30'),
-    estado: %w[muito_ruim ruim ok].sample
-  )
-end
 
 # 200.times do
 # ItemsDeCompra.create(

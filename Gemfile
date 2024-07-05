@@ -78,8 +78,12 @@ gem 'pagy'
 
 gem 'chartkick', '~> 5.0', '>= 5.0.7'
 
-gem 'barby', require: %w(barby barby/barcode/code_128 barby/outputter/png_outputter)
+gem 'barby', require: %w[barby barby/barcode/code_128 barby/outputter/png_outputter]
 
 gem 'chunky_png'
 
-gem "ruby-graphviz", "~> 1.2"
+gem 'ruby-graphviz', '~> 1.2'
+
+gem 'groupdate'
+
+gem 'rails-i18n', '~> 7.0'

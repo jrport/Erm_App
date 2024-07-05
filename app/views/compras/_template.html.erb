@@ -1,0 +1,6 @@
+<template data-compras-target='template' id='template'>
+  <%= form.fields_for :items_de_compras, ItemsDeCompra.new, child_index: 'NEW_RECORD' do |item_form| %>
+    <%= render 'compras/item_form', item_form: item_form, is_update: false %>
+  <% end %>
+</template>
+

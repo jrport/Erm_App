@@ -8,3 +8,5 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 pin "chartkick", to: "chartkick.js"
 pin "Chart.bundle", to: "Chart.bundle.js"
 pin "jsbarcode" # @3.11.6
+pin "highcharts" # @11.4.3
+pin 'chartkick', to: 'chartkick.js'
