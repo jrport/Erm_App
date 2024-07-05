@@ -31,5 +31,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root 'home#index', as: :home
-  root 'pedidos#index', as: :home
+  root 'home#index', as: :home
 end

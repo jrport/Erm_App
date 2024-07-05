@@ -24,9 +24,6 @@
                   <%= @compra.observacoes.nil? or @compra.observacoes.empty? ? "Sem observações." : @compra.observacoes.capitalize %>
                 </div>
               </div>
-              <!--% @compra.notas.each do |nota| %-->
-              <!--% end %-->
-              <!-- a href="<%= rails_blob_path(@compra.notas[0], disposition: "attachment") %>">deus</a-->
             </div>
             <div class='flex gap-2'>
               <a href="<%=edit_compra_path(@compra)%>" class='btn btn-info btn-lg mb-5' data-turbo-frame='_top' data-turbo-action='advance'>
@@ -44,7 +41,7 @@
           <thead>
             <tr class='text-lg font-bold'>
               <th>Nome</th>
-              <th>Quantidade</th>
+              <th>Porção</th>
               <th>Detalhes</th>
             </tr>
           </thead>
@@ -52,7 +49,7 @@
             <% @compra.items_de_compras.each do |item| %>
               <tr class='hover overflow-x-auto'>
                 <td><%= item.nome %></td>
-                <td><%= item.quantidade %></td>
+                <td><%= item.porcao %></td>
                 <td><%= item.observacoes %></td>
               </tr>
             <% end %>

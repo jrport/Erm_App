@@ -7,7 +7,7 @@
       <%= form_with model: @compra, html: {class: "col-span-2 grid grid-cols-subgrid"} do |form| %>
         <%= render 'compras/template', compra: @compra, form: form %>
 
-        <%= render 'compras/compra_form', form:, title: "Editar Compra" %>
+        <%= render 'compras/compra_form', form:, title: "Editar Compra", is_update: true %>
         <div class="h-[50dvh] rounded bg-base-100 border-gray-600 border-2 overflow-x-hidden overflow-y-auto">
           <div data-compras-target='itemsList' class='grid grid-cols-[minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_5rem] grid-rows-auto'>
             <div class='grid bg-gray-800 h-fit grid-cols-subgrid col-span-5 divide-x-2'>
@@ -18,7 +18,7 @@
                 Observações
               </div>
               <div class='border-b-2 text-semibold text-center border-gray-400 p-2'>
-                Quantidade
+                Porção
               </div>
               <div class='border-b-2 text-semibold text-center border-gray-400 p-2'>
                 Estado

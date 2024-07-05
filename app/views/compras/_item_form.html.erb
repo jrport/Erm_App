@@ -1,4 +1,4 @@
-<div data-compras-target='itemForm' id='itemForm' class="h-fit border-b-2 border-base-300 grid grid-cols-subgrid col-span-5 ">
+<div data-compras-target='itemForm' id='itemForm' class="h-fit border-b-2 border-base-300 grid grid-cols-subgrid col-span-6 ">
   <%= item_form.hidden_field :loja_id, id: "loja_id", data: {compras_target: 'lojaField'} %>
   <% if @compra.errors[:'items_de_compras.nome'].empty? %>
     <%= item_form.text_field :nome, class: "bg-base-100 border-base-200 border-2"  %>
@@ -6,7 +6,10 @@
     <%= item_form.text_field :nome, class: "bg-base-100 border-red-500 border-2 text-ellipsis", placeholder: @compra.errors[:'items_de_compras.nome'][0].capitalize  %>
   <% end %>
   <%= item_form.text_field :observacoes, class: "bg-base-100 border-base-200 border-2"  %>
-  <%= item_form.number_field :quantidade, class: "bg-base-100 border-base-200 border-2", min: 1  %>
+  <% unless is_update %>
+    <%= number_field_tag "compra[items_de_compras_attributes][#{item_form.index}][quantidade]", "1", {class: "bg-base-100 border-base-200 border-2", min: 1} %>
+  <% end %>
+  <%= item_form.text_field :porcao, class: "bg-base-100 border-base-200 border-2", min: 1  %>
   <%= item_form.select :estado, options_for_estado, {}, class: "select bg-base-100 border-base-200 border-2"  %>
   <% if is_update %>
     <button type='button' data-action='compras#deleteItem' id='<%= item_form.index %>' class='mi bg-red-400 hover:bg-red-300 transition-colors text-black'>
