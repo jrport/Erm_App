@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'admins/index'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
@@ -28,10 +27,9 @@ Rails.application.routes.draw do
     end
   end
 
-  scope '/admin' do
-    get '' => 'admins#index', as: :admin
-    resources :lojas
-    resources :users
+  get '/admins', to: 'admins#index'
+  namespace :admins do
+    resources :lojas, path_names: { new: 'nova', create: 'criar' }
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

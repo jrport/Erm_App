@@ -23,13 +23,12 @@
     </li>
   </ul>
   <div class='flex gap-3 items-center'>
-    <%= link_to admin_path do %>
-      <div class="mi">admin_panel_settings</div> Admin
+    <%= link_to admins_path, class: 'inline-flex justify-center items-center btn bg-[#00003f] hover:bg-[#000058]' do %>
+      <div class="mi">admin_panel_settings</div> Lojas e Usuários
     <% end %>
     <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-sm btn-secondary"  do %>
       <div class="mi"> logout </div> Sair
     <% end %>
-    <small>V-0.9</small>
   </div>
 </nav>
 

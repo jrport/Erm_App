@@ -1,0 +1,26 @@
+<%= form_for @loja, class: 'w-fit h-fit bg-base-100 flex gap-5 space-y-5 p-2 rounded outline border-stone-200' do |form| %>
+  <div>
+    <%= form.label :nome, 'Nome da Unidade' %>
+    <div>
+      <%= form.text_field :nome, class: 'input' %>
+    </div>
+  </div>
+  <div>
+    <%= form.label :telefone, 'Número da Unidade' %>
+    <div>
+      <%= form.text_field :telefone, class: 'input' %>
+    </div>
+  </div>
+  <div>
+    <div>
+      <%= form.label :nome, 'Email' %>
+    </div>
+    <%= form.text_field :, class: 'input' %>
+  </div>
+  <div>
+    <%= form.label :endereco, 'Nome da Unidade' %>
+    <div>
+      <%= form.text_field :nome, class: 'input' %>
+    </div>
+  </div>
+<% end %>

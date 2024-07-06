@@ -1,12 +1,12 @@
-<div class="w-fit flex p-2 rounded border border-stone-200">
+<div class="h-fit bg-base-100 flex justify-between p-4 rounded-xl border-stone-200">
   <div>
     <div class="text-2xl font-semibold"><%= loja.nome.capitalize %></div>
     <div><%= loja.telefone %></div>
     <div><%= loja.email %></div>
     <div><%= loja.endereco %></div>
   </div>
-  <div>
-    <%= link_to 'delete', loja_path(loja), method: :delete, class:'btn btn-sm btn-secondary px-0 py-0 inline-flex items-center rounded md-dark mi' %>
-    <%= link_to 'edit', edit_loja_path(loja), class:'btn btn-sm btn-info px-0 py-0 inline-flex items-center rounded md-dark mi' %>
+  <div class='self-start'>
+    <%= link_to 'delete', admins_loja_path(loja), method: :delete, class:'bg-secondary p-1 hover:bg-[#f8613b] rounded md-dark mi' %>
+    <%= link_to 'edit', edit_admins_loja_path(loja), class:'bg-info hover:bg-[#5bf7ff] p-1 rounded md-dark mi' %>
   </div>
 </div>

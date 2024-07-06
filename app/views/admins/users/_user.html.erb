@@ -1,0 +1,9 @@
+<div class="collapse collapse-arrow bg-base-200">
+  <input type="radio" name="my-accordion-1" class='w-full'  />
+  <div class="collapse-title text-xl font-medium"><%= user.email %></div>
+  <div class="collapse-content">
+    <%= link_to "Alterar Senha", edit_password_admin_path(user), class: "link" %>
+    <%= link_to "Alterar Email", edit_registration_admin_path(user), class: "link" %>
+    <%= link_to "Excluir Cadastro", cancel_registration_admin_path(user), class: "link" %>
+  </div>
+</div>
