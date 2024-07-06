@@ -13,7 +13,7 @@
           <%= f.text_field :id_eq , class: 'input', placeholder: '12345' %>
         </div>
         <button class='btn btn-error col-span-2'>
-          <%= link_to compras_path, data: {turbo_frame: "table"} do %>
+          <%= link_to compras_path, data: {turbo_frame: "table", target: 'table'} do %>
             <div class="mi">clear</div> Limpar
           <% end %>
         </button>
@@ -36,6 +36,7 @@
               <th><%= compra.id %></th>
               <td><%= compra.created_at.strftime("%d/%m/%Y") %></td>
               <td><%= link_to "Detalhes", compra_path(compra), data: {turbo_frame: '_top'},class: 'btn link' %></td>
+              <!--<td><%= link_to  %></td>-->
             </tr>
           <% end %>
         </tbody>

@@ -21,7 +21,7 @@
               <div class='inline-flex gap-2 text-xl font-semibold'>
                 Observações: 
                 <div class='font-normal'> 
-                  <%= @compra.observacoes.nil? or @compra.observacoes.empty? ? "Sem observações." : @compra.observacoes.capitalize %>
+                  <%= (@compra.observacoes.nil? or @compra.observacoes.empty?) ? "Sem observações." : @compra.observacoes.capitalize %>
                 </div>
               </div>
             </div>

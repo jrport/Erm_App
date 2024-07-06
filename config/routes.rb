@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get 'admins/index'
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
+  }
   # get 'home/index'
 
   resources :pedidos, path_names: { new: 'novo', create: 'criar' } do
@@ -23,6 +28,12 @@ Rails.application.routes.draw do
     end
   end
 
+  scope '/admin' do
+    get '' => 'admins#index', as: :admin
+    resources :lojas
+    resources :users
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -31,5 +42,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root 'home#index', as: :home
-  root 'home#index', as: :home
+  root 'pedidos#index', as: :home
 end
