@@ -1,7 +1,5 @@
-# frozen_string_literal: true
-
 class Users::SessionsController < Devise::SessionsController
-  layout 'sign', only: %i[new create]
+  layout 'login', only: %i[new create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

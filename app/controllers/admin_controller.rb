@@ -1,4 +1,4 @@
-class AdminsController < ApplicationController
+class AdminController < ApplicationController
   def index
     @lojas = Loja.all
     @users = User.all

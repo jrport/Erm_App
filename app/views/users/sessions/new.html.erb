@@ -1,13 +1,6 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html:{class: "flex-1 grow flex flex-col"}) do |f| %>
     <h1 class="text-3xl font-bold self-center">Acessar Conta</h1>
 
-    <span class="self-center mb-5">
-        Não tem uma conta? Se cadastre 
-        <a href="<%=new_registration_path(resource_name)%>" class="link link-secondary">
-          aqui!
-        </a>
-    </span>
-
   <label class='form-control'>
     <div class="label">
       <%= f.label :email, class: 'label-text' %><br />

@@ -1,6 +1,8 @@
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "flex-1 grow flex flex-col" }) do |f| %>
-  <h1 class='text-3xl font-bold self-center mb-5'>Redefinir senha</h1>
+  <h1 class='text-3xl font-bold self-center mb-2'>Redefinir senha</h1>
+  <div class='self-center'>Informe seu email de login.</div>
+  <div class='mx-4 self-center mb-3'>Caso seja válido, enviaremos um link com instruções.</div>
 
   <label class='form-control'>
     <div class="label">
@@ -9,12 +11,10 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input input-bordered' %>
   </label>
 
-  <div class="actions mt-5">
+  <div class="actions flex justify-between items-center mt-10">
     <%= f.submit "Confirmar", class: 'btn btn-primary' %>
+    <%= link_to "Tela de login", new_session_path(resource_name), class: "link" %>
   </div>
 
-  <div class='mt-5'>
-    <%= render "devise/shared/links" %>
-  </div>
 <% end %>
 

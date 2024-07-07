@@ -1,0 +1,14 @@
+<%= form_for @user, url: admin_conta_update_email_path, html:{class: "my-4 flex flex-col items-center"} do |f| %>
+  <h1 class="text-3xl font-bold self-center">Alterar Email</h1>
+
+  <label>
+    <div class="label">
+      <%= f.label :email, 'Email', class: "label-text" %><br />
+    </div>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input input-bordered' %>
+  </label>
+
+  <div class="actions mt-10 flex justify-between items-center mt-5">
+    <%= f.submit "Confirmar", class: "btn btn-primary" %>
+  </div>
+<% end %>

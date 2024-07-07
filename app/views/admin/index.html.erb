@@ -1,26 +1,26 @@
-<div class='h-[88dvh] overflow-y-hidden my-18 p-10 mx-10 flex flex-col xl:grid grid-cols-2 gap-4'>
+<div id='content' class='h-[88dvh] overflow-y-hidden my-18 p-10 mx-10 flex flex-col xl:grid grid-cols-2 gap-4'>
   <div class="bg-base-300 rounded-box p-5">
     <div class="flex justify-between items-center">
       <div class="text-3xl font-bold">Lojas Registradas</div>
-      <%= link_to new_admins_loja_path, id: "add_loja_button", class: 'rounded border inline-flex gap-2 border-stone-500 outline hover:bg-green-400 bg-primary inline-flex justify-center items-center text-black p-4' do %>
+      <%= link_to new_admin_loja_path, id: "add_loja_button", class: 'rounded border inline-flex gap-2 border-stone-500 outline hover:bg-green-400 bg-primary inline-flex justify-center items-center text-black p-4' do %>
         <div class='mi'>domain_add</div> Adicionar Loja
       <% end %>
     </div>
     <br>
     <div class='border-y border-[#b2ccd6] px-2 py-4 overflow-y-auto space-y-7 h-[70dvh] '>
-      <%= render 'admins/lojas/index', lojas: @lojas %>
+      <%= render 'admin/lojas/index', lojas: @lojas %>
     </div>
   </div>
   <div class="bg-base-300 rounded-box p-5">
     <div class="flex justify-between items-center">
       <div class="text-3xl font-bold">Usuários Registrados</div>
-      <%= link_to new_registration_admin_path, id: "add_person_button", class: 'rounded border inline-flex gap-2 border-stone-500 outline hover:bg-green-400 bg-primary inline-flex justify-center items-center text-black p-4' do %> 
+      <%= link_to new_admin_conta_path, id: "add_person_button", class: 'rounded border inline-flex gap-2 border-stone-500 outline hover:bg-green-400 bg-primary inline-flex justify-center items-center text-black p-4' do %> 
         <div class='mi'>person_add</div> Adicionar Cadastro
       <% end %>
     </div>
     <br>
     <div class='border-y border-[#b2ccd6] px-2 py-4 overflow-y-auto space-y-7 h-[70dvh] '>
-      <%= render 'admins/users/index', users: @users %>
+      <%= render 'admin/contas/index', users: @users %>
     </div>
   </div>
 </div>

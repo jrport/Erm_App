@@ -20,11 +20,25 @@ pt-BR:
     items_selector_js: "Mostrar %{items_input} %{item_name} por página"
   activerecord:
     errors:
+      models: 
+        loja:
+          attributes: 
+            nome: 
+              blank: O nome é obrigatório
+              too_short: O nome deve ter no mínimo 3 caractéres
       messages:
         record_invalid: 'A validação falhou: %{errors}'
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
+    models:
+      loja:
+        nome: Nome
+        Nome: Nome
+        one: Um
+        attributes:
+          nome: Nome
+          nomes: Nomes
   date:
     abbr_day_names:
       - dom

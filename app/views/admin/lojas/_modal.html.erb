@@ -1,0 +1,14 @@
+<div id='modal' role="dialog" tabindex="-1" class="fixed inset-0 z-30 flex items-center justify-center w-full h-screen p-2">
+  <div class="fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30"></div>
+  <a onclick="this.parentElement.style.display='None'" class='fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30'></a>
+  <div class="relative z-20 w-full max-w-2xl max-h-screen overflow-y-auto bg-base-300 shadow-lg rounded-box">
+      <button type="button" onclick="this.parentElement.parentElement.remove()" class="absolute top-7 flex items-center right-7 btn btn-circle text-xl text-red-500" >
+        <div class='mi'>close</div>
+      </button>
+    <% unless edit %>
+      <%= render 'admin/lojas/new', loja: @loja %> 
+    <% else %>
+      <%= render 'admin/lojas/edit', loja: @loja %> 
+    <% end %>
+  </div>
+</div>
