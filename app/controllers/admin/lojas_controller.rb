@@ -1,4 +1,5 @@
 class Admin::LojasController < ApplicationController
+  before_action :user_admin?
   def new
     @loja = Loja.new
     render turbo_stream: turbo_stream.prepend('content', partial: 'admin/lojas/modal',

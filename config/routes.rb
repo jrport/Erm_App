@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'pedidos#index', as: :home
   devise_for :users, path: 'autenticacao', only: %i[sessions passwords registrations],
                      controllers: {
                        sessions: 'users/sessions',
@@ -8,6 +9,9 @@ Rails.application.routes.draw do
                      path_names: { sign_in: 'entrar', sign_out: 'sair', password: 'redefinir_senha' }
 
   get '/configuracoes', to: 'admin#index', as: 'configuracoes'
+
+  resources :lojistas, controller: :lojista, except: %w[destroy], path_names: { new: 'nova', edit: 'editar', index: 'dashboard' }
+
   namespace :admin do
     resources :contas, path_names: { new: 'nova', edit: 'editar' } do
       get 'mudar_senha', to: 'contas#edit_password', as: 'edit_password'
@@ -19,8 +23,6 @@ Rails.application.routes.draw do
 
     resources :lojas, path_names: { 'new': 'nova' }
   end
-
-  # get 'home/index'
 
   resources :pedidos, path_names: { new: 'novo', create: 'criar' } do
     collection do
@@ -43,13 +45,19 @@ Rails.application.routes.draw do
     end
   end
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get 'up' => 'rails/health#show', as: :rails_health_check
+  # namespace :lojista do
+  # get 'pedidos/index'
+  # get 'pedidos/show'
+  # get 'pedidos/edit'
+  # get 'pedidos/update'
+  # get 'pedidos/create'
+  # resources :pedidos, except: %w[destroy], path_names: { new: 'nova', edit: 'editar' }
+  # end
+  # get '/' => redirect('/lojista/menu')
+  # get 'menu', to: 'lojista#index'
 
   # Defines the root path route ("/")
   # root 'home#index', as: :home
-  root 'pedidos#index', as: :home
+
+  get 'up' => 'rails/health#show', as: :rails_health_check
 end

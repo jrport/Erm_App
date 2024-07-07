@@ -17,6 +17,10 @@ class Pedido < ApplicationRecord
     ['loja']
   end
 
+  def self.lojista(session_id)
+    Pedido.where(loja_id: session_id)
+  end
+
   private
 
   def must_have_at_least_one_item

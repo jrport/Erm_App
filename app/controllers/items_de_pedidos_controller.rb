@@ -1,4 +1,5 @@
 class ItemsDePedidosController < ApplicationController
+  before_action :user_admin?
   def new; end
 
   def update; end

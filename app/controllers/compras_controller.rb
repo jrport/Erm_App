@@ -1,4 +1,5 @@
 class ComprasController < ApplicationController
+  before_action :user_admin?
   include Pagy::Backend
   before_action :compra_params, only: %i[create update]
 

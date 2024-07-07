@@ -1,4 +1,5 @@
 class InventariosController < ApplicationController
+  before_action :user_admin?
   include Pagy::Backend
   before_action :bulk_update_params, only: :bulk_update
   before_action :bulk_ids, only: :bulk_update

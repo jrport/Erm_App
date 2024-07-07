@@ -2,6 +2,7 @@
 
 class Admin::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
+  before_action :user_admin?
   def new
     super
   end

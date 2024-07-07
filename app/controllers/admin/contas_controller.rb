@@ -1,4 +1,5 @@
 class Admin::ContasController < ApplicationController
+  before_action :user_admin?
   def new
     @user = User.new
     render turbo_stream: turbo_stream.prepend('content', partial: 'admin/contas/modal', locals: { user: @user })
@@ -7,7 +8,6 @@ class Admin::ContasController < ApplicationController
   def create
     @user = User.new
     if check_password && check_email
-      raise
       @user = User.new(user_params)
       if @user.save
         redirect_to configuracoes_path, notice: 'Usuário criado'

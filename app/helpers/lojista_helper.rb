@@ -1,0 +1,2 @@
+module LojistaHelper
+end

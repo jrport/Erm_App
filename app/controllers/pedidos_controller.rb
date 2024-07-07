@@ -1,4 +1,5 @@
 class PedidosController < ApplicationController
+  before_action :user_admin?
   before_action :bulk_params, only: [:bulk_update]
   before_action :metrics, only: %i[index bulk_update]
   before_action :create_params, only: %i[create]
