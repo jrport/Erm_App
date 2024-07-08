@@ -88,4 +88,6 @@ gem 'groupdate'
 
 gem 'rails-i18n', '~> 7.0'
 
+gem 'aws-sdk-s3', require: false
 gem 'devise'
+gem 'image_processing', '~> 1.2'
