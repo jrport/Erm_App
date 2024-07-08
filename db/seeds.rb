@@ -9,11 +9,10 @@
 #   end
 env = ENV['ADMIN_USER']
 puts env
-print env
 
 Loja.create(nome: 'Central', endereco: 'Rua Mantinopo, 1, Snto Antônio dos Prazeres', telefone: '(00) 0000-0000',
             email: 'email@email.com')
-User.create(email: 'admin@admin.com', password: 'admin', admin: true, loja_id: 1)
+User.create(email: 'joao6roberto@gmail.com', password: 'roberto10', admin: true, loja_id: 1)
 User.create(email: ENV['ADMIN_USER'], password: ENV['ADMIN_PASSWORD'], admin: true, loja_id: 1)
 
 15.times do
