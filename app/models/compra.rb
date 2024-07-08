@@ -2,7 +2,7 @@ class Compra < ApplicationRecord
   has_many_attached :notas
   has_many :items_de_compras, dependent: :destroy, validate: true, class_name: 'ItemsDeCompra'
   accepts_nested_attributes_for :items_de_compras, allow_destroy: true
-  validate :one_item_at_least?
+  # validate :one_item_at_least?
 
   def self.cost_per_month
     compras_recentes.transform_values do |compra|

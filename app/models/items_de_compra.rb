@@ -28,5 +28,4 @@ class ItemsDeCompra < ApplicationRecord
     estados = { muito_ruim: 'Crítico', ruim: 'Desgastado', ok: 'Conservado' }
     estados[estado.to_sym]
   end
-
 end

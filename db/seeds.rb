@@ -52,12 +52,12 @@ end
     loja_id: Faker::Number.between(from: 1, to: 15),
     nome: Faker::Appliance.equipment,
     porcao: %w[unidade duzia dezena].sample,
-    compra_id: Faker::Number.between(from: 1, to: 60),
-    estado: %w[muito_ruim ruim ok].sample
+    estado: %w[muito_ruim ruim ok].sample,
+    compra_id: Faker::Number.between(from: 1, to: 60)
   )
 end
 
-# 300.times do
-  # item = ItemsDeCompra.find(Faker::Number.between(from: 1, to: 200))
-  # item.update(loja_id: Faker::Number.between(from: 1, to: 15))
-# end
+300.times do
+  item = ItemsDeCompra.find(Faker::Number.between(from: 1, to: 200))
+  item.update(loja_id: Faker::Number.between(from: 1, to: 15))
+end
