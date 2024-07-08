@@ -73,7 +73,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: 'www.saoroque.app.br/' }
+  config.action_mailer.default_url_options = { host: 'www.saoroque.app.br/', port: 3000 }
   # config.action_mailer.delivery_method = :sendmail
   # onfig.action_mailer.default_options = { from: 'email@email.com' }
   config.action_mailer.delivery_method = :smtp
