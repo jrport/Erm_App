@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def after_sign_in_path_for(resource)
-    current_user.admin? ? admin_root_path : lojistas_path
+  def after_sign_in_path_for(_resource)
+    current_user.admin? ? home_path : lojistas_path
   end
 
   def user_admin?

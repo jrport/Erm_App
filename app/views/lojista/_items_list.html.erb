@@ -1,0 +1,12 @@
+<div data-lojista-target='itemsList' class='grid grid-cols-[minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_5rem] grid-rows-auto'>
+  <div class="divide-x-2 divide-dashed p-2 border-gray-400 border-b-2 text-center bg-base-100 grid col-span-5 grid-cols-subgrid">
+    <div class="font-semibold border-gray-400 text-base"> Nome </div>
+    <div class="font-semibold border-gray-400 text-base"> Quantidade </div>
+    <div class="font-semibold border-gray-400 text-base"> Porção </div>
+    <div class="font-semibold border-gray-400 text-base"> Detalhes </div>
+    <div class="font-semibold border-gray-400 text-base"> </div>
+  </div>
+  <%= form.fields_for :items_de_pedidos, ItemsDePedido.new do |item_form| %>
+    <%= render 'lojista/item_form', item_form: %>
+  <% end %>
+</div>

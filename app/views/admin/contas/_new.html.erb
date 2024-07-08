@@ -22,6 +22,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input input-bordered' %>
   </label>
 
+  <label class='flex flex-col w-full'>
+    <div class='label'>
+      <%= f.label :loja_id, 'Loja do Usuário', class: "label-text" %><br />
+    </div>
+    <%= f.select :loja_id, options_for_select(Loja.pluck(:nome, :id)), {}, {class: 'select select-bordered'} %>
+  </label>
+
   <label class='flex items-center gap-2 mt-4'>
     <%= f.check_box :admin, class: 'checkbox' %>
     <div>

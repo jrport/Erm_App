@@ -1,0 +1,36 @@
+<div class="rounded-box p-8 flex flex-col h-[82dvh] bg-base-300">
+  <div class="prose">
+    <h1 class='mb-2'>
+      Seus Pedidos
+    </h1>
+  </div>
+  <hr class='border-gray-400 my-4' />
+  <div class='flex-1 w-full overflow-y-auto'>
+    <table class='w-full overflow-x-auto table my-0 pin-table-cols'>
+      <thead>
+        <tr class='bg-base-100'>
+          <th class='text-base font-semibold'>Id</th>
+          <th class='text-base font-semibold'>Data do Pedido</th>
+          <th class='text-base font-semibold'>Status</th>
+          <th class='text-base font-semibold'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% pedidos.each do |pedido| %>
+          <tr>
+            <td>#<%= pedido.id %>
+            </td>
+            <td>
+              <%= pedido.created_at.strftime("%d/%m/%Y") %>
+            </td>
+            <td>
+              <%= lojista_status_badge(pedido.status) %>
+            </td>
+            <td><a class='btn btn-sm btn-info' href='<%= lojista_path(pedido) %>'>Detalhes</a></td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+  <hr class='border-gray-400 mt-4' />
+</div>

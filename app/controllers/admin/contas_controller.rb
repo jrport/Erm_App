@@ -96,6 +96,6 @@ class Admin::ContasController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :admin)
+    params.require(:user).permit(:email, :password, :admin, :loja_id)
   end
 end

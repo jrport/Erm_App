@@ -1,6 +1,6 @@
-<nav class='object-contain h-[12dvh] flex justify-between navbar bg-base-300 shadow-lg'>
+<% unless controller_name == 'lojista' %>
+  <nav class='object-contain h-[12dvh] flex justify-between navbar bg-base-300 shadow-lg'>
   <%= image_tag 'logo.png', {role:'button', class:'btn btn-ghost h-full'} %>
-  <% unless controller_name == 'lojista' %>
     <ul class='menu menu-horizontal'>
       <li class='hidden'>
         <%= link_to home_path, class: 'btn flex items-center btn-ghost text-2xl' do %>
@@ -31,8 +31,18 @@
         <div class="mi"> logout </div> Sair
       <% end %>
     </div>
-  <% else %>
-    <div>Portal do Colaborador</div>
-  <% end %>
 </nav>
+  <% else %>
+    <nav class='navbar bg-base-300'>
+      <div class="object-contain navbar-start p-4 h-[12dvh]">
+        <%= image_tag 'logo.png', {class:'h-full'} %>
+      </div>
+      <div class="text-2xl navbar-center">Portal do Colaborador</div>
+      <div class='navbar-end'>
+        <%= link_to destroy_user_session_path, method: :delete, class: " btn btn-sm btn-secondary"  do %>
+          <div class="mi"> logout </div> Sair
+        <% end %>
+      </div>
+    </nav>
+  <% end %>
 
