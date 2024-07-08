@@ -8,7 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 env = ENV['ADMIN_USER']
-put env
+puts env
 print env
 
 Loja.create(nome: 'Central', endereco: 'Rua Mantinopo, 1, Snto Antônio dos Prazeres', telefone: '(00) 0000-0000',
