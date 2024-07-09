@@ -11,7 +11,16 @@ WORKDIR /rails
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
+    BUNDLE_WITHOUT="development" \
+    BUCKET="bucket-almosheriff" \
+    OCI_NAMESPACE="grckqtldmm6l" \
+    OCI_KEY="a89e02792fca4e91bef72f246b375f3e088507d8" \
+    OCI_REGION='sa-saopaulo-1' \
+    OCI_SECRET='wcNNk6h8n3IWV6UQE+YEYGblwAYWf9uk2X4mnjdx43s=' \
+    OCI_ENDPOINT='https://grckqtldmm6l.compat.objectstorage.sa-saopaulo-1.oraclecloud.com' \
+    DATABASE_URL='postgresql://almosheriff:ZPzFtPbaWS4OznUmR6z08g37yO9bSbtx@dpg-cq5laheehbks73bqjam0-a.oregon-postgres.render.com/erm_app_production' \
+    DISABLE_DATABASE_ENVIRONMENT_CHECK='1' \
+    SECRET_KEY_BASE='DUMB'
 
 
 # Throw-away build stage to reduce size of final image
@@ -19,22 +28,27 @@ FROM base as build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config
+    apt-get install --no-install-recommends -y build-essential npm git libpq-dev libvips pkg-config
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
+# SECRET_KEY_BASE_DUMMY=1 bundle exec bootsnap precompile --gemfile
 
 # Copy application code
 COPY . .
 
 # Precompile bootsnap code for faster boot times
+# RUN SECRET_KEY_BASE_DUMMY=1 bundle exec bootsnap precompile app/ lib/
 RUN bundle exec bootsnap precompile app/ lib/
 
+RUN npm install daisyui -y
+
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+# RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+RUN ./bin/rails assets:precompile
 
 
 # Final stage for app image
