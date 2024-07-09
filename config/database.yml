@@ -28,9 +28,17 @@ test:
 #   production:
 #     url: <%= ENV["MY_APP_DATABASE_URL"] %>
 #
+
 production:
-  <<: *default
-  database: erm_app_production
-  url: <%= ENV["DATABASE_URL"] %>
+  database: oracle_enhanced
+  host: <%= ENV['OCI_DB_HOST'] %>
+  username: <%= ENV['OCI_DB_USER'] %>
+  password: <%= ENV['OCI_DB_PASSWORD'] %>
+
+# POSTGRES DOCKER OCI
+# production:
+  # <<: *default
+  # database: erm_app_production
+  # url: <%= ENV["DATABASE_URL"] %>
   # username: <%= ENV["ERM_APP_DATABASE_USER"] %>
   # password: <%= ENV["ERM_APP_DATABASE_PASSWORD"] %>
