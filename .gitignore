@@ -37,5 +37,5 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
-/config/app_env_var.rb
+/config/env_variables.rb
 /.env

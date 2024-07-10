@@ -5,5 +5,5 @@ require_relative 'application'
 Rails.application.initialize!
 
 # Load local env variables
-app_environment_variables = File.join(Rails.root, 'config', 'app_env_var.rb')
+app_environment_variables = File.join(Rails.root, 'config', 'env_variables.rb')
 load(app_environment_variables) if File.exist?(app_environment_variables)

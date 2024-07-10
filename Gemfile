@@ -92,6 +92,6 @@ gem 'devise'
 
 gem 'image_processing', '~> 1.2'
 
-gem "aws-sdk-s3", :require => false
+gem 'aws-sdk-s3', require: false
 
-gem "ruby-oci8", "~> 2.2"
+gem 'ruby-oci8'

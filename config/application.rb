@@ -9,13 +9,16 @@ Bundler.require(*Rails.groups)
 module ErmApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.1
+    config.load_defaults 7.0
     config.action_mailer.default_url_options = { host: 'www.saoroque.app.br/', port: 3000 }
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w[assets tasks])
+    # config.autoload_lib(ignore: %w[assets tasks])
+    # Autoload and also eager load lib.
+    config.autoload_paths << config.root.join("lib")
+    config.eager_load_paths << config.root.join("lib")
     Rails.application.config.active_storage.service = :oci
 
     # Configuration for the application, engines, and railties goes here.
