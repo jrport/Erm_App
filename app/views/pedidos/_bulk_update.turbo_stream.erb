@@ -1,0 +1,25 @@
+<% ids.each do |id| %>
+  <%= turbo_stream.update format('badge_%d', id) do %>
+    <%= status_badge(status) %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update 'total_count' do %>
+  <%= metrics[:total] %>
+<% end %>
+
+<%= turbo_stream.update 'finished_count' do %>
+  <%= metrics[:finished] %>
+<% end %>
+
+<%= turbo_stream.update 'pending_count' do %>
+  <%= metrics[:pending] %>
+<% end %>
+
+<%= turbo_stream.replace 'chart' do %>
+  <%= column_chart chart_pedidos_path, id: "chart", empty: "Sem registros para visualização." , loading: "Carregando..." ,
+    xtitle:'Lojas', ytitle:'Qtd. Pedidos', title: 'Pedidos Por Unidade neste Mês' , adapter: 'highcharts' , library: { title: {
+      style: { color: '#ffffff' , fontWeight: 'bolder' , fontSize: 30 } }, chart: { backgroundColor: '#20252e' , },
+  xAxis: { title: { style: { color: '#ffffff' , fontSize: 20 }, }, labels: { style: { color: '#ffffff' } }, },
+  yAxis: { title: { style: { color: '#ffffff' , fontSize: 20 }, }, labels: { style: { color: '#ffffff' } }, }, } %>
+<% end %>

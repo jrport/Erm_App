@@ -1,0 +1,40 @@
+<div data-controller='compras' class='my-auto mx-20'>
+  <div class='rounded-box h-full grid items-center p-10 bg-base-300 gap-3'>
+    <%= link_to compras_path, class: 'rounded-box h-fit p-3 hover:bg-base-100 transition transition-colors w-fit' do %>
+      <div class="mi">arrow_back</div>
+    <% end %>
+    <div class='flex flex-col max-xl:justify-between max-xl:items-between xl:grid grid-cols-2'>
+      <%= form_with model: @compra, multipart: true, html: {class: "col-span-2 grid grid-cols-subgrid"} do |form| %>
+        <%= render 'compras/template', compra: @compra, form: form %>
+
+        <%= render 'compras/compra_form', form:, title: "Nova Compra", is_update: false %>
+        <div class="h-[50dvh] rounded bg-base-100 border-gray-600 border-2 overflow-x-hidden overflow-y-auto">
+          <div data-compras-target='itemsList' class='grid grid-cols-[minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_5rem] grid-rows-auto'>
+            <div class='grid bg-gray-800 h-fit grid-cols-subgrid col-span-6 divide-x-2'>
+              <div class='border-b-2 text-semibold text-center border-gray-400 p-2'>
+                Nome
+              </div>
+              <div class='border-b-2 text-semibold text-center border-gray-400 p-2'>
+                Observações
+              </div>
+              <div class='border-b-2 text-semibold text-center border-gray-400 p-2'>
+                Quantidade
+              </div>
+              <div class='border-b-2 text-semibold text-center border-gray-400 p-2'>
+                Porção
+              </div>
+              <div class='border-b-2 text-semibold text-center border-gray-400 p-2'>
+                Estado
+              </div>
+              <div class='border-b-2 text-semibold text-center border-gray-400 p-2'>
+              </div>
+            </div>
+            <%= form.fields_for :items_de_compras, ItemsDeCompra.new do |item_form| %>
+              <%= render 'compras/item_form', item_form:, is_update: false %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

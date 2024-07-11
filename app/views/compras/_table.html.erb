@@ -1,0 +1,49 @@
+<turbo-frame id='table' class='h-full grid grid-rows-[auto_16fr] flex-col divide-y-2'>
+  <div class='py-1 overflow-x-auto '>
+    <%= search_form_for ransack, url: compras_path,  data: {turbo_frame: "table_body"}, class: 'grid grid-rows-2 grid-cols-8 gap-2 py-2 px-3'  do |f| %>
+      <div class='col-span-8 grid grid-cols-subgrid row-span-1'>
+        <div class='flex items-center gap-1 col-span-6'>
+          <div>Data da Compra:</div> <%= f.date_field :data_da_compra_eq, class: 'input' %> 
+        </div>
+        <button type='submit' class='btn btn-info col-span-2'><div class="mi">search</div>Buscar</button>
+      </div>
+      <div class='col-span-8 row-span-1 grid grid-cols-subgrid gap-2'>
+        <div class='flex items-center gap-1 col-span-6'>
+          <div>Id:</div>
+          <%= f.text_field :id_eq , class: 'input', placeholder: '12345' %>
+        </div>
+        <button class='btn btn-error col-span-2'>
+          <%= link_to compras_path, data: {turbo_frame: "table", target: 'table'} do %>
+            <div class="mi">clear</div> Limpar
+          <% end %>
+        </button>
+      </div>
+    <% end %>
+  </div>
+  <turbo-frame id='table_body' class="divide-y-2 h-full grid grid-rows-[16fr_auto] overflow-y-auto border-stone-700">
+    <div class='overflow-y-auto'>
+      <table class='table table-auto overflow-x-auto overflow-y-auto table-pin-rows'>
+        <thead class='text-base text-lg'>
+          <tr>
+            <th><%= sort_link(ransack, :id, "Id") %></th>
+            <th><%= sort_link(ransack, :data_da_compra, "Data da Compra") %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% compras.each do |compra| %>
+            <tr class='hover'>
+              <th><%= compra.id %></th>
+              <td><%= compra.created_at.strftime("%d/%m/%Y") %></td>
+              <td><%= link_to "Detalhes", compra_path(compra), data: {turbo_frame: '_top'},class: 'btn link' %></td>
+              <!--<td><%= link_to  %></td>-->
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class='py-2 px-3 my-auto mx-auto'>
+      <%== pagy_nav @pagy %>
+    </div>
+  </turbo-frame>
+</turbo-frame>

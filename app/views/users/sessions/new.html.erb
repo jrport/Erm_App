@@ -1,0 +1,39 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html:{class: "flex-1 grow flex flex-col"}) do |f| %>
+    <h1 class="text-3xl font-bold self-center">Acessar Conta</h1>
+
+  <label class='form-control'>
+    <div class="label">
+      <%= f.label :email, class: 'label-text' %><br />
+    </div>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input input-bordered' %>
+  </label>
+
+
+  <label class="form-control">
+    <div class="label">
+      <%= f.label :password, class: "label-text" %><br />
+      <a href='<%=new_password_path(resource_name)%>' class="label-text link link-accent">Redefinir senha?</a>
+    </div>
+
+    <%= f.password_field :password, autocomplete: "current-password", class: 'input input-bordered' %>
+  </label>
+
+  <div class="form-control mt-3 mb-5">
+    <label class="cursor-pointer label self-start gap-2">
+      <%= f.check_box :remember_me, class: "checkbox" %>
+      <%= f.label :remember_me, 'Lembrar de mim', class: "label-text" %>
+    </label>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Log in", class: "btn btn-primary" %>
+  </div>
+
+  <% unless notice.nil? %>
+    <p class="notice"><%= notice %></p>
+  <% end %>
+  <% unless alert.nil? %>
+    <p class="alert text-error text-sm"><%= alert %></p>
+  <% end %>
+<% end %>
+

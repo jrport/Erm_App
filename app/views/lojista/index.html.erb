@@ -1,0 +1,8 @@
+<div class='mt-8 mx-8 grid grid-cols-3 gap-8'>
+  <div class="col-span-2 h-fit">
+      <%= render 'lojista/new' , loja: @current_user, pedido: @novo_pedido %>
+  </div>
+  <div class="col-span-1">
+    <%= render 'lojista/table' , pedidos: @pedidos %>
+  </div>
+</div>

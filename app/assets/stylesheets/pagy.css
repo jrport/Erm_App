@@ -1,0 +1,21 @@
+.pagy.nav {
+    display: flex;
+    gap: 3px;
+    &>a {
+        border-radius: 7px;
+        padding: 2px 8px;
+        background-color: #2a303c;
+        &:hover {
+            background-color: #599dd0;
+        }
+        &:not([href]) { /* disabled links */
+            cursor: default;
+            background-color: rgb(156 163 175);
+            color: rgb(209 213 219);
+        }
+        &.current {
+            background-color: #166ab2;
+            color: rgb(255 255 255);
+        }
+    }
+}

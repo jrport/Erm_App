@@ -1,0 +1,16 @@
+<div class="collapse collapse-arrow bg-base-200">
+  <input type="radio" name="my-accordion-1" class='w-full'  />
+  <div class="collapse-title text-xl font-medium">
+    <%= user.email %>
+    <% if user.admin? %>
+      <div class='mi'>
+        supervisor_account
+      </div>
+    <% end %>
+  </div>
+  <div class="collapse-content">
+    <%= link_to "Alterar Senha", admin_conta_edit_password_path(user), class: "link" %>
+    <%= link_to "Alterar Email", admin_conta_edit_email_path(user), class: "link" %>
+    <%= link_to "Excluir Cadastro", admin_conta_delete_path(user), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que deseja deletar essas credenciais?"}, class: "link" %>
+  </div>
+</div>

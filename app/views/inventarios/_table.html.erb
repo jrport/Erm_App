@@ -1,0 +1,32 @@
+<turbo-frame id='table-content' class='overflow-y-auto border-2 border-base-100 overflow-x-auto h-full'>
+  <table class='table table-pin-rows'>
+    <thead class='text-lg'>
+      <tr>
+        <th><%= sort_link(ransack, :id, "Id") %></th>
+        <th><%= sort_link(ransack, :compra_data_da_compra, "Data da Compra") %></th>
+        <th><%= sort_link(ransack, :estado, "Nome") %></th>
+        <th><%= sort_link(ransack, :loja_nome, "Loja proprietária") %></th>
+        <th><%= sort_link(ransack, :estado, "Estado") %></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id='table'>
+      <% items.each do |item| %>
+        <tr class='hover'>
+          <td><%= item.id %></td>
+          <td><%= item.compra.data_da_compra.strftime("%d/%m/%Y") %></td>
+          <td><%= item.nome %></td>
+          <td><%= item.loja.nome %></td>
+          <td><%= estado_badge(item.estado) %></td>
+          <td>
+            <%= link_to inventario_path(id: item), class: 'inline-flex gap-1 text-lg btn btn-sm btn-info', data: {turbo_frame: "content", turbo_action: "advance"} do %>
+              <span class="mi">notes</span>
+              Detalhes
+            <% end %>
+          </td>
+          <td><input type="checkbox" id="<%= item.id %>" data-action='inventarios#setCheck' data-inventarios-target='checkbox' class='checkbox'></td>
+        <% end %>
+    </tbody>
+  </table>
+</turbo-frame>

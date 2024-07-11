@@ -1,0 +1,41 @@
+<%= search_form_for @ransack_query, class: 'flex items-end overflow-x-auto justify-between w-full gap-2 py-8 px-6' do |f| %>
+  <div class='flex gap-2'>
+    <div class=''>
+      <div class='font-semibold text-lg'>Loja:</div>
+      <%= f.select :loja_id_eq, options_for_select(Loja.all.pluck(:nome, :id)), {include_blank: true}, {class: 'min-w-[7dvw] select'} %>
+    </div>
+
+    <div>
+      <div class='font-semibold text-lg'>Desde:</div>
+      <%= f.date_field :data_do_pedido_gteq, class: 'input' %>
+    </div>
+
+    <div>
+      <div class='font-semibold text-lg'>Até:</div>
+      <%= f.date_field :data_do_pedido_lteq, class: 'input'%>
+    </div>
+  </div>
+
+  <div class='flex h-full items-center gap-3 mb-1'>
+    <div>
+      <%= button_tag(type: 'submit', class: 'flex py-3 px-2 rounded-md items-center hover:bg-[#105fa0] bg-[#166ab2] transition-colors') do %>
+        <div class="mi">search</div>
+        <div>buscar</div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= link_to pedidos_path, class: 'flex bg-red-300 hover:bg-red-500 py-3 px-2 rounded-md items-center text-black transition-colors' do %>
+        <div class="mi">delete</div>
+        <div>Limpar busca</div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= link_to new_pedido_path, class: 'flex bg-green-300 hover:bg-green-500 py-3 px-2 rounded-md items-center text-black transition-colors', data: {turbo_frame: "_top"} do %>
+        <div class="mi">add</div>
+        <div>Novo pedido</div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+<div id='modal' role="dialog" tabindex="-1" class="fixed inset-0 z-30 flex items-center justify-center w-full h-screen p-2">
+  <div class="fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30"></div>
+  <a onclick="this.parentElement.style.display='None'" class='fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30'></a>
+  <div class="relative z-20 w-fit p-10 max-w-2xl max-h-screen overflow-y-auto bg-base-300 shadow-lg rounded-box">
+      <button type="button" onclick="this.parentElement.parentElement.remove()" class="absolute top-7 flex items-center right-7 btn btn-circle text-xl text-red-500" >
+        <div class='mi'>close</div>
+      </button>
+    <% if action_name == 'new' || action_name == 'create' %>
+      <%= render 'admin/contas/new', user: user %> 
+    <% end %>
+    <% if action_name == 'edit_password' || action_name == 'update_password' %>
+      <%= render 'admin/contas/reset_password', user: user %> 
+    <% end %>
+    <% if action_name == 'edit_email' || action_name == 'update_email' %>
+      <%= render 'admin/contas/change_email', user: %> 
+    <% end %>
+  </div>
+</div>

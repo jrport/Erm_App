@@ -1,0 +1,61 @@
+<turbo-frame id='compra_details' data-controller='compras' class='my-auto mx-20'>
+  <% if @compra.one_nota_at_least? %>
+    <%= render 'compras/anexos_modal', compra: @compra %>
+  <% end %>
+  <div class='rounded-box h-full grid items-center p-10 bg-base-300 gap-3'>
+    <%= link_to compras_path, data: {turbo_frame: '_top', turbo_action: 'advance'}, class: 'rounded-box h-fit p-3 hover:bg-base-100 transition transition-colors w-fit' do %>
+      <div class="mi">arrow_back</div>
+    <% end %>
+    <div class='grid grid-cols-2'>
+      <div class='ml-10 mt-10'>
+        <div class='ml-10 flex flex-col gap-5 h-full'>
+          <div class="text-5xl font-bold">Detalhes da Compra</div>
+          <div class="flex flex-col justify-between flex-1 gap-10 space-y-2">
+            <div class='flex flex-col gap-2'>
+              <div class='inline-flex gap-2 text-xl font-semibold'>
+                Data da Compra: <div class='font-normal'><%= @compra.data_da_compra.strftime("%d/%m/%Y") %></div>
+              </div>
+              <div class='inline-flex gap-2 text-xl font-semibold'>
+                Valor Total: <div class='font-normal'>R$<%= @compra.valor_total.round(2) %></div>
+              </div>
+              <div class='inline-flex gap-2 text-xl font-semibold'>
+                Observações: 
+                <div class='font-normal'> 
+                  <%= (@compra.observacoes.nil? or @compra.observacoes.empty?) ? "Sem observações." : @compra.observacoes.capitalize %>
+                </div>
+              </div>
+            </div>
+            <div class='flex gap-2'>
+              <a href="<%=edit_compra_path(@compra)%>" class='btn btn-info btn-lg mb-5' data-turbo-frame='_top' data-turbo-action='advance'>
+                <div class='mi'>edit</div>Editar
+              </a>
+              <button <%= @compra.one_nota_at_least? ? '' : 'disabled' %> type='button' class='btn btn-accent btn-lg mb-5' data-action='compras#showAnexoModal'>
+                <div class="mi">attach_file</div><%=  @compra.one_nota_at_least? ? "Mostrar Anexos" : "Sem Anexos" %>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="overflow-y-auto h-[50dvh] rounded bg-base-200 border-gray-600 border-2 overflow-x-hidden overflow-y-auto">
+        <table class="table bg-base-200 overflow-x-auto table-pin-cols">
+          <thead>
+            <tr class='text-lg font-bold'>
+              <th>Nome</th>
+              <th>Porção</th>
+              <th>Detalhes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @compra.items_de_compras.each do |item| %>
+              <tr class='hover overflow-x-auto'>
+                <td><%= item.nome %></td>
+                <td><%= item.porcao %></td>
+                <td><%= item.observacoes %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</turbo-frame>

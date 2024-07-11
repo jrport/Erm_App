@@ -1,0 +1,49 @@
+<%= form_for @loja, url: admin_lojas_path, html:{class: 'p-5 bg-base-100 space-y-2'} do |form| %>
+  <div class="font-semibold text-3xl mb-5">
+    Informações da nova Loja
+  </div>
+  <% if @loja.errors.any? %>
+    <div class="alert w-fit alert-error">
+      <div class="flex-1">
+        <label>
+          <ol>
+            <% @loja.errors.messages[:nome].each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ol>
+        </label>
+      </div>
+    </div>
+  <% end %>
+  <div class='my-10'>
+    <%= form.label :nome, 'Nome da Unidade' %>
+    <div>
+      <%= form.text_field :nome, class: 'input input-bordered' %>
+    </div>
+  </div>
+  <div>
+    <%= form.label :telefone, 'Telefone de Contato' %>
+    <div>
+      <%= form.text_field :telefone, class: 'input input-bordered' %>
+    </div>
+  </div>
+  <div>
+    <div>
+      <%= form.label :email, 'Email' %>
+    </div>
+    <%= form.text_field :email, class: 'input input-bordered' %>
+  </div>
+  <div>
+    <%= form.label :endereco, 'Endereço' %>
+    <div>
+      <%= form.text_field :nome, class: 'input input-bordered' %>
+    </div>
+  </div>
+  <button type="submit" class='absolute bottom-7 flex items-center right-7 btn btn-success text-xl'>
+    <div class="mi">
+      check
+    </div>
+    Confirmar
+  </button>
+<% end %>
+

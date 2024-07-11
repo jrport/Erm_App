@@ -1,0 +1,35 @@
+<div id='detalhes' data-controller='lojista' class='rounded-box p-8 h-[82dvh] flex flex-col bg-base-300'>
+  <div class="prose">
+    <h1>
+      Fazer um Pedido
+    </h1>
+  </div>
+  <hr class="my-5 mx-1 border-gray-400">
+  <%= form_for pedido, url: lojistas_path, html: { class: 'grid grid-cols-3 gap-5 flex-1' } do |form| %>
+    <%= render 'lojista/template', form: %>
+    <div class='col-span-2 rounded border-gray-600 border-2 overflow-x-auto overflow-y-auto'>
+      <%= render 'lojista/items_list' , pedido: pedido, form: form %>
+    </div>
+    <div class="col-span-1 h-full w-full flex flex-col justify-between gap-8">
+      <%= form.hidden_field :loja_id %>
+      <%= form.hidden_field :data_do_pedido %>
+      <div class="flex flex-col gap-2 flex-1 items-start label">
+        <div class="label-text text-xl font-light">
+          Observações <em>(Opcional)</em>
+        </div>
+        <%= form.text_area :observacoes, class: 'w-full flex-1 input' %>
+      </div>
+      <div class='flex flex-col gap-3'>
+        <button data-action='click->lojista#addItem' type='button' class='btn btn-info'>
+          Adicionar Item
+        </button>
+        <button type='reset' class='btn btn-error'>
+          Limpar Formulário
+        </button>
+        <button type='submit' class='btn btn-success'>
+          Confirmar
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>

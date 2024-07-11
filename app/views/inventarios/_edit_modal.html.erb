@@ -1,0 +1,57 @@
+<div id="editModal", class='hidden' data-inventarios-target='<%= field %>Modal'>
+  <div role="dialog" tabindex="-1" class="fixed inset-0 z-30 flex items-center justify-center w-full h-screen p-2">
+    <div class="fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30"></div>
+    <%= button_tag '', data: {action: "click -> inventarios#close#{field.capitalize}Modal"}, class: "fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30" %>
+    <div class="relative z-20 w-full max-w-2xl max-h-screen overflow-y-auto bg-base-300 shadow-lg rounded-box">
+      <%= button_tag class: 'absolute top-7 flex items-center right-7 btn btn-circle text-xl text-red-500', data: {action: "click -> inventarios#close#{field.capitalize}Modal"} do %>
+        <div class='mi md-24'>close</div>
+      <% end %>
+      <%= form_with model: item, url: inventario_path(item), method: :patch, class: "p-7 flex flex-col justify-evenly gap-10" do |f| %>
+
+        <% if field == 'observations' %>
+          <div class='text-4xl font-bold'>
+            Alterar Observações
+          </div>
+
+          <div class='inline-flex flex-col text-lg gap-2 font-semibold'>
+            Observações:
+            <%= f.text_area :observacoes, class: 'input' %>
+          </div>
+
+          <div class=' '>
+            <button data-action='click -> inventarios#close<%= field %>Modal' type='submit' class='btn btn-success'>confirmar</button>
+          </div>
+        <% end %>
+        <% if field == 'state' %>
+          <div class='text-4xl font-bold'>
+            Alterar estado do item
+          </div>
+
+          <div class='inline-flex flex-col text-lg gap-2 font-semibold'>
+            Local:
+            <% options = ['Crítico', 'Desgastado', 'Bom'] %>
+            <%= f.select :estado, options_for_select(options.zip(ItemsDeCompra.estados.keys)), {}, class: 'select select-bordered' %>
+          </div>
+
+          <div class=' '>
+            <button data-action='click -> inventarios#close<%= field %>Modal' type='submit' class='btn btn-success'>confirmar</button>
+          </div>
+        <% end %>
+        <% if field == 'transfer' %>
+          <div class='text-4xl font-bold'>
+            Transferir item
+          </div>
+
+          <div class='inline-flex flex-col text-lg gap-2 font-semibold'>
+            Local:
+            <%= f.select :loja_id, Loja.pluck(:nome, :id), {}, class: 'select select-bordered' %>
+          </div>
+
+          <div class=' '>
+            <button data-action='click -> inventarios#close<%= field %>Modal' type='submit' class='btn btn-success'>confirmar</button>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

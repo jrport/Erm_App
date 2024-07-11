@@ -1,0 +1,33 @@
+<div class='flex flex-col justify-between gap-12'>
+  <div>
+    <div class="mb-6 text-5xl text-bold">
+      Detalhes do Pedido
+    </div>
+    <div class='flex gap-1 items-center'>
+      <div class='font-bold text-xl'>Data do Pedido: </div>
+      <div class='text-lg text-semibold'><%= pedido.data_do_pedido.strftime('%d/%m/%Y') %></div>
+    </div>
+    <div class='flex gap-1 items-center'>
+      <div class='font-bold text-xl'>Loja remetente: </div>
+      <%= link_to pedido.loja.nome, inventarios_path("q[loja_id_eq]"), class: "text-lg text-semibold underline", style: "color: #28ebff;" %>
+    </div>
+    <div class='flex gap-1 text-lg text-semibold'>
+      <div class='font-bold text-xl'>Observações: </div>
+      <% if !pedido.observacoes.try(:empty?) %>
+        Sem observações. 
+      <% else %>
+        <%= pedido.observacoes.capitalize %>
+      <% end %>
+    </div>
+  </div>
+  <div class='flex gap-3'>
+    <%= link_to edit_pedido_path(pedido), class: 'btn btn-info' do%>
+      <div class="mi">edit</div>
+      Editar
+    <% end %>
+    <%= link_to pedido_path(pedido), data: { turbo_method: :delete, turbo_confirm: 'Certeza da operação?' }, class: 'btn btn-error' do%>
+      <div class="mi">delete</div>
+      <div>Deletar</div>
+    <% end %>
+  </div>
+</div>

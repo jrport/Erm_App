@@ -1,0 +1,22 @@
+<div id="anexosModal" , class='hidden' data-compras-target='modal'>
+  <div role="dialog" tabindex="-1" class="fixed inset-0 z-30 flex items-center justify-center w-full h-screen p-2">
+    <div class="fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30"></div>
+    <%= button_tag '' , data: {action: "click -> compras#closeAnexoModal" },
+      class: "fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30" %>
+      <div class="relative z-20 w-full max-w-2xl max-h-screen overflow-y-auto bg-base-300 shadow-lg rounded-box">
+        <%= button_tag class: 'absolute top-7 flex items-center right-7 btn btn-circle text-xl text-red-500' , data:
+          {action: "click -> compras#closeAnexoModal" } do %>
+          <div class='mi md-24'>close</div>
+        <% end %>
+        <div class="p-7 flex flex-col justify-evenly gap-10">
+          <div class="text-3xl font-semibold">
+            Notas fiscais
+          </div>
+          <% compra.notas.each do |nota| %>
+            <a href=<%= rails_blob_path(nota, disposition: "attachment") %> class='link'><%= nota.filename.to_s%></a>
+
+          <% end %>
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<%= form_for user, url: admin_contas_path, html:{class: "my-4 flex flex-col items-center"} do |f| %>
+  <h1 class="text-3xl font-bold self-center">Criar Conta</h1>
+
+  <label>
+    <div class="label">
+      <%= f.label :email, class: 'label-text' %><br />
+    </div>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input input-bordered' %>
+  </label>
+
+  <label>
+    <div class="label">
+      <%= f.label :password, 'Senha', class: "label-text" %><br />
+    </div>
+    <%= f.password_field :password, autocomplete: "current-password", class: 'input input-bordered' %>
+  </label>
+
+  <label>
+    <div class="label">
+      <%= f.label :password_confirmation, 'Confirmar senha (Mínimo de 6 dígitos)', class: "label-text" %><br />
+    </div>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input input-bordered' %>
+  </label>
+
+  <label class='flex flex-col w-full'>
+    <div class='label'>
+      <%= f.label :loja_id, 'Loja do Usuário', class: "label-text" %><br />
+    </div>
+    <%= f.select :loja_id, options_for_select(Loja.pluck(:nome, :id)), {}, {class: 'select select-bordered'} %>
+  </label>
+
+  <label class='flex items-center gap-2 mt-4'>
+    <%= f.check_box :admin, class: 'checkbox' %>
+    <div>
+      <%= f.label :admin, 'Conta Admin?', class: "label-text" %><br />
+      <p class='font-light text-sm'>(Reservado para pessoal autorizado)</p>
+    </div>
+  </label>
+
+  <% if @user.errors.any? %>
+    <div class='alert mt-4 alert-error w-fit'>
+      <div class="mi">
+        error
+      </div>
+      <div>
+        <% @user.errors.messages.each_value do |attribute| %>
+          <% attribute.each do |message| %>
+            <p><%= message %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="actions mt-10 flex justify-between items-center mt-5">
+    <%= f.submit "Criar", class: "btn btn-primary" %>
+  </div>
+
+<% end %>
+

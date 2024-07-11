@@ -1,0 +1,51 @@
+<div class='ml-10 space-y-5'>
+  <div class="text-5xl font-bold">
+    <%= title %>
+  </div>
+  <div class="space-y-2">
+    <div class='flex gap-2'>
+      <div>
+        <div class='font-semibold'> Data da Compra </div>
+        <%= form.date_field :data_da_compra, class: 'input' %>
+      </div>
+      <div class='w-fit'>
+        <div class='font-semibold'>
+          <%= is_update ? 'Adicionar novas notas fiscais' : 'Notas fiscais' %>
+        </div>
+        <%= form.file_field :notas, multiple: true, class:'file-input' %>
+        <% @compra.notas.each do |image| %>
+          <%= form.hidden_field :notas, multiple: true, value: image.signed_id %>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <div class='font-semibold'> Destinados à unidade: </div>
+      <select data-compras-target='lojaSelector' data-action='compras#setLoja' class='select' name="loja" id="">
+        <%= options_for_select(Loja.pluck(:nome, :id)) %>
+      </select>
+    </div>
+    <div>
+      <div class='font-semibold'>Valor Total da Compra</div>
+      <%= form.number_field :valor_total, {step: 'any' , class: 'input' } %>
+    </div>
+    <div>
+      <div class='font-semibold'>Observações</div>
+      <%= form.text_area :observacoes, class: 'input h-1/2 w-1/2' %>
+    </div>
+  </div>
+  <div class='space-x-4 space-y-2'>
+    <% unless @compra.errors[:items].empty? %>
+      <p class='text-sm indent-5 text-red-500'>
+        <%= @compra.errors[:items].first %>
+      </p>
+      <% end %>
+        <button class='btn btn-success' turbo-frame-target='_top' type='submit'>
+          <div class="mi">check</div>
+          Confirmar informações
+        </button>
+        <button data-action='compras#addItem' class='btn btn-info' type='button'>
+          <div class="mi">add</div>
+          Adicionar Item
+        </button>
+  </div>
+</div>
