@@ -2,6 +2,8 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  app_environment_variables = File.join(Rails.root, 'config', 'env_variables.rb')
+  load(app_environment_variables) if File.exist?(app_environment_variables)
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
@@ -9,10 +11,10 @@ Rails.application.configure do
   config.enable_reloading = true
 
   # Do not eager load code on boot.
-  config.eager_load = false
+  config.eager_load = true
 
   # Show full error reports.
-  config.consider_all_requests_local = true
+  config.consider_all_requests_local = false
 
   # Enable server timing
   config.server_timing = true
