@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_10_031732) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_14_201109) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
@@ -127,6 +127,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_10_031732) do
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false, null: false
     t.bigint "loja_id", null: false
+    t.boolean "deletable", default: true
+    t.boolean "dev", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["loja_id"], name: "index_users_on_loja_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

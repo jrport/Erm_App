@@ -7,13 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-env = ENV['ADMIN_USER']
-puts env
-
 Loja.create(nome: 'Central', endereco: 'Rua Mantinopo, 1, Snto Antônio dos Prazeres', telefone: '(00) 0000-0000',
             email: 'email@email.com')
-User.create(email: 'joao6roberto@gmail.com', password: 'roberto10', admin: true, loja_id: 1)
-User.create(email: ENV['ADMIN_USER'], password: ENV['ADMIN_PASSWORD'], admin: true, loja_id: 1)
+User.create(email: 'joao6roberto@gmail.com', password: 'roberto10', admin: true, dev: true, loja_id: 1)
+User.create(email: 'mari@gmail.com', password: 'roberto10', admin: true, deletable: false, loja_id: 1)
 
 15.times do
   Loja.create(

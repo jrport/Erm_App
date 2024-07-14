@@ -1,14 +1,14 @@
 <div id='detalhes' class='rounded-box p-8 h-[82dvh] flex flex-col bg-base-300'>
   <div class="flex justify-between">
-    <h1>
+    <h1 class='text-4xl font-bold'>
       Detalhes do Pedido #<%= @pedido.id %>
     </h1>
-    <button class="mi btn btn-circle">
-      backward-arrow
+    <button onclick='<%= lojista_contas_path %>' class="mi btn btn-circle">
+      arrow_back
     </button>
   </div>
   <hr class="my-5 mx-1 border-gray-400">
-  <div class="grid grid-cols-3 h-full">
+  <div class="grid grid-cols-3 h-full gap-2">
     <div class='col-span-2 overflow-y-auto border-2 border-base-100  overflow-x-auto h-full'>
       <table class='table table-pin-rows'>
         <thead>
@@ -39,8 +39,15 @@
         </tbody>
       </table>
     </div>
-    <div class='col-span-1'>
-      tabel
+    <div class='col-span-1 flex flex-col gap-2'>
+      <div class='text-xl font-semibold'>Obersevações: </div>
+      <div class='overflow-y-auto border-2 p-2 border-base-100 flex-1'>
+        <% if @pedido.observacoes.try(:empty?) %>
+          <%= @pedido.observacoes %> 
+        <% else %>
+          Sem observações.
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
