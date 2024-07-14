@@ -26,7 +26,7 @@
             <td>
               <%= lojista_status_badge(pedido.status) %>
             </td>
-            <td><a class='btn btn-sm btn-info' href='<%= lojista_path(pedido) %>'>Detalhes</a></td>
+            <td><a data-turbo-frame='detalhes' class='btn btn-sm btn-info' href='<%= lojista_path(pedido) %>'>Detalhes</a></td>
           </tr>
           <% end %>
       </tbody>

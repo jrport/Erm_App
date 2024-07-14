@@ -1,13 +1,43 @@
-<div class='rounded-box p-8 h-[82dvh] flex flex-col bg-base-300'>
-  <div class="prose">
+<div id='detalhes' class='rounded-box p-8 h-[82dvh] flex flex-col bg-base-300'>
+  <div class="flex justify-between">
     <h1>
       Detalhes do Pedido #<%= @pedido.id %>
     </h1>
+    <button class="mi btn btn-circle">
+      backward-arrow
+    </button>
   </div>
   <hr class="my-5 mx-1 border-gray-400">
-  <div class="grid grid-cols-3">
-    <div class='col-span-2'>
-      infos
+  <div class="grid grid-cols-3 h-full">
+    <div class='col-span-2 overflow-y-auto border-2 border-base-100  overflow-x-auto h-full'>
+      <table class='table table-pin-rows'>
+        <thead>
+          <tr class='font-semibold text-lg'>
+            <td>Nome</td>
+            <td>Quantidade</td>
+            <td>Porção</td>
+            <td>Detalhes</td>
+          </tr>
+        </thead>
+        <tbody class='divide-y-2'>
+          <% @pedido.items_de_pedidos.each do |item| %>
+            <tr class='border-stone-700 '>
+              <td>
+                <%= item.nome %>
+              </td>
+              <td>
+                <%= item.quantidade %>
+              </td>
+              <td>
+                <%= item.porcao %>
+              </td>
+              <td>
+                <%= item.observacoes %>
+              </td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
     </div>
     <div class='col-span-1'>
       tabel

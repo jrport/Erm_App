@@ -11,6 +11,7 @@ class LojistaController < ApplicationController
   end
 
   def show
+    params.permit(:id)
     @pedido = Pedido.find(params[:id])
     render turbo_stream: turbo_stream.replace('detalhes', partial: 'lojista/show', locals: { pedido: @pedido })
   end
