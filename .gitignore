@@ -42,3 +42,4 @@ build.sh
 
 /config/credentials.yml.enc
 /config/puma.rb
+/config/database.yml

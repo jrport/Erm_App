@@ -2,8 +2,8 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  app_environment_variables = File.join(Rails.root, 'config', 'env_variables.rb')
-  load(app_environment_variables) if File.exist?(app_environment_variables)
+  # app_environment_variables = File.join(Rails.root, 'config', 'env_variables.rb')
+  # load(app_environment_variables) if File.exist?(app_environment_variables)
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development

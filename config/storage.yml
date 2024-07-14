@@ -8,12 +8,11 @@ local:
 
 oci:
   service: S3
-  access_key_id: <%= ENV['OCI_KEY'] %>
-  secret_access_key: <%= ENV['OCI_SECRET'] %>
-  bucket: <%= ENV['BUCKET'] %>
-  region: <%= ENV['OCI_REGION'] %>
-  # endpoint: https://<%= ENV['OCI_NAMESPACE'] %>.compat.objectstorage.<%= ENV['OCI_REGION'] %>.oraclecloud.com
-  endpoint: <%= ENV['OCI_ENDPOINT'] %>
+  access_key_id: <%= Rails.application.credentials[:oci][:key] %>
+  secret_access_key: <%= Rails.application.credentials[:oci][:secret] %>
+  bucket: <%= Rails.application.credentials[:oci][:bucket] %>
+  region: <%= Rails.application.credentials[:oci][:region] %>
+  endpoint: <%= Rails.application.credentials[:oci][:endpoint] %>
   force_path_style: true
 
 # mirror:
