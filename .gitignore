@@ -39,3 +39,6 @@
 /config/env_variables.rb
 
 build.sh
+
+/config/credentials.yml.enc
+/config/puma.rb

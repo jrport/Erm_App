@@ -9,14 +9,14 @@ production:
   <<: *default
   database: almosheriff_production
   host: localhost
-  username: ubuntu
+  username: jrporto
   password: roberto10
 
 development:
   <<: *default
   host: localhost
   database: almosheriff_development
-  username: ubuntu
+  username: jrporto
   password: roberto10
 
 # Warning: The database defined as "test" will be erased and
