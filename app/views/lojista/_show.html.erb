@@ -3,9 +3,11 @@
     <h1 class='text-4xl font-bold'>
       Detalhes do Pedido #<%= @pedido.id %>
     </h1>
-    <button onclick='<%= lojista_contas_path %>' class="mi btn btn-circle">
+    <a href='<%= lojistas_path %>' data-turbo-frame='detalhes' class=''>
+      <button class='btn btn-circle mi'>
       arrow_back
-    </button>
+      </button>
+    </a>
   </div>
   <hr class="my-5 mx-1 border-gray-400">
   <div class="grid grid-cols-3 h-full gap-2">

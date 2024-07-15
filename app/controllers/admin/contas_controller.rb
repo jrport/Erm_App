@@ -26,7 +26,7 @@ class Admin::ContasController < ApplicationController
 
   def update_email
     @user = User.find(params[:conta_id])
-    if check_email 
+    if check_email
       if @user.update(email: reset_email[:email]) && check_email
         redirect_to configuracoes_path, notice: 'Email alterada com sucesso'
       else
@@ -55,7 +55,7 @@ class Admin::ContasController < ApplicationController
 
   def destroy
     @user = User.find(params[:conta_id])
-    @user.destroy!
+    @user.destroy! if @user.deletable? && !@user.dev?
     redirect_to configuracoes_path, notice: 'Conta deletada'
   end
 
