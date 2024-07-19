@@ -25,6 +25,7 @@ end
   Pedido.create(
     loja: Loja.find((1..15).to_a.sample),
     status: %w[pending in_progress finished].sample,
+    setor: Faker::IndustrySegments.industry,
     data_do_pedido: Faker::Date.between(from: '2024/01/01', to: '2024/12/30')
   )
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_14_201109) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_15_042651) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
@@ -98,6 +98,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_14_201109) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "data_do_pedido", default: -> { "CURRENT_TIMESTAMP" }
+    t.string "setor", default: "Geral"
     t.index ["loja_id"], name: "index_pedidos_on_loja_id"
   end
 
