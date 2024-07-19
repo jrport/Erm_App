@@ -36,7 +36,7 @@ class Admin::LojasController < ApplicationController
   def destroy
     @loja = Loja.find(params[:id])
     @loja.destroy!
-    redirect_to configuracoes_path, notice: 'Loja removed'
+    redirect_to configuracoes_path, notice: 'Loja removida'
   end
 
   private

@@ -1,34 +1,14 @@
-=== puma startup: 2024-07-14 01:32:10 -0300 ===
-[52591] - Worker 0 (PID: 52626) booted in 0.01s, phase: 0
-[52591] - Worker 1 (PID: 52640) booted in 0.01s, phase: 0
-[52591] - Worker 2 (PID: 52654) booted in 0.01s, phase: 0
-[52591] - Worker 3 (PID: 52668) booted in 0.01s, phase: 0
-[52591] - Worker 4 (PID: 52682) booted in 0.0s, phase: 0
-[52591] - Worker 5 (PID: 52696) booted in 0.0s, phase: 0
-I, [2024-07-14T01:32:20.494622 #52668]  INFO -- : [1b37bc9a-222f-42e5-9b3e-8a65ff9a4fc1] Started GET "/" for 127.0.0.1 at 2024-07-14 01:32:20 -0300
-I, [2024-07-14T01:32:20.498273 #52668]  INFO -- : [1b37bc9a-222f-42e5-9b3e-8a65ff9a4fc1] Processing by PedidosController#index as HTML
-I, [2024-07-14T01:32:20.502752 #52668]  INFO -- : [1b37bc9a-222f-42e5-9b3e-8a65ff9a4fc1] Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms | Allocations: 597)
-I, [2024-07-14T01:32:25.232140 #52668]  INFO -- : [acc43465-354a-47fb-8ad1-6626aa5f93be] Started GET "/autenticacao/entrar" for 127.0.0.1 at 2024-07-14 01:32:25 -0300
-I, [2024-07-14T01:32:25.233187 #52668]  INFO -- : [acc43465-354a-47fb-8ad1-6626aa5f93be] Processing by Users::SessionsController#new as HTML
-W, [2024-07-14T01:32:25.282207 #52668]  WARN -- : [acc43465-354a-47fb-8ad1-6626aa5f93be] Importmap skipped missing path: jsbarcode.js
-W, [2024-07-14T01:32:25.283240 #52668]  WARN -- : [acc43465-354a-47fb-8ad1-6626aa5f93be] Importmap skipped missing path: jsbarcode.js
-I, [2024-07-14T01:32:25.283747 #52668]  INFO -- : [acc43465-354a-47fb-8ad1-6626aa5f93be]   Rendered layout layouts/login.html.erb (Duration: 6.3ms | Allocations: 7901)
-I, [2024-07-14T01:32:25.283985 #52668]  INFO -- : [acc43465-354a-47fb-8ad1-6626aa5f93be] Completed 200 OK in 51ms (Views: 8.7ms | ActiveRecord: 17.5ms | Allocations: 28727)
-I, [2024-07-14T01:32:26.725207 #52640]  INFO -- : [4208ddb2-7430-497e-92c9-687f9491d10b] Started GET "/autenticacao/entrar" for 127.0.0.1 at 2024-07-14 01:32:26 -0300
-I, [2024-07-14T01:32:26.728632 #52640]  INFO -- : [4208ddb2-7430-497e-92c9-687f9491d10b] Processing by Users::SessionsController#new as HTML
-W, [2024-07-14T01:32:26.773674 #52640]  WARN -- : [4208ddb2-7430-497e-92c9-687f9491d10b] Importmap skipped missing path: jsbarcode.js
-W, [2024-07-14T01:32:26.774620 #52640]  WARN -- : [4208ddb2-7430-497e-92c9-687f9491d10b] Importmap skipped missing path: jsbarcode.js
-I, [2024-07-14T01:32:26.775153 #52640]  INFO -- : [4208ddb2-7430-497e-92c9-687f9491d10b]   Rendered layout layouts/login.html.erb (Duration: 8.3ms | Allocations: 8368)
-I, [2024-07-14T01:32:26.775461 #52640]  INFO -- : [4208ddb2-7430-497e-92c9-687f9491d10b] Completed 200 OK in 47ms (Views: 10.5ms | ActiveRecord: 6.6ms | Allocations: 29552)
-I, [2024-07-14T01:32:27.525147 #52640]  INFO -- : [1415f3e4-1794-4390-a96a-f23eddbb1942] Started GET "/autenticacao/entrar" for 127.0.0.1 at 2024-07-14 01:32:27 -0300
-I, [2024-07-14T01:32:27.525966 #52640]  INFO -- : [1415f3e4-1794-4390-a96a-f23eddbb1942] Processing by Users::SessionsController#new as HTML
-I, [2024-07-14T01:32:27.530062 #52640]  INFO -- : [1415f3e4-1794-4390-a96a-f23eddbb1942]   Rendered layout layouts/login.html.erb (Duration: 2.6ms | Allocations: 1440)
-I, [2024-07-14T01:32:27.530300 #52640]  INFO -- : [1415f3e4-1794-4390-a96a-f23eddbb1942] Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.0ms | Allocations: 1907)
-I, [2024-07-14T01:32:35.059203 #52640]  INFO -- : [6b397a37-9a91-4cb2-9fa9-757d9d979ac4] Started GET "/autenticacao/entrar" for 127.0.0.1 at 2024-07-14 01:32:35 -0300
-I, [2024-07-14T01:32:35.059916 #52640]  INFO -- : [6b397a37-9a91-4cb2-9fa9-757d9d979ac4] Processing by Users::SessionsController#new as HTML
-I, [2024-07-14T01:32:35.063290 #52640]  INFO -- : [6b397a37-9a91-4cb2-9fa9-757d9d979ac4]   Rendered layout layouts/login.html.erb (Duration: 2.0ms | Allocations: 1440)
-I, [2024-07-14T01:32:35.063447 #52640]  INFO -- : [6b397a37-9a91-4cb2-9fa9-757d9d979ac4] Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms | Allocations: 1911)
-[52591] - Gracefully shutting down workers...
-[52591] === puma shutdown: 2024-07-14 01:32:36 -0300 ===
-[52591] - Goodbye!
+=== puma startup: 2024-07-19 11:00:26 -0300 ===
+[29007] - Worker 0 (PID: 29042) booted in 0.01s, phase: 0
+[29007] - Worker 1 (PID: 29056) booted in 0.01s, phase: 0
+[29007] - Worker 2 (PID: 29070) booted in 0.01s, phase: 0
+[29007] - Worker 3 (PID: 29084) booted in 0.01s, phase: 0
+[29007] - Worker 4 (PID: 29098) booted in 0.0s, phase: 0
+[29007] - Worker 5 (PID: 29112) booted in 0.0s, phase: 0
+I, [2024-07-19T11:00:36.243745 #29098]  INFO -- : [9f021344-cd6e-4518-8c54-76df6d0c5e2a] Started GET "/" for 127.0.0.1 at 2024-07-19 11:00:36 -0300
+I, [2024-07-19T11:00:36.247085 #29098]  INFO -- : [9f021344-cd6e-4518-8c54-76df6d0c5e2a] Processing by PedidosController#index as HTML
+I, [2024-07-19T11:00:36.253160 #29098]  INFO -- : [9f021344-cd6e-4518-8c54-76df6d0c5e2a] Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms | Allocations: 1612)
+[29007] - Gracefully shutting down workers...
+[29007] === puma shutdown: 2024-07-19 14:10:19 -0300 ===
+[29007] - Goodbye!
 Exiting

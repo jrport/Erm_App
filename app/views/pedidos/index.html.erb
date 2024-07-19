@@ -1,14 +1,12 @@
 <content class='h-full py-5 px-14 pt-10 gap-10 grid grid-cols-5 grid-rows-3'>
-  <%= turbo_frame_tag 'table', class: 'flex flex-col bg-base-300 border-2 rounded-box border-base-300 shadow-2xl col-span-3 row-span-3' do %>
-    <div class='grow-0'>
-      <%= render partial: 'pedidos/table_control' , locals: {ransack_query: @ransack_query} %>
-    </div>
-    <div class='flex-1 overflow-y-auto grow'>
+  <%= turbo_frame_tag 'table', class: 'grid grid-rows-[min_21fr] bg-base-300 border-2 rounded-box border-base-300 shadow-2xl col-span-3 row-span-3' do %>
+    <%= render partial: 'pedidos/table_control' , locals: {ransack_query: @ransack_query} %>
+    <div class='grid grid-rows-[19fr_1fr] row-span-1 h-full overflow-y-auto'>
       <%= render partial: 'pedidos/table' , locals: {pedidos: @pedidos} %>
-    </div>
-    <div class='flex grow-0 border-t-2 border-base-100 items-center px-3 py-5 justify-between'>
-      <%== pagy_info(@pagy, item_name: 'Pedido' .pluralize(@pagy.count)) %>
-      <%== pagy_nav(@pagy) %>
+      <div class='flex border-t-2 border-base-100 items-center px-3 py-5 justify-between'>
+        <%== pagy_info(@pagy, item_name: 'Pedido' .pluralize(@pagy.count)) %>
+        <%== pagy_nav(@pagy) %>
+      </div>
     </div>
   <% end %>
   <div class='col-span-2 row-span-1 grid grid-rows-2 gap-5 grid-cols-3'>
