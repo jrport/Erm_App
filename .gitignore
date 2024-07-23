@@ -44,3 +44,5 @@ build.sh
 /config/puma.rb
 build.sh
 /config/database.yml
+errlog
+stdlog
