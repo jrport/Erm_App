@@ -2,19 +2,19 @@
   <div class='py-1 overflow-x-auto '>
     <%= search_form_for ransack, url: compras_path,  data: {turbo_frame: "table_body"}, class: 'grid grid-rows-2 grid-cols-8 gap-2 py-2 px-3'  do |f| %>
       <div class='col-span-8 grid grid-cols-subgrid row-span-1'>
-        <div class='flex items-center gap-1 col-span-6'>
-          <div>Data da Compra:</div> <%= f.date_field :data_da_compra_eq, class: 'input' %> 
+        <div class='flex items-center gap-2 col-span-7 w-full'>
+          <div>Data da Compra:</div> <%= f.date_field :data_da_compra_eq, class: 'input flex-1' %> 
         </div>
-        <button type='submit' class='btn btn-info col-span-2'><div class="mi">search</div>Buscar</button>
+        <button type='submit' class='btn btn-info col-span-1 flex justify-center'><div class='mi md-24 md-dark'>search</div></button>
       </div>
       <div class='col-span-8 row-span-1 grid grid-cols-subgrid gap-2'>
-        <div class='flex items-center gap-1 col-span-6'>
+        <div class='flex items-center gap-1 col-span-7'>
           <div>Id:</div>
           <%= f.text_field :id_eq , class: 'input', placeholder: '12345' %>
         </div>
-        <button class='btn btn-error col-span-2'>
-          <%= link_to compras_path, data: {turbo_frame: "table", target: 'table'} do %>
-            <div class="mi">clear</div> Limpar
+        <button class='btn btn-error col-span-1 mi'>
+          <%= link_to compras_path, data: {turbo_frame: "table", target: 'table'}, class: "flex justify-center" do %>
+            clear
           <% end %>
         </button>
       </div>
@@ -25,8 +25,8 @@
       <table class='table table-auto overflow-x-auto overflow-y-auto table-pin-rows'>
         <thead class='text-base text-lg'>
           <tr>
-            <th><%= sort_link(ransack, :id, "Id") %></th>
-            <th><%= sort_link(ransack, :data_da_compra, "Data da Compra") %></th>
+            <th class='text-sm'><%= sort_link(ransack, :id, "Id") %></th>
+            <th class='text-sm'><%= sort_link(ransack, :data_da_compra, "Data da Compra") %></th>
             <th></th>
           </tr>
         </thead>
@@ -35,7 +35,7 @@
             <tr class='hover'>
               <th><%= compra.id %></th>
               <td><%= compra.created_at.strftime("%d/%m/%Y") %></td>
-              <td><%= link_to "Detalhes", compra_path(compra), data: {turbo_frame: '_top'},class: 'btn link' %></td>
+              <td><%= link_to "Detalhes", compra_path(compra), data: {turbo_frame: '_top'},class: 'link link-info' %></td>
               <!--<td><%= link_to  %></td>-->
             </tr>
           <% end %>
