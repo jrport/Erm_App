@@ -1,4 +1,4 @@
-<div class="text-5xl mb-10 font-bold">Informações Gerais do Item</div>
+<div class="text-4xl mb-4 font-bold">Informações Gerais do Item</div>
 <div class='text-lg inline-flex gap-1'>
   <p class='font-semibold'>Nome: </p>
   <p class="font-normal">
@@ -10,8 +10,8 @@
     link-info' %>
 </div>
 <div class='text-lg font-semibold'>
-  Data da Compra: <%= link_to item.compra.data_da_compra.strftime("%d/%m/%Y"), compra_path(item.compra), class:'link
-    link-info' %>
+  Data da Compra: <%= link_to item.compra.data_da_compra.strftime("%d/%m/%Y"), compras_path("q[data_da_compra_eq]": item.compra.data_da_compra.strftime("%d/%m/%Y")), class:'link
+    link-info', data: {turbo_frame: '_top'} %>
 </div>
 <div class='text-lg inline-flex gap-1'>
   <p class='font-semibold'>Estado: </p>
@@ -23,23 +23,9 @@
   <p class='font-semibold'>Observações: </p>
   <% if item.observacoes.nil? or item.observacoes.empty? %>
     Nenhuma
-    <% else %>
-      <%= item.observacoes %>
-        <% end %>
+  <% else %>
+    <%= item.observacoes %>
+  <% end %>
 </div>
 <div class='text-lg font-semibold gap-4'>Código de Barra: </div>
 <img data-controller="barcode" data-barcode=<%=item.codigo_de_barra%>>
-<div class='space-x-4 mt-4'>
-  <button type='button' class='btn btn-success w-fit' data-action="inventarios#openStateModal">
-    <div class='mi'>health_and_safety</div>
-    Atualizar Estado
-  </button>
-  <button type='button' class='btn btn-info w-fit' data-action="inventarios#openObservationsModal">
-    <div class='mi'>info</div>
-    Modificar observações
-  </button>
-  <button type='button' class='btn btn-accent w-fit' data-action="inventarios#openTransferModal">
-    <div class='mi'>local_shipping</div>
-    Transferir de unidade
-  </button>
-</div>

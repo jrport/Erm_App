@@ -4,12 +4,12 @@
   <%= item_form.text_field :porcao, class: "bg-base-100 border-base-200 border-2"  %>
   <%= item_form.text_field :observacoes, class: "bg-base-100 border-base-200 border-2"  %>
   <% if is_update %>
-    <button type='button' data-action='pedidos--update-form#removeitem' id='<%= item_form.index %>' data-action='pedidos--create-form#removeitem' class='mi bg-red-400 hover:bg-red-300 transition-colors text-black'>
+    <button type='button' data-action='pedidos--update-form#removeItem' id='<%= item_form.index %>' data-action='pedidos--create-form#removeitem' class='mi bg-red-400 hover:bg-red-300 transition-colors text-black'>
       delete
     </button>    
     <%= item_form.check_box :_destroy, class: "hidden" %>
   <% else %>
-    <button type='button' data-action='pedidos--create-form#removeitem' class='mi bg-red-400 hover:bg-red-300 transition-colors text-black'>
+    <button type='button' data-action='pedidos--create-form#removeItem' class='mi bg-red-400 hover:bg-red-300 transition-colors text-black'>
       delete
     </button>    
   <% end %>

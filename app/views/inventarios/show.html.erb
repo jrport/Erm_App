@@ -2,20 +2,34 @@
   <%= render 'inventarios/edit_modal', item: @item, field: 'observations' %>
   <%= render 'inventarios/edit_modal', item: @item, field: 'state' %>
   <%= render 'inventarios/edit_modal', item: @item, field: 'transfer' %>
-  <div class='grid grid-rows-[2fr_29fr] gap-10 bg-base-200 rounded-box h-full'>
-    <div class='col-span-2 p-8'>
-      <a href='<%= inventarios_path %>' class='rounded-btn md-24 p-2 transition-colors hover:bg-stone-500 mi'>
+  <div class='bg-base-200 py-4 grid auto-cols-auto rounded-box h-full'>
+    <div class='mx-8 col-span-1'>
+      <a href='<%= inventarios_path %>' class='rounded-btn mi md-24 p-2 transition-colors hover:bg-stone-500 '>
         arrow_back
       </a>
     </div>
-    <div class='grid grid-cols-2 h-fit gap-4 px-24'>
+    <div class='grid grid-cols-2 col-span-1 gap-8 px-24 py-12'>
       <div id='main_info' class='flex flex-col gap-2'>
         <%= render 'inventarios/item', item: @item %>
       </div>
-      <div id='history'>
+      <div id='history' class='h-full overflow-y-scroll'>
         <div class="text-3xl mb-10 font-semibold">Histórico de Localizações</div>
         <%= render 'inventarios/item_history', item: @item %>
       </div>
+    </div>
+    <div class='space-x-4 mt-4 px-24 col-span-1'>
+      <button type='button' class='btn btn-success w-fit' data-action="inventarios#openStateModal">
+        <div class='mi'>health_and_safety</div>
+        Atualizar Estado
+      </button>
+      <button type='button' class='btn btn-info w-fit' data-action="inventarios#openObservationsModal">
+        <div class='mi'>info</div>
+        Modificar observações
+      </button>
+      <button type='button' class='btn btn-accent w-fit' data-action="inventarios#openTransferModal">
+        <div class='mi'>local_shipping</div>
+        Transferir de unidade
+      </button>
     </div>
   </div>
 </turbo-frame>

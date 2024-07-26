@@ -1,36 +1,38 @@
 <% unless controller_name == 'lojista' %>
   <nav class='object-contain h-[12dvh] flex justify-between navbar bg-base-300 shadow-lg'>
-  <%= image_tag 'logo.png', {role:'button', class:'btn btn-ghost h-full'} %>
-    <ul class='menu menu-horizontal'>
-      <li class='hidden'>
-        <%= link_to home_path, class: 'btn flex items-center btn-ghost text-2xl' do %>
-          <div class="mi">home</div>Início
-        <% end %>
-      </li>
-      <li>
-        <%= link_to compras_path, class: 'btn btn-ghost text-2xl' do %>
-          <div class="mi">shopping_cart</div>Compras
-        <% end %>
-      </li>
-      <li>
-        <%= link_to pedidos_path, class: 'btn btn-ghost text-2xl' do %>
-          <div class="mi">checklist</div>Pedidos
-        <% end %>
-      </li>
-      <li>
-        <%= link_to inventarios_path, class: 'btn btn-ghost text-2xl' do %>
-          <div class="mi">storage</div>Inventários
-        <% end %>
-      </li>
-    </ul>
-    <div class='flex gap-3 items-center'>
-      <%= link_to configuracoes_path, class: 'inline-flex justify-center items-center btn bg-[#00003f] hover:bg-[#000058]' do %>
-        <div class="mi">admin_panel_settings</div> Lojas e Usuários
+  <a href='/pedidos' class='h-full'>
+    <%= image_tag 'logo.png', {role:'button', class:'btn btn-ghost h-full'} %>
+  </a>
+  <ul class='menu menu-horizontal'>
+    <li class='hidden'>
+      <%= link_to home_path, class: 'btn flex items-center btn-ghost text-2xl' do %>
+        <div class="mi">home</div>Início
       <% end %>
-      <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-sm btn-secondary"  do %>
-        <div class="mi"> logout </div> Sair
+    </li>
+    <li>
+      <%= link_to compras_path, class: 'btn btn-ghost text-2xl' do %>
+        <div class="mi">shopping_cart</div>Compras
       <% end %>
-    </div>
+    </li>
+    <li>
+      <%= link_to pedidos_path, class: 'btn btn-ghost text-2xl' do %>
+        <div class="mi">checklist</div>Pedidos
+      <% end %>
+    </li>
+    <li>
+      <%= link_to inventarios_path, class: 'btn btn-ghost text-2xl' do %>
+        <div class="mi">storage</div>Inventários
+      <% end %>
+    </li>
+  </ul>
+  <div class='flex gap-3 items-center'>
+    <%= link_to configuracoes_path, class: 'inline-flex justify-center items-center btn bg-[#00003f] hover:bg-[#000058]' do %>
+      <div class="mi">admin_panel_settings</div> Lojas e Usuários
+    <% end %>
+    <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-sm btn-secondary"  do %>
+      <div class="mi"> logout </div> Sair
+    <% end %>
+  </div>
 </nav>
   <% else %>
     <nav class='navbar bg-base-300'>

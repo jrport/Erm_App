@@ -1,6 +1,6 @@
-<turbo-frame id='compra_details' data-controller='compras' class='my-auto mx-20'>
-  <div class='rounded-box h-full grid items-center p-10 bg-base-300 gap-3'>
-    <%= link_to compra_path(@compra), data: {turbo_frame: "_top", turbo_action: 'advance'}, class: 'rounded-box h-fit p-3 hover:bg-base-100 transition transition-colors w-fit' do %>
+<turbo-frame id='compra_details' data-controller='compras' class='my-10 mx-20'>
+  <div class='rounded-box h-full grid items-center px-6 py-5 bg-base-300'>
+    <%= link_to compra_path(@compra), data: {turbo_frame: "_top", turbo_action: 'advance'}, class: 'pt-3 rounded-box h-fit p-3 hover:bg-base-100 transition transition-colors w-fit' do %>
       <div class="mi">arrow_back</div>
     <% end %>
     <div class='grid grid-cols-2'>

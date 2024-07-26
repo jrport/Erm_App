@@ -1,29 +1,28 @@
-<%= search_form_for @ransack_query, class: 'py-5 overflow-x-auto grid auto-rows-auto gap-y-2 gap-x-6 grid-cols-6 px-6' do |f|
+<%= search_form_for @ransack_query, class: 'py-5 overflow-x-auto grid grid-rows-[1fr_9fr] grid-cols-8 gap-y-2 gap-x-6  px-6' do |f|
   %>
-  <div class="row-span-1 col-span-3 grid grid-cols-subgrid">
-    <div class='font-semibold text-lg'>Loja:</div>
-    <div class='font-semibold text-lg'>Desde:</div>
-    <div class='font-semibold text-lg'>Até:</div>
-  </div>
-  <div class="row-span-1 col-span-6 grid grid-cols-subgrid">
-    <div class='col-span-3 grid grid-cols-subgrid'>
-      <%= f.select :loja_id_eq, options_for_select(Loja.all.pluck(:nome, :id)), {include_blank: true}, {class: 'select'
-        } %>
-        <%= f.date_field :data_do_pedido_gteq, class: 'input' %>
-          <%= f.date_field :data_do_pedido_lteq, class: 'input' %>
+  <div class="row-span-1 col-span-8 grid grid-cols-subgrid">
+    <div class='col-span-8 grid grid-cols-subgrid'>
+      <div class='font-semibold text-lg col-span-2'>Loja:</div>
+      <div class='font-semibold text-lg col-span-2'>Desde:</div>
+      <div class='font-semibold text-lg col-span-2'>Até:</div>
     </div>
-    <div class='col-span-3 grid grid-cols-subgrid'>
+  </div>
+  <div class="row-span-1 col-span-8 grid grid-cols-subgrid">
+    <div class='col-span-6 grid grid-cols-subgrid'>
+      <%= f.select :loja_id_eq, options_for_select(Loja.all.pluck(:nome, :id)), {include_blank: true}, {class: 'col-span-2 select'
+        } %>
+      <%= f.date_field :data_do_pedido_gteq, class: 'input col-span-2' %>
+      <%= f.date_field :data_do_pedido_lteq, class: 'input col-span-2' %>
+    </div>
+    <div class='gap-2 col-span-2 grid grid-cols-3'>
       <button class='btn btn-info' type='submit'>
         <div class="mi">search</div>
-        Buscar
       </button>
       <a href='<%= pedidos_path %>' class='btn btn-error'>
         <div class="mi">delete</div>
-        Limpar
       </a>
-      <a href='<%= new_pedido_path %>' class='btn btn-success'>
+      <a href='<%= new_pedido_path %>' class='btn btn-success' data-turbo-action="advance" data-turbo-frame='_top'>
         <div class="mi">add</div>
-        Adicionar
       </a>
     </div>
   </div>

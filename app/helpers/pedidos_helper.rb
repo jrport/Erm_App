@@ -19,7 +19,7 @@ module PedidosHelper
                                 else %w[badge-success check Finalizado]
                                 end
     "
-    <div class='inline-flex gap-1 badge badge-sm text-lg #{badge_classes} max-xl:rounded-lg px-2 py-3'>
+    <div class='inline-flex gap-1 badge badge-sm text-base #{badge_classes} max-xl:rounded-lg px-2 py-3'>
       <span class='mi'>#{icon}</span> #{text}
     </div>
     ".html_safe
