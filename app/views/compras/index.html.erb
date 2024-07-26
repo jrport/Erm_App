@@ -94,7 +94,7 @@
         }
       %>
     </div>
-    <div class='col-span-1 row-span-3 bg-base-300 divide-y-2 rounded-box'>
+    <div class='col-span-1 row-span-3 flex pl-2 justify-center items-center bg-base-300 rounded-box'>
       <div class='stat'>
         <div class='stat-title text-2xl text-info'>
           Foi gasto um total de 
@@ -107,19 +107,6 @@
           <% end %>
         </div>
         <div class='stat-desc text-xl text-info'>neste mês.</div>
-      </div>
-      <div class='stat'>
-        <div class='stat-title text-2xl text-info'>
-          Foram feitas
-        </div>
-        <div class='stat-value text-accent'>
-          <% unless Compra.nil? %>
-            <%= Compra.this_month.count %> compras
-          <% else %>            
-            0 
-          <% end %>
-        </div>
-        <div class='stat-desc text-xl text-info'>este mês.</div>
       </div>
     </div>
   </div>

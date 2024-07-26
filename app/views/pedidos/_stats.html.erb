@@ -1,18 +1,18 @@
 <div class='w-full flex justify-center items-center gap-4 col-span-2 bg-base-300 rounded-box shadow-2xl row-span-1'>
-  <div id='total_count' class='stat-value text-7xl text-end'>
+  <div id='total_count' class='stat-value text-6xl text-end'>
     <%= total %>
   </div>
   <div class='my-auto'>
-    <div class='stat-title text-2xl'>Pedidos recebidos</div>
-    <div class='stat-desc text-2xl'>neste mês.</div>
+    <div class='stat-title text-xl'>Pedidos recebidos</div>
+    <div class='stat-desc text-xl'>neste mês.</div>
   </div>
 </div>
 <div class='col-span-2 grid divide-x-2 divide-dashed grid-cols-2 bg-base-300 rounded-box shadow-2xl row-span-1'>
   <div class='w-full flex justify-center border-gray-600 items-center gap-4'>
-    <div class="md-dark mi md-36 bg-yellow-500 rounded-xl px-1 py-3 h-fit ">warning</div>
+    <div class="md-dark mi md-24 bg-yellow-500 rounded-xl px-1 py-3 h-fit ">warning</div>
     <div>
-      <div class='flex items-end font-normal gap-1 text-2xl '>
-        <div id='pending_count' class="stat-value join-item">
+      <div class='flex items-end font-normal gap-2 text-2xl '>
+        <div id='pending_count' class="stat-value join-item text-3xl">
           <%= pending %>
         </div>
         <%= 'Pedido'.pluralize(pending) %>
@@ -23,10 +23,10 @@
     </div>
   </div>
   <div class='w-full flex justify-center border-gray-600 items-center gap-4'>
-    <div class="md-dark mi md-36 bg-green-500 rounded-xl px-1 py-3 h-fit ">done</div>
+    <div class="md-dark mi md-24 bg-green-500 rounded-xl px-1 py-3 h-fit ">done</div>
     <div>
-      <div class='flex items-end font-normal gap-1 text-2xl '>
-        <div id='finished_count' class="stat-value join-item">
+      <div class='flex items-end font-normal gap-2 text-2xl '>
+        <div id='finished_count' class="stat-value join-item text-3xl">
           <%= finished %>
         </div>
         <%= 'Pedido' .pluralize(finished) %>
