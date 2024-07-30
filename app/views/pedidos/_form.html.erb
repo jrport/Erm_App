@@ -39,6 +39,7 @@
         <%= table_headers %>
       </div>
       <% form.fields_for :items_de_pedidos do |item_form| %>
+        dawd
         <%= render partial: 'pedidos/item_form', locals: {item_form: item_form, is_update: is_update} %>
       <% end %>
     </div>
