@@ -9,7 +9,11 @@
     </button>    
     <%= item_form.check_box :_destroy, class: "hidden" %>
   <% else %>
+    <% if action_name == 'edit' %>
+    <button type='button' data-action='pedidos--update-form#deleteItem' class='mi bg-red-400 hover:bg-red-300 transition-colors text-black'>
+    <% else %>
     <button type='button' data-action='pedidos--create-form#removeItem' class='mi bg-red-400 hover:bg-red-300 transition-colors text-black'>
+    <% end %>
       delete
     </button>    
   <% end %>

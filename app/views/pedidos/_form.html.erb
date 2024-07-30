@@ -1,5 +1,5 @@
-<%= form_with model:pedido, html:{class: 'grid grid-cols-2 gap-10' } do |form| %>
-  <template data-pedidos--create-form-target='template'>
+<%= form_with model: pedido, html:{class: 'grid grid-cols-2 gap-10' }, data: {controller: 'pedidos--update-form'} do |form| %>
+  <template data-pedidos--update-form-target='template'>
     <%= form.fields_for :items_de_pedidos, ItemsDePedido.new, child_index: 'NEW_RECORD' do |item| %>
       <%= render partial: 'pedidos/item_form' , locals: {item_form: item, is_update: false} %>
     <% end %>
@@ -9,8 +9,7 @@
     <div class="font-bold text-5xl mb-7">
       <%= titulo %>
     </div>
-    <div class='flex flex-col gap-1'>
-      <%= form.label :date_do_pedido, "Data do Pedido" , class: 'text-semibold text-lg' %>
+    <div class='flex flex-col gap-1'> <%= form.label :data_do_pedido, "Data do Pedido" , class: 'text-semibold text-lg' %>
       <%= form.date_field :data_do_pedido, class: "bg-base-100 rounded-md border-base-200 border-2" %>
     </div>
     <div class='flex flex-col gap-1'>
@@ -27,19 +26,26 @@
         <div class="mi">check</div>
         <div>Confirmar</div>
       </button>
+      <% unless is_update %>
       <button type="button" data-action='pedidos--create-form#addItem' class='btn btn-info'>
+      <% else %>
+      <button type="button" data-action='pedidos--update-form#addItem' class='btn btn-info'>
+      <% end %>
         <div class='mi'>add</div>
         <div>Adicionar item</div>
       </button>
     </div>
   </div>
   <div class='h-[50dvh] rounded bg-base-100 border-gray-600 border-2 overflow-x-hidden overflow-y-auto'>
+    <% if is_update %>
+    <div data-pedidos--update-form-target='itemsList' class='grid grid-cols-[minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_5rem] grid-rows-auto'>
+    <% else %>
     <div data-pedidos--create-form-target='itemsList' class='grid grid-cols-[minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_5rem] grid-rows-auto'>
+    <% end %>
       <div class="grid bg-gray-800 h-fit grid-cols-subgrid col-span-5 divide-x-2">
         <%= table_headers %>
       </div>
       <% form.fields_for :items_de_pedidos do |item_form| %>
-        dawd
         <%= render partial: 'pedidos/item_form', locals: {item_form: item_form, is_update: is_update} %>
       <% end %>
     </div>

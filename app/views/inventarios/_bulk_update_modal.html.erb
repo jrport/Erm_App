@@ -1,4 +1,4 @@
-<% options = ['crítico', 'desgastado', 'bom'] %>
+<% options = ['Crítico', 'Desgastado', 'Bom'] %>
 <div id="modal", class='hidden' data-inventarios-target='modal'>
   <div role="dialog" tabindex="-1" class="fixed inset-0 z-30 flex items-center justify-center w-full h-screen p-2">
     <div class="fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30"></div>
@@ -7,7 +7,7 @@
       <%= button_tag class: 'absolute top-7 flex items-center right-7 btn btn-circle text-xl text-red-500', data: {action: "click -> inventarios#closeModal"} do %>
         <div class='mi md-24'>close</div>
       <% end %>
-      <%= form_with url: bulk_update_inventarios_path, method: :patch, class: "p-7 flex flex-col justify-evenly gap-10" do |f| %>
+      <%= form_with url: bulk_update_inventarios_path, method: :patch, class: "p-7 flex flex-col justify-evenly gap-5" do |f| %>
         <%= hidden_field_tag :items_id, {}, {data: {inventarios_target: 'hiddenField'}} %>
 
         <div class='text-4xl font-bold'>
@@ -16,17 +16,17 @@
 
         <div class='grid grid-rows-2 gap-2'>
           <div class='inline-flex items-end'>
-            estado dos items:
+            Estado dos items:
           </div>
           <%= f.select :estado, options_for_select(options.zip(ItemsDeCompra.estados.keys)), {}, class: 'select select-bordered' %>
           <div>
-            local:
+            Local:
           </div>
           <%= f.select :loja_id, Loja.pluck(:nome, :id), {}, class: 'select select-bordered' %>
         </div>
 
         <div class=' '>
-          <button data-action='click -> inventarios#closeModal' type='submit' class='btn btn-success'>confirmar</button>
+          <button data-action='click -> inventarios#closeModal' type='submit' class='btn btn-success'>Confirmar</button>
         </div>
       <% end %>
     </div>

@@ -21,7 +21,7 @@
     </div>
   </div>
   <div class='flex gap-3'>
-    <%= link_to edit_pedido_path(pedido), class: 'btn btn-info' do%>
+    <%= link_to edit_pedido_path(pedido), data: {turbo_target:'pedido-details'}, class: 'btn btn-info' do%>
       <div class="mi">edit</div>
       Editar
     <% end %>

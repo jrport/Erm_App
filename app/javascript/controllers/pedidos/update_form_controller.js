@@ -38,4 +38,10 @@ export default class extends Controller {
         })
         curRow.style.display = 'none'
     }
+
+    deleteItem(event) {
+        const button = event.currentTarget
+        const curRow = button.parentNode
+        curRow.remove()
+    }
 }
