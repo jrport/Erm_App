@@ -11,7 +11,7 @@
   <% end %>
   <div class='col-span-2 row-span-1 grid grid-rows-2 gap-5 grid-cols-3'>
     <div data-controller='pedidos--status'
-      class='flex gap-1 status-select flex-col justify-center bg-base-300 rounded-box shadow-2xl col-span-1 row-span-2'>
+      class='flex gap-3 status-select flex-col justify-center bg-base-300 rounded-box shadow-2xl col-span-1 row-span-2'>
       <%= render partial: 'pedidos/status_form' %>
     </div>
     <%= render 'pedidos/stats' , total: @metrics[:total], pending: @metrics[:pending], finished: @metrics[:finished] %>

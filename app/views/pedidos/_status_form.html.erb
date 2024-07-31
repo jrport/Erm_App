@@ -1,4 +1,4 @@
-<span data-pedidos--status-target='formMessage' class='text-md text-wrap text-center'>Selecione algum pedido.</span>
+<span data-pedidos--status-target='formMessage' class='text-xl text-wrap text-center'>Selecione algum pedido.</span>
 <%= form_with scope: :pedido, url: bulk_update_pedidos_path, method: :patch, class: 'flex gap-2 flex-col items-center justify-center' do |form| %>
   <% options = ['Pendente', 'Em progresso', 'Finalizado'] %>
   <%= form.select :status, options.zip(Pedido.statuses.keys), {},{class:"select select-bordered", disabled: true, data: {pedidos__status_target: 'selectOptions'}} %>
