@@ -96,17 +96,17 @@
     </div>
     <div class='col-span-1 row-span-3 flex pl-2 justify-center items-center bg-base-300 rounded-box'>
       <div class='stat'>
-        <div class='stat-title text-2xl text-info'>
+        <div class='stat-title text-4xl text-info'>
           Foi gasto um total de 
         </div>
-        <div class='stat-value text-success'>
+        <div class='stat-value text-5xl text-success'>
           <% unless Compra.nil? %>
             R$ <%= Compra.this_month.reduce(0) { |acc, val| acc + val.valor_total }.round(2) %>
           <% else %>            
             R$ 0,00
           <% end %>
         </div>
-        <div class='stat-desc text-xl text-info'>neste mês.</div>
+        <div class='stat-desc text-3xl text-info'>neste mês.</div>
       </div>
     </div>
   </div>
