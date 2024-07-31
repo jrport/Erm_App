@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::PasswordsController < Devise::PasswordsController
-  layout 'login', only: %i[new create edit]
+  layout 'login'
   # GET /resource/password/new
   # def new
   #   super
