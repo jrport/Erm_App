@@ -2,9 +2,9 @@
   <%= form.fields_for :items_de_pedidos, ItemsDePedido.new, child_index: 'NEW_RECORD' do |item_form| %>
     <div data-lojista-target='itemForm' id='itemForm' class="h-fit border-b-2 border-base-300 grid grid-cols-subgrid col-span-6 ">
       <%= item_form.text_field :nome, class: "bg-base-100 border-base-200 text-ellipsis", placeholder: 'Ex: Caneta Azul' %>
-      <%= item_form.text_field :observacoes, class: "bg-base-100 border-base-200 text-ellipsis border-2", placeholder: 'Ex: Bic de preferência'  %>
-      <%= item_form.text_field :porcao, class: "bg-base-100 border-base-200 border-2", min: 1  %>
       <%= item_form.number_field :quantidade, class: "bg-base-100 border-base-200 border-2", min: 1  %>
+      <%= item_form.text_field :porcao, class: "bg-base-100 border-base-200 border-2", min: 1  %>
+      <%= item_form.text_field :observacoes, class: "bg-base-100 border-base-200 text-ellipsis border-2", placeholder: 'Ex: Bic de preferência'  %>
       <button type='button' onclick='this.parentElement.remove()' class='mi bg-red-400 hover:bg-red-300 transition-colors text-black'>
         delete
       </button>    
