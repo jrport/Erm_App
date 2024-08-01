@@ -9,7 +9,7 @@
   </div>
   <div class="row-span-1 col-span-8 grid grid-cols-subgrid">
     <div class='col-span-6 grid grid-cols-subgrid'>
-      <%= f.select :loja_id_eq, options_for_select(Loja.all.pluck(:nome, :id)), {include_blank: true}, {class: 'col-span-2 select'
+      <%= f.select :loja_id_eq, options_for_select(Loja.all.pluck(:nome, :id)), {include_blank: 'Escolha a loja de origem'}, {class: 'col-span-2 select text-ellipsis'
         } %>
       <%= f.date_field :data_do_pedido_gteq, class: 'input col-span-2' %>
       <%= f.date_field :data_do_pedido_lteq, class: 'input col-span-2' %>

@@ -13,11 +13,7 @@
     </div>
     <div class='flex gap-1 text-lg text-semibold'>
       <div class='font-bold text-xl'>Observações: </div>
-      <% if !pedido.observacoes.try(:empty?) %>
-        Sem observações. 
-      <% else %>
-        <%= pedido.observacoes.capitalize %>
-      <% end %>
+      <%= pedido.observacoes.nil? || pedido.observacoes.empty? ? 'Sem observações' : pedido.observacoes %>
     </div>
   </div>
   <div class='flex gap-3'>

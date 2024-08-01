@@ -1,9 +1,9 @@
 <div class="h-fit bg-base-100 flex justify-between p-4 rounded-xl border-stone-200">
   <div>
     <div class="text-2xl font-semibold"><%= loja.nome.capitalize %></div>
-    <div><%= loja.telefone %></div>
-    <div><%= loja.email %></div>
-    <div><%= loja.endereco %></div>
+    <div><%= loja.telefone.nil? || loja.telefone.empty? ? 'Sem telefone' : loja.telefone %></div>
+    <div><%= loja.email.nil? || loja.email.empty? ? 'Sem email' : loja.email %></div>
+    <div><%= loja.endereco.nil? || loja.endereco.empty? ? 'Sem endereco' : loja.endereco %></div>
   </div>
   <div class='self-start'>
     <%= link_to 'delete', admin_loja_path(loja), data: {turbo_method: :delete, turbo_confirm: 'Certeza?'}, class:'bg-secondary p-1 hover:bg-[#f8613b] rounded md-dark mi' %>

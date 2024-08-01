@@ -6,11 +6,7 @@
     <div class="alert w-fit alert-error">
       <div class="flex-1">
         <label>
-          <ol>
-            <% @loja.errors.messages[:nome].each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ol>
+            <%= @loja.errors.full_messages.first %>
         </label>
       </div>
     </div>
@@ -31,12 +27,12 @@
     <div>
       <%= form.label :email, 'Email' %>
     </div>
-    <%= form.text_field :email, class: 'input input-bordered' %>
+    <%= form.email_field :email, autocomplete: "email", type: 'email', class: 'input input-bordered' %>
   </div>
   <div>
     <%= form.label :endereco, 'Endereço' %>
     <div>
-      <%= form.text_field :nome, class: 'input input-bordered' %>
+      <%= form.text_field :endereco, class: 'input input-bordered' %>
     </div>
   </div>
   <button type="submit" class='absolute bottom-7 flex items-center right-7 btn btn-success text-xl'>

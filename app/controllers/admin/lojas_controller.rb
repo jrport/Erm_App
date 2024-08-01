@@ -12,7 +12,7 @@ class Admin::LojasController < ApplicationController
       redirect_to configuracoes_path, notice: 'Loja criada com sucesso!'
     else
       render turbo_stream: turbo_stream.replace('modal', partial: 'admin/lojas/modal',
-                                                           locals: { edit: false, loja: @loja })
+                                                         locals: { edit: false, loja: @loja })
     end
   end
 
@@ -24,12 +24,11 @@ class Admin::LojasController < ApplicationController
 
   def update
     @loja = Loja.find(params[:id])
-    respond_to do |format|
-      if @loja.update(loja_params)
-        format.html { redirect_to @loja, notice: 'Loja atualizada' }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @loja.update(loja_params)
+      redirect_to configuracoes_path, notice: 'Loja alterado com sucesso'
+    else
+      render turbo_stream: turbo_stream.replace('modal', partial: 'admin/lojas/modal',
+                                                         locals: { edit: true, loja: @loja })
     end
   end
 

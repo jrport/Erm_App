@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   get '/configuracoes', to: 'admin#index', as: 'configuracoes'
 
-  resources :lojistas, controller: :lojista, except: %w[destroy], path_names: { new: 'nova', edit: 'editar', index: 'dashboard' }
+  resources :lojistas, controller: :lojista, except: %w[destroy],
+                       path_names: { new: 'nova', edit: 'editar', index: 'dashboard' }
 
   namespace :admin do
     resources :contas, path_names: { new: 'nova', edit: 'editar' } do
@@ -21,7 +22,9 @@ Rails.application.routes.draw do
       delete 'cancelar_cadastro', to: 'contas#destroy', as: 'delete'
     end
 
-    resources :lojas, path_names: { 'new': 'nova' }
+    resources :lojas,
+              path_names: { 'new': 'nova', 'edit': 'editar', 'patch': 'atualizar', delete: 'deletar',
+                            'create': 'criar' }
   end
 
   resources :pedidos, path_names: { new: 'novo', create: 'criar' } do
