@@ -1,8 +1,12 @@
 <%= form_with model: pedido, html:{class: 'grid grid-cols-2 gap-10' }, data: {controller: 'pedidos--update-form'} do |form| %>
-  <template data-pedidos--update-form-target='template'>
+  <% if is_update == true %>
+    <template data-pedidos--update-form-target='template'>
+  <% else %>
+    <template data-pedidos--create-form-target='template'>
+  <% end %>
     <%= form.fields_for :items_de_pedidos, ItemsDePedido.new, child_index: 'NEW_RECORD' do |item| %>
       <%= render partial: 'pedidos/item_form' , locals: {item_form: item, is_update: false} %>
-    <% end %>
+  <% end %>
   </template>
 
   <div class='flex justify-center items-start gap-2 flex-col'>

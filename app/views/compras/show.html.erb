@@ -48,7 +48,7 @@
           <tbody>
             <% @compra.items_de_compras.each do |item| %>
               <tr class='hover overflow-x-auto'>
-                <td><%= item.nome %></td>
+                <td><%= link_to item.nome, inventario_path(item.id), data: {turbo_action: "advance", turbo_frame: "_top"}, class: "link hover:text-blue-500 transition transition-colors" %></td>
                 <td><%= item.porcao %></td>
                 <td><%= item.observacoes %></td>
               </tr>
